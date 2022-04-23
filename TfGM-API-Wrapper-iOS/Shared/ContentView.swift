@@ -9,25 +9,39 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @State var stops: [Stop] = []
     var body: some View {
         NavigationView {
-            VStack{
-                Text("Hello")
-                Text("More info")
+            
+            List {
+                ForEach(stops.sorted { $0.stopName < $1.stopName }) { stop in
+                    StopCell(stop: stop)
+                }
+                
+                HStack{
+                    Spacer()
+                    Text("\(stops.count) Stops Found")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+                
+            }
+            .navigationTitle("Stops")
+            .onAppear() {
+                StopRequest().requestStops { (stops) in
+                    self.stops = stops
+                }
             }
         }
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(stops: testData)
     }
 }
+
+
+
