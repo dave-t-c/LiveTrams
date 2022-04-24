@@ -19,6 +19,7 @@ struct NearPublicTransport: View {
                 GenericNearTransport(stop: stop, title: category, searchTerm: category)
             }
         }
+        .navigationTitle("Nearby")
     }
 }
 
