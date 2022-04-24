@@ -26,6 +26,14 @@ struct ContentView: View {
                     Spacer()
                 }
                 
+                HStack {
+                    Spacer()
+                    Text("Contains Transport for Greater Manchester data")
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
+                    Spacer()
+                }
+                
             }
             .searchable(text: $searchText)
             .navigationTitle("Stops")
