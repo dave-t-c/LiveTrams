@@ -38,7 +38,6 @@ struct ServicesView: View {
             ServicesRequest().requestServices(tlaref: stop.tlaref) { services in
                 self.services = services
             }
-            
         }
     }
 }

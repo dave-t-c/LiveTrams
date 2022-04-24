@@ -28,18 +28,22 @@ struct StopDetail: View {
                     Label("View Live Departures", systemImage: "tram")
                         .padding()
                 }
-                    
-                
-                Label(stop.street, systemImage: "car")
-                    .padding()
-                Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
-                    .padding()
                 Button {
                     mapManager.openMapsFromStop(stop: stop)
                 } label: {
                     Label("Open in Maps", systemImage: "map.fill")
                 }
                 .padding()
+                
+                NavigationLink (destination: NearPublicTransport(stop: stop)) {
+                    Label("Nearby Public Transport", systemImage: "tram")
+                        .padding()
+                }
+                
+                Label(stop.street, systemImage: "car")
+                    .padding()
+                Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
+                    .padding()
             }
         }
             .navigationTitle(stop.stopName)
