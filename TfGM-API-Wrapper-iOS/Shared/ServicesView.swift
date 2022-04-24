@@ -28,6 +28,7 @@ struct ServicesView: View {
                     
             }
         }
+        .navigationTitle("Live Services")
         .onAppear {
             ServicesRequest().requestServices(tlaref: stop.tlaref) { services in
                 self.services = services
@@ -53,7 +54,8 @@ struct DestinationView: View {
     var trams: [Tram]
     var body: some View {
         Text(destination)
-            .font(.headline)
+            .font(.title2)
+            .fontWeight(.semibold)
         VStack {
             ForEach(trams) {
                 tram in
@@ -67,5 +69,6 @@ struct DestinationView: View {
                 
             }
         }
+        .padding()
     }
 }
