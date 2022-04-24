@@ -23,6 +23,15 @@ struct StopDetail: View {
                     }
                 }
             if (!zoomed) {
+                NavigationLink (destination: ServicesView(stop: stop)) {
+                    HStack{
+                        Spacer()
+                        Label("View Live Departures", systemImage: "tram")
+                        Spacer()
+                    }
+                }
+                    
+                
                 Label(stop.street, systemImage: "car")
                     .padding()
                 Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")

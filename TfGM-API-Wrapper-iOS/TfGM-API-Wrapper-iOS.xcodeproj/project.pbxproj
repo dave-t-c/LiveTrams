@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
+		9E7B1E9C2814B668007FA699 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
+		9E7B1E9E2814B679007FA699 /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9D2814B679007FA699 /* Tram.swift */; };
+		9E7B1E9F2814B679007FA699 /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9D2814B679007FA699 /* Tram.swift */; };
+		9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
+		9E7B1EA22814B7D3007FA699 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
+		9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
+		9E7B1EA52814C3FA007FA699 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E84E2B92812AAA600571ECA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2B82812AAA600571ECA /* Tests_iOS.swift */; };
 		9E84E2BB2812AAA600571ECA /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2BA2812AAA600571ECA /* Tests_iOSLaunchTests.swift */; };
 		9E84E2C52812AAA600571ECA /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2C42812AAA600571ECA /* Tests_macOS.swift */; };
@@ -49,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E7B1E9A2814B668007FA699 /* FormattedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedServices.swift; sourceTree = "<group>"; };
+		9E7B1E9D2814B679007FA699 /* Tram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tram.swift; sourceTree = "<group>"; };
+		9E7B1EA02814B7D3007FA699 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesRequest.swift; sourceTree = "<group>"; };
 		9E84E29E2812AAA400571ECA /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfGM_API_Wrapper_iOSApp.swift; sourceTree = "<group>"; };
 		9E84E2A12812AAA400571ECA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -124,6 +136,10 @@
 				9EC2FB672814839200C08784 /* StopView.swift */,
 				9EC2FB6A2814852E00C08784 /* StopDetail.swift */,
 				9EC2FB6D2814982B00C08784 /* StopRequest.swift */,
+				9E7B1E9A2814B668007FA699 /* FormattedServices.swift */,
+				9E7B1E9D2814B679007FA699 /* Tram.swift */,
+				9E7B1EA02814B7D3007FA699 /* ServicesView.swift */,
+				9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -324,9 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
+				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
+				9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */,
 				9EC2FB6528147BB500C08784 /* Stop.swift in Sources */,
+				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E7B1E9E2814B679007FA699 /* Tram.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
 				9EC2FB682814839200C08784 /* StopView.swift in Sources */,
@@ -339,9 +359,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E84E2CB2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
+				9E7B1EA52814C3FA007FA699 /* ServicesRequest.swift in Sources */,
+				9E7B1E9C2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CF2812AAA600571ECA /* Persistence.swift in Sources */,
 				9EC2FB6628147BB500C08784 /* Stop.swift in Sources */,
+				9E7B1EA22814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E7B1E9F2814B679007FA699 /* Tram.swift in Sources */,
 				9E84E2E22812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6C2814852E00C08784 /* StopDetail.swift in Sources */,
 				9EC2FB692814839200C08784 /* StopView.swift in Sources */,
