@@ -17,4 +17,33 @@ class MapManager: NSObject, ObservableObject {
         mapItem.name = "\(stop.stopName) Tram Stop"
         mapItem.openInMaps()
     }
+    
+    func searchLocalArea(stop: Stop, searchTerm: String) async throws -> [MKMapItem]{
+        let coords = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+        let stopLocation = CLLocation(latitude: stop.latitude, longitude: stop.longitude)
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchTerm
+        let region = MKCoordinateRegion(center: coords, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        searchRequest.region = region
+        let search = MKLocalSearch(request: searchRequest)
+
+        //Complete search
+        let response = try  await search.start()
+        return(self.filterMapItems(mapItems: response.mapItems, stopLocation: stopLocation))
+    }
+    
+    //Use a sorted set hear to sort by distance to tram stop
+    
+    func filterMapItems(mapItems: [MKMapItem], stopLocation: CLLocation) -> [MKMapItem] {
+        var filteredItems = Set<MKMapItem>()
+        for mapItem in mapItems {
+            if !filteredItems.contains(where: { item in item.name == mapItem.name })
+            {
+                filteredItems.insert(mapItem)
+            }
+        }
+        let sortedItems = filteredItems.sorted(by: ({ stopLocation.distance(from: $0.placemark.location!) < stopLocation.distance(from: $1.placemark.location!)})).prefix(5)
+        
+        return Array(Set(sortedItems))
+    }
 }
