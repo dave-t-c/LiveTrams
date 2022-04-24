@@ -12,6 +12,7 @@ struct StopDetail: View {
     
     var stop: Stop
     @State private var zoomed = false
+    @State private var mapManager = MapManager()
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -23,11 +24,22 @@ struct StopDetail: View {
                     }
                 }
             if (!zoomed) {
+                NavigationLink (destination: ServicesView(stop: stop)) {
+                    Label("View Live Departures", systemImage: "tram")
+                        .padding()
+                }
+                    
+                
                 Label(stop.street, systemImage: "car")
                     .padding()
                 Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
                     .padding()
-                Spacer()
+                Button {
+                    mapManager.openMapsFromStop(stop: stop)
+                } label: {
+                    Label("Open in Maps", systemImage: "map.fill")
+                }
+                .padding()
             }
         }
             .navigationTitle(stop.stopName)
