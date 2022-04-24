@@ -10,22 +10,24 @@ import CoreData
 
 struct ContentView: View {
     @State var stops: [Stop] = []
+    @State private var searchText = ""
     var body: some View {
         NavigationView {
             
             List {
-                ForEach(stops.sorted { $0.stopName < $1.stopName }) { stop in
+                ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
                     StopCell(stop: stop)
                 }
                 
                 HStack{
                     Spacer()
-                    Text("\(stops.count) Stops Found")
+                    Text("\(searchResults.count) Stops Found")
                         .foregroundColor(.secondary)
                     Spacer()
                 }
                 
             }
+            .searchable(text: $searchText)
             .navigationTitle("Stops")
             .onAppear() {
                 StopRequest().requestStops { (stops) in
@@ -33,8 +35,16 @@ struct ContentView: View {
                 }
             }
         }
-        
     }
+    
+    var searchResults: [Stop] {
+        if searchText.isEmpty {
+            return stops
+        } else {
+            return stops.filter { $0.stopName.contains(searchText)}
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
