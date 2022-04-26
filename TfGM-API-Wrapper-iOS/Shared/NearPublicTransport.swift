@@ -49,7 +49,11 @@ struct GenericNearTransport: View {
             ForEach(Array(sortedKeys), id: \.self) {
                 location in
                 HStack {
-                    Text(location.name!)
+                    Button {
+                        location.openInMaps()
+                    } label: {
+                        Text(location.name!)
+                    }.buttonStyle(BorderlessButtonStyle())
                     Spacer()
                     Text("\(String(Int(identifiedLocationsDict[location]!)))m")
                 }
