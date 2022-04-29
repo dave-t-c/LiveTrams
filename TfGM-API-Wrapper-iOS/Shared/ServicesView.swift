@@ -39,6 +39,11 @@ struct ServicesView: View {
                 self.services = services
             }
         }
+        .refreshable {
+            ServicesRequest().requestServices(tlaref: stop.tlaref) { services in
+                self.services = services
+            }
+        }
     }
 }
 
