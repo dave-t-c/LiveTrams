@@ -72,8 +72,14 @@ struct DestinationView: View {
                     Text(tram.carriages)
                         .padding(.bottom)
                     Spacer()
-                    Text("\(tram.wait) mins")
-                        .padding()
+                    if tram.wait == "0" {
+                        Text("\(tram.status)")
+                            .padding()
+                    } else {
+                        Text("\(tram.wait) mins")
+                            .padding()
+                    }
+                    
                 }
                 
             }
