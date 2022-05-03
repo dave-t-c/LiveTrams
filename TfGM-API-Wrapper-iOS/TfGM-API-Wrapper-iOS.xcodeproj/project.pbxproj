@@ -33,6 +33,8 @@
 		9E84E2D12812AAA600571ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
 		9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2E02812AC6000571ECA /* ContentView.swift */; };
 		9E84E2E22812AC6000571ECA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2E02812AC6000571ECA /* ContentView.swift */; };
+		9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
+		9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6628147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB682814839200C08784 /* StopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB672814839200C08784 /* StopView.swift */; };
@@ -81,6 +83,7 @@
 		9E84E2C42812AAA600571ECA /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9E84E2C62812AAA600571ECA /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9E84E2E02812AC6000571ECA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB672814839200C08784 /* StopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopView.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		9E84E29C2812AAA400571ECA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9E957475281F483000A43574 /* ServicesViewModel.swift */,
 				9E84E2E02812AC6000571ECA /* ContentView.swift */,
 				9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */,
 				9E84E2A12812AAA400571ECA /* Persistence.swift */,
@@ -349,6 +353,7 @@
 			files = (
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
+				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
 				9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */,
@@ -370,6 +375,7 @@
 			files = (
 				9E3F2C1328158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CB2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
+				9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */,
 				9E7B1EA52814C3FA007FA699 /* ServicesRequest.swift in Sources */,
 				9E7B1E9C2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CF2812AAA600571ECA /* Persistence.swift in Sources */,

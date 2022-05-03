@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct ServicesView: View {
-    @State var services: FormattedServices = FormattedServices(destinations: [:], messages:[])
+    
     var stop: Stop
     
+    @StateObject private var viewModel = ServicesViewModel()
+    
+    init(stop: Stop) {
+        self.stop = stop
+    }
+    
     var body: some View {
-        List { 
-            ForEach(Array(services.destinations.keys), id: \.self) {
+        List {
+            ForEach(self.viewModel.getDestinationsAlphabetical(), id: \.self) {
                 destination in
-                DestinationView(destination: destination, trams: services.destinations[destination]!)
+                    DestinationView(destination: destination, trams: self.viewModel.services.destinations[destination]!)
             }
-            ForEach(services.messages, id: \.self) {
+            ForEach(self.viewModel.services.messages, id: \.self) {
                 message in
                 HStack {
                     Spacer()
@@ -35,14 +41,13 @@ struct ServicesView: View {
         }
         .navigationTitle("Live Services")
         .onAppear {
-            ServicesRequest().requestServices(tlaref: stop.tlaref) { services in
-                self.services = services
+            self.viewModel.stop = stop
+            Task {
+                await self.viewModel.refreshServices()
             }
         }
         .refreshable {
-            ServicesRequest().requestServices(tlaref: stop.tlaref) { services in
-                self.services = services
-            }
+            await self.viewModel.refreshServices()
         }
     }
 }
