@@ -45,3 +45,5 @@ This program is in no way associated with TfGM.
 The data in this application is used under the Open Government Licence v3.0
 
 This program contains Transport for Greater Manchester data
+
+The app icon currently uses SF Symbols, which belong to Apple. This app icon is being used for testing and development. The final app icon will not contain SF Symbols as to comply with App store guidelines. 
