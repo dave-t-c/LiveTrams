@@ -9,9 +9,11 @@ import SwiftUI
 import Foundation
 
 struct StopCell: View {
+    @EnvironmentObject var favouritesStore: FavouriteStopStore
+    
     var stop: Stop
     var body: some View {
-        NavigationLink(destination: StopDetail(stop: stop)) {
+        NavigationLink(destination: StopDetail(stop: stop).environmentObject(favouritesStore)) {
             VStack(alignment: .leading) {
                 Text(stop.stopName)
                 Text(stop.street)
