@@ -11,12 +11,14 @@ import CoreData
 struct ContentView: View {
     @State var stops: [Stop] = []
     @State private var searchText = ""
+    
+    @StateObject private var favouritesStore = FavouriteStopStore()
     var body: some View {
         NavigationView {
             
             List {
                 ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
-                    StopCell(stop: stop)
+                    StopCell(stop: stop).environmentObject(favouritesStore)
                 }
                 
                 HStack{
@@ -34,13 +36,35 @@ struct ContentView: View {
                     Spacer()
                 }
                 
+                Button(action: {
+                    print(favouritesStore.stops)
+
+                }) {
+                    Label("Add to favourites", systemImage: "star")
+                }
+                        .padding()
+
+                
             }
             .searchable(text: $searchText)
             .navigationTitle("Stops")
             .onAppear() {
+                
+                FavouriteStopStore.load { result in
+                    switch result {
+                    case .failure(let error):
+                        fatalError(error.localizedDescription)
+                    case .success(let stops):
+                        favouritesStore.stops = stops
+                    }
+                    
+                }
+                
                 StopRequest().requestStops { (stops) in
                     self.stops = stops
                 }
+                
+                
             }
         }
     }
