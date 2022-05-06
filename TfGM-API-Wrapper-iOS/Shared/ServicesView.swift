@@ -19,26 +19,33 @@ struct ServicesView: View {
     
     var body: some View {
         List {
+            
             ForEach(self.viewModel.getDestinationsAlphabetical(), id: \.self) {
                 destination in
-                    DestinationView(destination: destination, trams: self.viewModel.services.destinations[destination]!)
+                DestinationView(destination: destination, trams: self.viewModel.services.destinations[destination]!)
             }
-            ForEach(self.viewModel.services.messages, id: \.self) {
-                message in
+            
+            Section(header: Text("Service Updates")){
+                ForEach(self.viewModel.services.messages, id: \.self) {
+                    message in
+                    HStack {
+                        Spacer()
+                        Label(message, systemImage: "message.fill")
+                        Spacer()
+                    }
+                }
                 HStack {
                     Spacer()
-                    Label(message, systemImage: "message.fill")
+                    Text("Contains Transport for Greater Manchester data")
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
                     Spacer()
                 }
             }
-            HStack {
-                Spacer()
-                Text("Contains Transport for Greater Manchester data")
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-                Spacer()
-            }
+            .headerProminence(.increased)
+            
         }
+        .listStyle(.insetGrouped)
         .navigationTitle("Live Services")
         .onAppear {
             self.viewModel.stop = stop
@@ -67,28 +74,28 @@ struct DestinationView: View {
     var destination: String
     var trams: [Tram]
     var body: some View {
-        Text(destination)
-            .font(.title2)
-            .fontWeight(.semibold)
-        VStack {
-            ForEach(trams) {
-                tram in
-                HStack {
-                    Text(tram.carriages)
-                        .padding(.bottom)
-                    Spacer()
-                    if tram.wait == "0" {
-                        Text("\(tram.status)")
-                            .padding()
-                    } else {
-                        Text("\(tram.wait) mins")
-                            .padding()
+        Section (header: Text(destination)) {
+            VStack {
+                ForEach(trams) {
+                    tram in
+                    HStack {
+                        Text(tram.carriages)
+                            .padding(.bottom)
+                        Spacer()
+                        if tram.wait == "0" {
+                            Text("\(tram.status)")
+                                .padding()
+                        } else {
+                            Text("\(tram.wait) mins")
+                                .padding()
+                        }
+                        
                     }
                     
                 }
-                
             }
+            .padding()
         }
-        .padding()
+        .headerProminence(.increased)
     }
 }
