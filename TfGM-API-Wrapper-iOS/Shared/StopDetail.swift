@@ -11,7 +11,6 @@ import MapKit
 struct StopDetail: View {
     
     var stop: Stop
-    @State private var zoomed = false
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
@@ -20,9 +19,8 @@ struct StopDetail: View {
         List {
             Section {
                 Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: .fit)
             }
-            .aspectRatio(contentMode: .fill)
             
             Section{
                 NavigationLink (destination: ServicesView(stop: stop)) {
