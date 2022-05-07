@@ -13,7 +13,6 @@ struct NearPublicTransport: View {
     @State private var categories = ["Bus Stops", "National Rail", "Cafes"]
     var body: some View {
         List{
-            
             ForEach(categories, id: \.self) {
                 category in
                 GenericNearTransport(stop: stop, title: category, searchTerm: category)
@@ -38,14 +37,8 @@ struct GenericNearTransport: View {
     @State private var identifiedLocationsDict: [MKMapItem: Double] = [:]
     @State private var sortedKeys: [MKMapItem] = []
     var body: some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-            
+        
+        Section(header: Text(title)){
             ForEach(Array(sortedKeys), id: \.self) {
                 location in
                 HStack {
@@ -60,6 +53,7 @@ struct GenericNearTransport: View {
                 .padding()
             }
         }
+        .headerProminence(.increased)
         
         .onAppear() {
             Task.init {

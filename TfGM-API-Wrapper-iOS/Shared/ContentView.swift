@@ -11,36 +11,59 @@ import CoreData
 struct ContentView: View {
     @State var stops: [Stop] = []
     @State private var searchText = ""
+    
+    @StateObject private var favouritesStore = FavouriteStopStore()
     var body: some View {
         NavigationView {
             
             List {
-                ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
-                    StopCell(stop: stop)
+                
+                Section(header: Text("Favourites")){
+                    ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
+                        StopCell(stop: stop).environmentObject(favouritesStore)
+                    }
                 }
                 
-                HStack{
-                    Spacer()
-                    Text("\(searchResults.count) Stops Found")
-                        .foregroundColor(.secondary)
-                    Spacer()
+                Section(header: Text("All Stops")){
+                    ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
+                        StopCell(stop: stop).environmentObject(favouritesStore)
+                    }
+                    
+                    HStack{
+                        Spacer()
+                        Text("\(searchResults.count) Stops Found")
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Text("Contains Transport for Greater Manchester data")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                        Spacer()
+                    }
                 }
-                
-                HStack {
-                    Spacer()
-                    Text("Contains Transport for Greater Manchester data")
-                        .foregroundColor(.secondary)
-                        .font(.footnote)
-                    Spacer()
-                }
-                
             }
             .searchable(text: $searchText)
             .navigationTitle("Stops")
             .onAppear() {
+                
+                FavouriteStopStore.load { result in
+                    switch result {
+                    case .failure(let error):
+                        fatalError(error.localizedDescription)
+                    case .success(let stops):
+                        favouritesStore.stops = stops
+                    }
+                    
+                }
+                
                 StopRequest().requestStops { (stops) in
                     self.stops = stops
                 }
+                
+                
             }
         }
     }
