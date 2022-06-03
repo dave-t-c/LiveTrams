@@ -18,10 +18,8 @@ class StopRequest: ObservableObject {
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let httpResponse = response as? HTTPURLResponse {
-                    
                     if httpResponse.statusCode != 200{
                         return
-                        
                     }
                 }
                 let stops = try! JSONDecoder().decode([Stop].self, from: data!)
