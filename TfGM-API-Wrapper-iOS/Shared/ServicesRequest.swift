@@ -15,7 +15,12 @@ class ServicesRequest: ObservableObject {
             print("Invalid url...")
             return FormattedServices(destinations: [:], messages: [])
         }
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await URLSession.shared.data(from: url)
+        if let httpResponse = response as? HTTPURLResponse {
+            if httpResponse.statusCode != 200{
+                return FormattedServices(destinations: [:], messages: [])
+            }
+        }
         return try! JSONDecoder().decode(FormattedServices.self, from: data)
     }
 }
