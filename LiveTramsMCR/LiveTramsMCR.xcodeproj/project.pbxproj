@@ -75,7 +75,7 @@
 		9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfGM_API_Wrapper_iOSApp.swift; sourceTree = "<group>"; };
 		9E84E2A12812AAA400571ECA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9E84E2A22812AAA600571ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9E84E2A72812AAA600571ECA /* LiveTrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTramsMCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E84E2AD2812AAA600571ECA /* LiveTramsMCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTramsMCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E84E2AF2812AAA600571ECA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9E84E2B42812AAA600571ECA /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,7 +163,7 @@
 		9E84E2A82812AAA600571ECA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E84E2A72812AAA600571ECA /* LiveTrams.app */,
+				9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */,
 				9E84E2AD2812AAA600571ECA /* LiveTramsMCR.app */,
 				9E84E2B42812AAA600571ECA /* Tests iOS.xctest */,
 				9E84E2C02812AAA600571ECA /* Tests macOS.xctest */,
@@ -214,7 +214,7 @@
 			);
 			name = "LiveTramsMCR (iOS)";
 			productName = "TfGM-API-Wrapper-iOS (iOS)";
-			productReference = 9E84E2A72812AAA600571ECA /* LiveTrams.app */;
+			productReference = 9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9E84E2AC2812AAA600571ECA /* LiveTramsMCR (macOS) */ = {
@@ -563,8 +563,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dccompsci.TfGM-API-Wrapper-iOS";
-				PRODUCT_NAME = LiveTrams;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
+				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -593,8 +593,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dccompsci.TfGM-API-Wrapper-iOS";
-				PRODUCT_NAME = LiveTrams;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
+				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -624,7 +624,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dccompsci.TfGM-API-Wrapper-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -653,7 +653,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dccompsci.TfGM-API-Wrapper-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
