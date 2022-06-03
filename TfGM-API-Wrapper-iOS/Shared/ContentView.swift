@@ -29,6 +29,14 @@ struct ContentView: View {
                         StopCell(stop: stop).environmentObject(favouritesStore)
                     }
                     
+                    if (searchResults.count == 0){
+                        HStack{
+                            Spacer()
+                            Text("Service infomration is currently unavailable")
+                            Spacer()
+                        }
+                    }
+                    
                     HStack{
                         Spacer()
                         Text("\(searchResults.count) Stops Found")
