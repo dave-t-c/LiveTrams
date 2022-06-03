@@ -34,6 +34,23 @@ struct ServicesView: View {
                         Spacer()
                     }
                 }
+                
+                if(self.viewModel.services.destinations.count == 0){
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text("No Service information available")
+                            Spacer()
+                        }.padding()
+
+                        HStack {
+                            Spacer()
+                            Link("Please check TfGM.com for first and last tram times", destination: URL(string: "https://tfgm.com/public-transport/tram/tram-schedule")!)
+                            Spacer()
+                        }.padding()
+                    }
+                    
+                }
                 HStack {
                     Spacer()
                     Text("Contains Transport for Greater Manchester data")
