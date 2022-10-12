@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E2A946028F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
+		9E2A946128F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C102815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */; };
@@ -65,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E2A945F28F737B60096F7A9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		9E3F2C0E2815609A00C863FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
 		9E7B1E9A2814B668007FA699 /* FormattedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedServices.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 				9E3F2C0E2815609A00C863FF /* MapManager.swift */,
 				9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */,
 				9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */,
+				9E2A945F28F737B60096F7A9 /* Route.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -364,6 +368,7 @@
 				9EC2FB6528147BB500C08784 /* Stop.swift in Sources */,
 				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E2A946028F737B60096F7A9 /* Route.swift in Sources */,
 				9E7B1E9E2814B679007FA699 /* Tram.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
@@ -387,6 +392,7 @@
 				9EC2FB6628147BB500C08784 /* Stop.swift in Sources */,
 				9E7B1EA22814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E2A946128F737B60096F7A9 /* Route.swift in Sources */,
 				9E7B1E9F2814B679007FA699 /* Tram.swift in Sources */,
 				9E84E2E22812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6C2814852E00C08784 /* StopDetail.swift in Sources */,
