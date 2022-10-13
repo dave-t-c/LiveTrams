@@ -24,14 +24,20 @@ struct StopDetail: View {
             
             Section{
                 NavigationLink (destination: ServicesView(stop: stop)) {
-                    Label("View Live Departures", systemImage: "tram")
+                    Label("View Live Departures", systemImage: "play.circle.fill")
                         .padding()
                 }
             }
+            
+            Section{
+                Label("Plan Journey", systemImage: "map.fill")
+            }.padding()
+            
+            
             Button {
                 mapManager.openMapsFromStop(stop: stop)
             } label: {
-                Label("Open in Maps", systemImage: "map.fill")
+                Label("Open in Maps", systemImage: "arrow.turn.up.right")
             }
             .padding()
             
