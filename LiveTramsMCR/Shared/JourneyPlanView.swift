@@ -48,7 +48,16 @@ struct JourneyPlanView: View {
                 
             }
             Section{
-              
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        Label("Plan Journey", systemImage: "tram.fill")
+                    }
+                    .padding()
+                    Spacer()
+                }
             }
         }
         .navigationTitle("Journey Planner")
