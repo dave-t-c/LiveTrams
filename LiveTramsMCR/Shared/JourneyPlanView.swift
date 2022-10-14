@@ -12,21 +12,20 @@ struct JourneyPlanView: View {
     var initialOrigin: Stop
     var stops: [Stop]
     
-    @State private var originInput: String = ""
-    @State private var destinationInput: String = ""
-    
-    @State private var suggestions: [String] = ["Piccadilly", "Navigation Road", "Victoria", "A", "A", "A"]
-    
-    @State private var filteredStops: [Stop] = []
+    @State private var originStop: Stop?
+    @State private var destinationStop: Stop?
     
     var body: some View {
         List {
             Section{
                 VStack{
-                    Picker("Origin", selection: $originInput){
+                    Picker("Origin", selection: $originStop){
                         ForEach(stops, id: \.self) { stop in
-                            Text(stop.stopName).tag(stop.tlaref)
+                            Text(stop.stopName).tag(stop as Stop?)
                         }
+                    }
+                    .onAppear {
+                        originStop = initialOrigin
                     }
                     
                     HStack{
@@ -35,14 +34,14 @@ struct JourneyPlanView: View {
                             .imageScale(.large)
                             .foregroundColor(.blue)
                             .onTapGesture {
-                                let temp = destinationInput
-                                destinationInput = originInput
-                                originInput = temp
+                                let temp = destinationStop
+                                destinationStop = originStop
+                                originStop = temp
                             }
                     }
-                    Picker("Destination", selection: $destinationInput){
+                    Picker("Destination", selection: $destinationStop){
                         ForEach(stops, id: \.self) { stop in
-                            Text(stop.stopName).tag(stop.tlaref)
+                            Text(stop.stopName).tag(stop as Stop?)
                         }
                     }
                 }
@@ -56,7 +55,7 @@ struct JourneyPlanView: View {
         .edgesIgnoringSafeArea(.bottom)
         .padding(.all)
         .onAppear{
-            originInput = initialOrigin.stopName
+            
         }
     }
 }
