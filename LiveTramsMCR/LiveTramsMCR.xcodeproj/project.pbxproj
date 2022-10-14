@@ -43,6 +43,8 @@
 		9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
 		9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
 		9EC2B19028F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
+		9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
+		9EC2B19328F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6628147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB682814839200C08784 /* StopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB672814839200C08784 /* StopView.swift */; };
@@ -96,6 +98,7 @@
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
 		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
 		9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedJourney.swift; sourceTree = "<group>"; };
+		9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerRequest.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB672814839200C08784 /* StopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopView.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 				9E2A945F28F737B60096F7A9 /* Route.swift */,
 				9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */,
 				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
+				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -378,6 +382,7 @@
 				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
 				9E2A946028F737B60096F7A9 /* Route.swift in Sources */,
+				9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E7B1E9E2814B679007FA699 /* Tram.swift in Sources */,
 				9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */,
@@ -404,6 +409,7 @@
 				9E7B1EA22814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */,
 				9E2A946128F737B60096F7A9 /* Route.swift in Sources */,
+				9EC2B19328F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E7B1E9F2814B679007FA699 /* Tram.swift in Sources */,
 				9EC2B19028F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
 				9E84E2E22812AC6000571ECA /* ContentView.swift in Sources */,
