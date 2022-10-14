@@ -14,6 +14,7 @@ struct JourneyPlanView: View {
     
     @State private var originStop: Stop?
     @State private var destinationStop: Stop?
+    @State private var plannedJourney: PlannedJourney?
     
     var body: some View {
         List {

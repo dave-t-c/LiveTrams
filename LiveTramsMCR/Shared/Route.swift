@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Route: Identifiable {
+struct Route: Identifiable, Decodable, Encodable, Equatable, Hashable {
     let Name: String
     let Colour: String
     let Stops: [Stop]
