@@ -15,6 +15,7 @@ struct JourneyPlanView: View {
     @State private var originStop: Stop?
     @State private var destinationStop: Stop?
     @State private var plannedJourney: PlannedJourney?
+    @State private var journeyPlannerRequest = JourneyPlannerRequest()
     
     var body: some View {
         List {
@@ -52,7 +53,9 @@ struct JourneyPlanView: View {
                 HStack{
                     Spacer()
                     Button(action: {
-                        
+                        Task {
+                            plannedJourney = try! await journeyPlannerRequest.planJourney(originTlaref: "ALT", destinationTlaref: "PIC")
+                        }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
                     }

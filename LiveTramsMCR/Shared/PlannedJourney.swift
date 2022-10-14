@@ -8,16 +8,18 @@
 import Foundation
 
 struct PlannedJourney: Identifiable, Decodable, Encodable, Equatable, Hashable {
-    var id = UUID()
-    let OriginStop: Stop
-    let DestinationStop: Stop
-    let InterchangeStop: Stop
-    let RoutesFromOrigin: [Route]
-    let StopsFromOrigin: [Stop]
-    let TerminiFromOrigin: [Stop]
-    let RoutesFromInterchange: [Route]
-    let StopsFromInterchange: [Stop]
-    let TerminiFromInterchange: [Stop]
-    let RequiresInterchange: Bool
-    let RouteDetails: String
+    let originStop: Stop
+    let destinationStop: Stop
+    let interchangeStop: Stop?
+    let routesFromOrigin: [Route]
+    let stopsFromOrigin: [Stop]
+    let terminiFromOrigin: [Stop]
+    let routesFromInterchange: [Route]?
+    let stopsFromInterchange: [Stop]?
+    let terminiFromInterchange: [Stop]?
+    let requiresInterchange: Bool
+    let routeDetails: String?
+    var id: Stop {
+        originStop
+    }
 }

@@ -21,6 +21,7 @@ class JourneyPlannerRequest: ObservableObject {
                 return plannedJourney
             }
         }
+        let _ = print(data)
         return try! JSONDecoder().decode(PlannedJourney.self, from: data)
     }
 }
