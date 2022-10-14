@@ -20,8 +20,10 @@ struct JourneyPlanView: View {
     var body: some View {
         List {
             Section{
+                
                 VStack{
                     Picker("Origin", selection: $originStop){
+                        Text("Select Stop").tag(Optional<String>(nil))
                         ForEach(stops, id: \.self) { stop in
                             Text(stop.stopName).tag(stop as Stop?)
                         }
@@ -29,6 +31,7 @@ struct JourneyPlanView: View {
                     .onAppear {
                         originStop = initialOrigin
                     }
+                    
                     
                     HStack{
                         Spacer()
@@ -46,6 +49,9 @@ struct JourneyPlanView: View {
                             Text(stop.stopName).tag(stop as Stop?)
                         }
                     }
+                    .onAppear {
+                        destinationStop = stops[0]
+                    }
                 }
                 
             }
@@ -54,7 +60,8 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
-                            plannedJourney = try! await journeyPlannerRequest.planJourney(originTlaref: "ALT", destinationTlaref: "PIC")
+                            plannedJourney = try! await journeyPlannerRequest
+                                .planJourney(originTlaref: originStop!.tlaref, destinationTlaref: destinationStop!.tlaref)
                         }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
@@ -62,6 +69,46 @@ struct JourneyPlanView: View {
                     .padding()
                     Spacer()
                 }
+            }
+            
+            if(plannedJourney != nil)
+            {
+                if (plannedJourney!.requiresInterchange){
+                    
+                }
+                else{
+                    VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+                        
+                        HStack {
+                            Image(systemName: "smallcircle.filled.circle")
+                                .frame(width: 30)
+                                .scaleEffect(1.5)
+                                .padding(.leading, 3.5)
+                                .padding(.bottom, 3.5)
+                            Text(plannedJourney!.originStop.stopName)
+                            Spacer()
+                        }
+                        HStack {
+                            Rectangle()
+                                .fill(.purple)
+                                .frame(width: 5, height: 100, alignment: .center)
+                                .padding(.leading, 15.5)
+                            Text("Take the tram towards " + plannedJourney!.terminiFromOrigin[0].stopName).padding(.leading, 15)
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Image(systemName: "smallcircle.filled.circle")
+                                .frame(width: 30)
+                                .scaleEffect(1.5)
+                                .padding(.leading, 3.5)
+                                .padding(.bottom, 3.5)
+                            Text(plannedJourney!.destinationStop.stopName)
+                            Spacer()
+                        }
+                    }
+                }
+                
             }
         }
         .navigationTitle("Journey Planner")
