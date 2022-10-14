@@ -39,6 +39,8 @@
 		9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9EBC2B7E2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
+		9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
+		9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6628147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB682814839200C08784 /* StopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB672814839200C08784 /* StopView.swift */; };
@@ -90,6 +92,7 @@
 		9E84E2E02812AC6000571ECA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
+		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB672814839200C08784 /* StopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopView.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 				9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */,
 				9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */,
 				9E2A945F28F737B60096F7A9 /* Route.swift */,
+				9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -359,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
@@ -383,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1328158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CB2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
 				9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */,

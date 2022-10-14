@@ -12,8 +12,9 @@ struct StopCell: View {
     @EnvironmentObject var favouritesStore: FavouriteStopStore
     
     var stop: Stop
+    var stops: [Stop]
     var body: some View {
-        NavigationLink(destination: StopDetail(stop: stop).environmentObject(favouritesStore)) {
+        NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
             VStack(alignment: .leading) {
                 Text(stop.stopName)
                 Text(stop.street)

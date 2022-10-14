@@ -20,13 +20,13 @@ struct ContentView: View {
                 
                 Section(header: Text("Favourites")){
                     ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                        StopCell(stop: stop).environmentObject(favouritesStore)
+                        StopCell(stop: stop, stops: stops).environmentObject(favouritesStore)
                     }
                 }
                 
                 Section(header: Text("All Stops")){
                     ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
-                        StopCell(stop: stop).environmentObject(favouritesStore)
+                        StopCell(stop: stop, stops: stops).environmentObject(favouritesStore)
                     }
                     
                     if (searchResults.count == 0){

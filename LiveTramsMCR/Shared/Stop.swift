@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-struct Stop: Identifiable, Codable, Equatable{
+struct Stop: Identifiable, Codable, Equatable, Hashable{
     let atcoCode: String
     let ids: [Int]
     let latitude: Double
