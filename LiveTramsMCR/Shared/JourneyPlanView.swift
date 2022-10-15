@@ -15,6 +15,7 @@ struct JourneyPlanView: View {
     @State private var originStop: Stop?
     @State private var destinationStop: Stop?
     @State private var plannedJourney: PlannedJourney?
+    @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
     
     var body: some View {
@@ -62,6 +63,7 @@ struct JourneyPlanView: View {
                         Task {
                             plannedJourney = try! await journeyPlannerRequest
                                 .planJourney(originTlaref: originStop!.tlaref, destinationTlaref: destinationStop!.tlaref)
+                            processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
                         }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
@@ -93,7 +95,7 @@ struct JourneyPlanView: View {
                                 .fill(.purple)
                                 .frame(width: 5, height: 100, alignment: .center)
                                 .padding(.leading, 15.5)
-                            Text("Take the tram towards " + plannedJourney!.terminiFromOrigin[0].stopName).padding(.leading, 15)
+                            Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
                             Spacer()
                         }
                         

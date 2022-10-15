@@ -53,6 +53,8 @@
 		9EC2FB6C2814852E00C08784 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6A2814852E00C08784 /* StopDetail.swift */; };
 		9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
+		9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
+		9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,7 @@
 		9EC2FB672814839200C08784 /* StopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopView.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EC2FB6D2814982B00C08784 /* StopRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRequest.swift; sourceTree = "<group>"; };
+		9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedPlannedJourney.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,7 @@
 				9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */,
 				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
 				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
+				9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -371,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
 				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
@@ -398,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
 				9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1328158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CB2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
