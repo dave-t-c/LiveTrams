@@ -11,6 +11,7 @@ import MapKit
 struct StopDetail: View {
     
     var stop: Stop
+    var stops: [Stop]
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
@@ -24,14 +25,23 @@ struct StopDetail: View {
             
             Section{
                 NavigationLink (destination: ServicesView(stop: stop)) {
-                    Label("View Live Departures", systemImage: "tram")
+                    Label("View Live Departures", systemImage: "clock.fill")
                         .padding()
                 }
             }
+            
+            Section{
+                NavigationLink (destination: JourneyPlanView(initialOrigin: stop, stops: stops)) {
+                    Label("Plan Journey", systemImage: "map.fill")
+                        .padding()
+                }
+            }
+            
+            
             Button {
                 mapManager.openMapsFromStop(stop: stop)
             } label: {
-                Label("Open in Maps", systemImage: "map.fill")
+                Label("Open in Maps", systemImage: "arrow.turn.up.right")
             }
             .padding()
             
@@ -83,19 +93,5 @@ struct StopDetail: View {
         .navigationTitle(stop.stopName)
         .edgesIgnoringSafeArea(.bottom)
         .padding(.all)
-    }
-}
-
-struct StopDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            NavigationView{
-                StopDetail(stop: testData[2])
-            }
-            NavigationView{
-                StopDetail(stop: testData[3])
-            }
-        }
-        
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E2A946028F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
+		9E2A946128F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C102815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */; };
@@ -37,6 +39,12 @@
 		9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9EBC2B7E2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
+		9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
+		9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
+		9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
+		9EC2B19028F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
+		9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
+		9EC2B19328F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6628147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB682814839200C08784 /* StopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB672814839200C08784 /* StopView.swift */; };
@@ -45,6 +53,8 @@
 		9EC2FB6C2814852E00C08784 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6A2814852E00C08784 /* StopDetail.swift */; };
 		9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
+		9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
+		9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E2A945F28F737B60096F7A9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		9E3F2C0E2815609A00C863FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
 		9E7B1E9A2814B668007FA699 /* FormattedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedServices.swift; sourceTree = "<group>"; };
@@ -87,10 +98,14 @@
 		9E84E2E02812AC6000571ECA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
+		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
+		9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedJourney.swift; sourceTree = "<group>"; };
+		9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerRequest.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB672814839200C08784 /* StopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopView.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EC2FB6D2814982B00C08784 /* StopRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRequest.swift; sourceTree = "<group>"; };
+		9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedPlannedJourney.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +171,11 @@
 				9E3F2C0E2815609A00C863FF /* MapManager.swift */,
 				9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */,
 				9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */,
+				9E2A945F28F737B60096F7A9 /* Route.swift */,
+				9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */,
+				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
+				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
+				9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -278,7 +298,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					9E84E2A62812AAA600571ECA = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -355,6 +375,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
+				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
@@ -364,7 +386,10 @@
 				9EC2FB6528147BB500C08784 /* Stop.swift in Sources */,
 				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E2A946028F737B60096F7A9 /* Route.swift in Sources */,
+				9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E7B1E9E2814B679007FA699 /* Tram.swift in Sources */,
+				9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
 				9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */,
@@ -378,6 +403,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
+				9EC2B18D28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E3F2C1328158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CB2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
 				9E957477281F483100A43574 /* ServicesViewModel.swift in Sources */,
@@ -387,7 +414,10 @@
 				9EC2FB6628147BB500C08784 /* Stop.swift in Sources */,
 				9E7B1EA22814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */,
+				9E2A946128F737B60096F7A9 /* Route.swift in Sources */,
+				9EC2B19328F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E7B1E9F2814B679007FA699 /* Tram.swift in Sources */,
+				9EC2B19028F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
 				9E84E2E22812AC6000571ECA /* ContentView.swift in Sources */,
 				9EC2FB6C2814852E00C08784 /* StopDetail.swift in Sources */,
 				9E3F2C102815609A00C863FF /* MapManager.swift in Sources */,
@@ -465,6 +495,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -524,6 +555,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -613,6 +645,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -642,6 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -708,6 +742,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
@@ -727,6 +762,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
