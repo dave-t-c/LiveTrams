@@ -25,8 +25,12 @@ The project currently features:
 - Detailed stop view including a map of the area, it's stop zone and a link to open in Apple maps for directions
 - View of live services split by destination, including relevant messages, e.g. for engineering work.
 - View of nearby bus stops, national rail stations and cafes for each stop.
+- Journey planning between any stop on the network.
 
 ## Demo Screenshots
+## Journey Planner
+![Journey Planner](/Demo-Screenshots/journey-planner.png)
+
 ### All Stops
 ![All Stops](/Demo-Screenshots/all-stops.png)
 
