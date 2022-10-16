@@ -35,7 +35,6 @@ struct JourneyPlanView: View {
                     
                     
                     HStack{
-                        Spacer()
                         Image(systemName: "arrow.triangle.swap")
                             .imageScale(.large)
                             .foregroundColor(.blue)
@@ -44,6 +43,7 @@ struct JourneyPlanView: View {
                                 destinationStop = originStop
                                 originStop = temp
                             }
+                        Spacer()
                     }
                     Picker("Destination", selection: $destinationStop){
                         ForEach(stops, id: \.self) { stop in
