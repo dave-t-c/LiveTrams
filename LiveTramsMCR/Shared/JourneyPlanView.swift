@@ -79,36 +79,7 @@ struct JourneyPlanView: View {
                     
                 }
                 else{
-                    VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                        
-                        HStack {
-                            Image(systemName: "smallcircle.filled.circle")
-                                .frame(width: 30)
-                                .scaleEffect(1.5)
-                                .padding(.leading, 3.5)
-                                .padding(.bottom, 3.5)
-                            Text(plannedJourney!.originStop.stopName)
-                            Spacer()
-                        }
-                        HStack {
-                            Rectangle()
-                                .fill(.purple)
-                                .frame(width: 5, height: 100, alignment: .center)
-                                .padding(.leading, 15.5)
-                            Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Image(systemName: "smallcircle.filled.circle")
-                                .frame(width: 30)
-                                .scaleEffect(1.5)
-                                .padding(.leading, 3.5)
-                                .padding(.bottom, 3.5)
-                            Text(plannedJourney!.destinationStop.stopName)
-                            Spacer()
-                        }
-                    }
+                    NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }
                 
             }
@@ -118,6 +89,58 @@ struct JourneyPlanView: View {
         .padding(.all)
         .onAppear{
             
+        }
+    }
+}
+
+struct NonInterchangeJourneyView: View {
+    
+    var plannedJourney: PlannedJourney?
+    var processedPlannedJourney: ProcessedPlannedJourney?
+    
+    
+    var body: some View {
+        VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+            
+            HStack {
+                Image(systemName: "smallcircle.filled.circle")
+                    .frame(width: 30)
+                    .scaleEffect(1.5)
+                    .padding(.leading, 3.5)
+                    .padding(.bottom, 3.5)
+                Text(plannedJourney!.originStop.stopName)
+                Spacer()
+            }
+            HStack(spacing: 0) {
+                ForEach(Array(processedPlannedJourney!.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
+                    if(index == 0){
+                        Rectangle()
+                            .foregroundColor(routeColor)
+                            .frame(width: 5, height: 150, alignment: .center)
+                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
+                            
+                    } else {
+                        Rectangle()
+                            .foregroundColor(routeColor)
+                            .frame(width: 5, height: 150, alignment: .leading)
+                            
+                    }
+                }
+
+                
+                Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
+                Spacer()
+            }
+            
+            HStack {
+                Image(systemName: "smallcircle.filled.circle")
+                    .frame(width: 30)
+                    .scaleEffect(1.5)
+                    .padding(.leading, 3.5)
+                    .padding(.bottom, 3.5)
+                Text(plannedJourney!.destinationStop.stopName)
+                Spacer()
+            }
         }
     }
 }
