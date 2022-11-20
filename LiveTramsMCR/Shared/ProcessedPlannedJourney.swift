@@ -16,16 +16,38 @@ class ProcessedPlannedJourney {
     var formattedTerminiFromInterchange: String = ""
     var routeFromOriginUIColors: [Color] = []
     var routeFromInterchangeUIColors: [Color] = []
+    var stopsFromOriginCount: Int = 0
+    var stopsFromInterchangeCount: Int = 0
+    var formattedStopsFromOriginTime: String = ""
+    var formattedStopsFromOrigin: String = ""
+    var formattedStopsFromInterchange: String = ""
+    var formattedStopsFromInterchangeTime: String = ""
     
     
     init(plannedJourney: PlannedJourney) {
         self.plannedJourney = plannedJourney
         self.formattedTerminiFromOrigin = summariseTermini(termini: plannedJourney.terminiFromOrigin)
         self.routeFromOriginUIColors = identifyRouteUIColors(routeHexColors: plannedJourney.routesFromOrigin.map {$0.colour})
+        self.stopsFromOriginCount = plannedJourney.stopsFromOrigin.count
+        if self.stopsFromOriginCount == 1 {
+            self.formattedStopsFromOrigin = "\(self.stopsFromOriginCount) stop"
+        } else {
+            self.formattedStopsFromOrigin = "\(self.stopsFromOriginCount) stops"
+        }
+        self.formattedStopsFromOriginTime = "\(self.formattedStopsFromOrigin), \(plannedJourney.minutesFromOrigin) mins"
         if plannedJourney.requiresInterchange {
             self.routeFromInterchangeUIColors = identifyRouteUIColors(routeHexColors: plannedJourney.routesFromInterchange!.map {$0.colour})
             self.formattedTerminiFromInterchange = summariseTermini(termini: plannedJourney.terminiFromInterchange!)
+            self.stopsFromInterchangeCount = plannedJourney.stopsFromInterchange!.count
+            if self.stopsFromInterchangeCount == 1 {
+                self.formattedStopsFromInterchange = "\(self.stopsFromInterchangeCount) stop"
+            } else {
+                self.formattedStopsFromInterchange = "\(self.stopsFromInterchangeCount) stops"
+            }
+            self.formattedStopsFromInterchangeTime = "\(self.formattedStopsFromInterchange), \(plannedJourney.minutesFromInterchange!) mins"
         }
+        
+        
     }
     
     private func identifyRouteUIColors(routeHexColors: [String]) -> [Color] {

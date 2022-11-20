@@ -19,6 +19,9 @@ struct PlannedJourney: Identifiable, Decodable, Encodable, Equatable, Hashable {
     let terminiFromInterchange: [Stop]?
     let requiresInterchange: Bool
     let routeDetails: String?
+    let minutesFromOrigin: Int
+    let minutesFromInterchange: Int?
+    let totalJourneyTimeMinutes: Int
     var id: Stop {
         originStop
     }
