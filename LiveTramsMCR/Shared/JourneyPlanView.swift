@@ -78,6 +78,8 @@ struct JourneyPlanView: View {
             
             if(plannedJourney != nil)
             {
+                Text(processedPlannedJourney!.formattedTime).font(.headline)
+                
                 if (plannedJourney!.requiresInterchange){
                     InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }

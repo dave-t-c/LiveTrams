@@ -22,7 +22,7 @@ class ProcessedPlannedJourney {
     var formattedStopsFromOrigin: String = ""
     var formattedStopsFromInterchange: String = ""
     var formattedStopsFromInterchangeTime: String = ""
-    
+    var formattedTime: String = ""
     
     init(plannedJourney: PlannedJourney) {
         self.plannedJourney = plannedJourney
@@ -46,8 +46,7 @@ class ProcessedPlannedJourney {
             }
             self.formattedStopsFromInterchangeTime = "\(self.formattedStopsFromInterchange), \(plannedJourney.minutesFromInterchange!) mins"
         }
-        
-        
+        formattedTime = "Expected journey time: \(plannedJourney.totalJourneyTimeMinutes) mins"
     }
     
     private func identifyRouteUIColors(routeHexColors: [String]) -> [Color] {
