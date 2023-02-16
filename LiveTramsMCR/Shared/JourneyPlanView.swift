@@ -78,6 +78,8 @@ struct JourneyPlanView: View {
             
             if(plannedJourney != nil)
             {
+                Text(processedPlannedJourney!.formattedTime).font(.headline)
+                
                 if (plannedJourney!.requiresInterchange){
                     InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }
@@ -130,8 +132,11 @@ struct NonInterchangeJourneyView: View {
                     }
                 }
 
-                
-                Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
+                Spacer()
+                VStack{
+                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
+                    Text(processedPlannedJourney!.formattedStopsFromOriginTime).padding(.top, 10)
+                }
                 Spacer()
             }
             
@@ -182,11 +187,14 @@ struct InterchangeJourneyView: View {
                     }
                 }
 
-                
-                Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
+                Spacer()
+                VStack{
+                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin).padding(.leading, 15)
+                    Text(processedPlannedJourney!.formattedStopsFromOriginTime).padding(.top, 10)
+                }
                 Spacer()
             }
-            
+
             HStack {
                 Image(systemName: "smallcircle.filled.circle")
                     .frame(width: 30)
@@ -214,8 +222,11 @@ struct InterchangeJourneyView: View {
                     }
                 }
 
-                
-                Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange).padding(.leading, 15)
+                Spacer()
+                VStack{
+                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange).padding(.leading, 15)
+                    Text(processedPlannedJourney!.formattedStopsFromInterchangeTime).padding(.top, 10)
+                }
                 Spacer()
             }
             
