@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E208FF8299ECD3F008F9168 /* LiveTramsMCRApp.swift */; };
+		9E208FFD299ECD43008F9168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E208FFC299ECD43008F9168 /* Assets.xcassets */; };
+		9E209000299ECD43008F9168 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E208FFF299ECD43008F9168 /* Preview Assets.xcassets */; };
+		9E209004299ECEF5008F9168 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
+		9E209005299ECF2C008F9168 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
+		9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
+		9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
+		9E20900B299ECFBB008F9168 /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9D2814B679007FA699 /* Tram.swift */; };
+		9E20900D299ECFCC008F9168 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
+		9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
+		9E209010299ED033008F9168 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
+		9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
+		9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
+		9E209013299ED03C008F9168 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
+		9E209014299ED03F008F9168 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E2A946028F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E2A946128F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
@@ -55,6 +70,10 @@
 		9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
 		9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
+		9EE8F313299EE16C000DE425 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
+		9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */; };
+		9EE8F317299EE2D0000DE425 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8F310299EE0D6000DE425 /* StopDetail.swift */; };
+		9EF4B985299ED2D00054593E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4B984299ED2D00054593E /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +94,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveTramsMCR Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E208FF8299ECD3F008F9168 /* LiveTramsMCRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTramsMCRApp.swift; sourceTree = "<group>"; };
+		9E208FFC299ECD43008F9168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E208FFF299ECD43008F9168 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E2A945F28F737B60096F7A9 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		9E3F2C0E2815609A00C863FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
@@ -106,9 +129,19 @@
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EC2FB6D2814982B00C08784 /* StopRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRequest.swift; sourceTree = "<group>"; };
 		9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedPlannedJourney.swift; sourceTree = "<group>"; };
+		9EE8F310299EE0D6000DE425 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
+		9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapManager-watchOS.swift"; sourceTree = "<group>"; };
+		9EF4B984299ED2D00054593E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9E208FF3299ECD3F008F9168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E84E2A42812AAA600571ECA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -140,6 +173,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E208FF7299ECD3F008F9168 /* LiveTramsMCR Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				9EF4B984299ED2D00054593E /* Home.swift */,
+				9E208FF8299ECD3F008F9168 /* LiveTramsMCRApp.swift */,
+				9E208FFC299ECD43008F9168 /* Assets.xcassets */,
+				9E208FFE299ECD43008F9168 /* Preview Content */,
+				9EE8F310299EE0D6000DE425 /* StopDetail.swift */,
+				9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */,
+			);
+			path = "LiveTramsMCR Watch App";
+			sourceTree = "<group>";
+		};
+		9E208FFE299ECD43008F9168 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9E208FFF299ECD43008F9168 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		9E84E2972812AAA400571ECA = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +201,7 @@
 				9E84E2AE2812AAA600571ECA /* macOS */,
 				9E84E2B72812AAA600571ECA /* Tests iOS */,
 				9E84E2C32812AAA600571ECA /* Tests macOS */,
+				9E208FF7299ECD3F008F9168 /* LiveTramsMCR Watch App */,
 				9E84E2A82812AAA600571ECA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -187,6 +242,7 @@
 				9E84E2AD2812AAA600571ECA /* LiveTramsMCR.app */,
 				9E84E2B42812AAA600571ECA /* Tests iOS.xctest */,
 				9E84E2C02812AAA600571ECA /* Tests macOS.xctest */,
+				9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +276,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9E208FF5299ECD3F008F9168 /* LiveTramsMCR Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E209003299ECD43008F9168 /* Build configuration list for PBXNativeTarget "LiveTramsMCR Watch App" */;
+			buildPhases = (
+				9E208FF2299ECD3F008F9168 /* Sources */,
+				9E208FF3299ECD3F008F9168 /* Frameworks */,
+				9E208FF4299ECD3F008F9168 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LiveTramsMCR Watch App";
+			productName = "LiveTramsMCR Watch App";
+			productReference = 9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9E84E2A62812AAA600571ECA /* LiveTramsMCR (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E84E2D42812AAA600571ECA /* Build configuration list for PBXNativeTarget "LiveTramsMCR (iOS)" */;
@@ -297,9 +370,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					9E208FF5299ECD3F008F9168 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					9E84E2A62812AAA600571ECA = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -333,11 +409,21 @@
 				9E84E2AC2812AAA600571ECA /* LiveTramsMCR (macOS) */,
 				9E84E2B32812AAA600571ECA /* Tests iOS */,
 				9E84E2BF2812AAA600571ECA /* Tests macOS */,
+				9E208FF5299ECD3F008F9168 /* LiveTramsMCR Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9E208FF4299ECD3F008F9168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E209000299ECD43008F9168 /* Preview Assets.xcassets in Resources */,
+				9E208FFD299ECD43008F9168 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E84E2A52812AAA600571ECA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +457,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9E208FF2299ECD3F008F9168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E209010299ED033008F9168 /* ProcessedPlannedJourney.swift in Sources */,
+				9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */,
+				9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */,
+				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
+				9E20900B299ECFBB008F9168 /* Tram.swift in Sources */,
+				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
+				9E209014299ED03F008F9168 /* Route.swift in Sources */,
+				9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */,
+				9EF4B985299ED2D00054593E /* Home.swift in Sources */,
+				9EE8F313299EE16C000DE425 /* ServicesView.swift in Sources */,
+				9E209004299ECEF5008F9168 /* ServicesViewModel.swift in Sources */,
+				9E209005299ECF2C008F9168 /* Stop.swift in Sources */,
+				9EE8F317299EE2D0000DE425 /* StopDetail.swift in Sources */,
+				9E209013299ED03C008F9168 /* JourneyPlanView.swift in Sources */,
+				9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */,
+				9E20900D299ECFCC008F9168 /* FavouriteStopsStore.swift in Sources */,
+				9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E84E2A32812AAA600571ECA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +571,73 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9E209001299ECD43008F9168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = M43HD7XS8H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveTramsMCR;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.dccompsci.LiveTramsMCR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		9E209002299ECD43008F9168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = M43HD7XS8H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveTramsMCR;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.dccompsci.LiveTramsMCR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
 		9E84E2D22812AAA600571ECA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,6 +956,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9E209003299ECD43008F9168 /* Build configuration list for PBXNativeTarget "LiveTramsMCR Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E209001299ECD43008F9168 /* Debug */,
+				9E209002299ECD43008F9168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9E84E29B2812AAA400571ECA /* Build configuration list for PBXProject "LiveTramsMCR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
