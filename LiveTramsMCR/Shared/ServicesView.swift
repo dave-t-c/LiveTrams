@@ -62,7 +62,6 @@ struct ServicesView: View {
             .headerProminence(.increased)
             
         }
-        .listStyle(.insetGrouped)
         .navigationTitle("Live Services")
         .onAppear {
             self.viewModel.stop = stop

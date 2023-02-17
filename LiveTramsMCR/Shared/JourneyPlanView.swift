@@ -90,11 +90,6 @@ struct JourneyPlanView: View {
             }
         }
         .navigationTitle("Journey Planner")
-        .edgesIgnoringSafeArea(.bottom)
-        .padding(.all)
-        .onAppear{
-            
-        }
     }
 }
 
