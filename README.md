@@ -12,8 +12,7 @@
 This is an iOS application built using SwiftUI that uses the [TfGM-API-Wrapper Project](https://github.com/dave-t-c/TfGM-API-Wrapper) to retreive and present data related to Manchester Metrolink Services / Stops
 
 ## Project Goals
-- Create a mobile frontend for the TfGM-API-Wrapper project
-- Experiment with SwiftUI
+- Create a mobile frontend for the TfGM-API-Wrapper project- Experiment with SwiftUI
 - Learn some Swift in the process
 - Use some of Swifts features such as MapKit
 
@@ -29,19 +28,24 @@ The project currently features:
 
 ## Demo Screenshots
 ## Journey Planner
-![Journey Planner](/Demo-Screenshots/journey-planner.png)
+![Journey Planner](./Demo-Screenshots/journey-planner.png)
 
+![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-1.png) 
+![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-2.png)
 ### All Stops
-![All Stops](/Demo-Screenshots/all-stops.png)
+![All Stops](./Demo-Screenshots/all-stops.png)
+![All Stops watchOS](./Demo-Screenshots/all-stops-watchOS.png)
 
 ### Detailed Stop View
-![Detailed Stop View](/Demo-Screenshots/stop-info.png)
+![Detailed Stop View](./Demo-Screenshots/stop-info.png)
+![Detailed Stop View watchOS](./Demo-Screenshots/stop-info-watchOS.png)
 
 ### Live Services
-![Live Services](/Demo-Screenshots/live-services.png)
+![Live Services](./Demo-Screenshots/live-services.png)
+![Live Services watchOS](./Demo-Screenshots/live-services-watchOS.png)
 
 ### Nearby Locations
-![Nearby Locations](/Demo-Screenshots/nearby.png)
+![Nearby Locations](./Demo-Screenshots/nearby.png)
 
 ## Declaration
 This program is in no way associated with TfGM.
