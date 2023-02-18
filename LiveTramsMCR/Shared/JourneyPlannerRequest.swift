@@ -11,7 +11,7 @@ class JourneyPlannerRequest: ObservableObject {
     @Published var plannedJourney: PlannedJourney?
     
     func planJourney(originTlaref: String, destinationTlaref: String) async throws -> PlannedJourney? {
-        guard let url = URL(string: "https://dccompsci-tfgm-api-wrapper.azurewebsites.net/api/journey-planner/\(originTlaref)/\(destinationTlaref)") else {
+        guard let url = URL(string: "https://livetramsmcr.azurewebsites.net/api/journey-planner/\(originTlaref)/\(destinationTlaref)") else {
             print("Invalid url...")
             return plannedJourney
         }
