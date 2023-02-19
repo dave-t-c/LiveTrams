@@ -133,7 +133,9 @@ struct NonInterchangeJourneyView: View {
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
                         .padding(.leading, 15)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromOriginTime).padding(.top, 10)
+                    Text(processedPlannedJourney!.formattedStopsFromOriginTime)
+                        .padding(.top, 10)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
@@ -190,7 +192,9 @@ struct InterchangeJourneyView: View {
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
                         .padding(.leading, 15)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromOriginTime).padding(.top, 10)
+                    Text(processedPlannedJourney!.formattedStopsFromOriginTime)
+                        .padding(.top, 10)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
@@ -227,7 +231,9 @@ struct InterchangeJourneyView: View {
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange)
                         .padding(.leading, 15)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromInterchangeTime).padding(.top, 10)
+                    Text(processedPlannedJourney!.formattedStopsFromInterchangeTime)
+                        .padding(.top, 10)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
