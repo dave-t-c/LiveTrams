@@ -11,8 +11,8 @@ class JourneyPlannerRequest: ObservableObject {
     @Published var plannedJourney: PlannedJourney?
     
     func planJourney(originName: String, destinationName: String) async throws -> PlannedJourney? {
-        let escapedOriginName = originName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        let escapedDestinationName = destinationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let escapedOriginName = originName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
+        let escapedDestinationName = destinationName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
         guard let url = URL(string: "https://livetramsmcr-apim.azure-api.net/api/journey-planner/\(escapedOriginName!)/\(escapedDestinationName!)") else {
             print("Invalid url...")
             return plannedJourney
