@@ -141,9 +141,9 @@ struct NonInterchangeJourneyView: View {
                     .padding(.trailing, 10)
                     .padding(.leading, 10)
                 let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
-                if(stopsFromOrigin.count >= 2)
+                if(stopsFromOrigin.count > 0)
                 {
-                    Text("After \(stopsFromOrigin[stopsFromOrigin.count - 2].stopName)")
+                    Text("After \(stopsFromOrigin.last!.stopName)")
                         .padding(.bottom, 10)
                         .padding(.trailing, 10)
                         .padding(.leading, 10)
