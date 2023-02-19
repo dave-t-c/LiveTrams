@@ -11,7 +11,7 @@ class JourneyPlannerRequest: ObservableObject {
     @Published var plannedJourney: PlannedJourney?
     
     func planJourney(originTlaref: String, destinationTlaref: String) async throws -> PlannedJourney? {
-        guard let url = URL(string: "https://livetramsmcr.azurewebsites.net/api/journey-planner/\(originTlaref)/\(destinationTlaref)") else {
+        guard let url = URL(string: "https://livetramsmcr-apim.azure-api.net/api/journey-planner/\(originTlaref)/\(destinationTlaref)") else {
             print("Invalid url...")
             return plannedJourney
         }
@@ -21,7 +21,6 @@ class JourneyPlannerRequest: ObservableObject {
                 return plannedJourney
             }
         }
-        let _ = print(data)
         return try! JSONDecoder().decode(PlannedJourney.self, from: data)
     }
 }
