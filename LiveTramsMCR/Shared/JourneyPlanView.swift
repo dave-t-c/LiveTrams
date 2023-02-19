@@ -9,11 +9,12 @@ import SwiftUI
 
 struct JourneyPlanView: View {
     
-    var initialOrigin: Stop
-    var stops: [Stop]
+    var initialOrigin: String =  ""
+    var stops: [String] = []
     
-    @State private var originStop: Stop?
-    @State private var destinationStop: Stop?
+    @State private var originStop: String = ""
+    
+    @State private var destinationStop: String = ""
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
@@ -24,9 +25,9 @@ struct JourneyPlanView: View {
                 
                 VStack{
                     Picker("Origin", selection: $originStop){
-                        Text("Select Stop").tag(Optional<String>(nil))
+                        Text("Select Stop").tag("")
                         ForEach(stops, id: \.self) { stop in
-                            Text(stop.stopName).tag(stop as Stop?)
+                            Text(stop).tag(stop)
                         }
                     }
                     .onAppear {
@@ -46,8 +47,9 @@ struct JourneyPlanView: View {
                         Spacer()
                     }
                     Picker("Destination", selection: $destinationStop){
+                        Text("Select Stop").tag("")
                         ForEach(stops, id: \.self) { stop in
-                            Text(stop.stopName).tag(stop as Stop?)
+                            Text(stop).tag(stop)
                         }
                     }
                     .onAppear {
@@ -61,8 +63,7 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
-                            plannedJourney = try! await journeyPlannerRequest
-                                .planJourney(originTlaref: originStop!.tlaref, destinationTlaref: destinationStop!.tlaref)
+                            plannedJourney = try! await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                             if(plannedJourney == nil){
                                 return
                             }
