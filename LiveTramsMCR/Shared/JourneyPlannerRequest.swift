@@ -10,8 +10,10 @@ import Foundation
 class JourneyPlannerRequest: ObservableObject {
     @Published var plannedJourney: PlannedJourney?
     
-    func planJourney(originTlaref: String, destinationTlaref: String) async throws -> PlannedJourney? {
-        guard let url = URL(string: "https://livetramsmcr-apim.azure-api.net/api/journey-planner/\(originTlaref)/\(destinationTlaref)") else {
+    func planJourney(originName: String, destinationName: String) async throws -> PlannedJourney? {
+        let escapedOriginName = originName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let escapedDestinationName = destinationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        guard let url = URL(string: "https://livetramsmcr-apim.azure-api.net/api/journey-planner/\(escapedOriginName!)/\(escapedDestinationName!)") else {
             print("Invalid url...")
             return plannedJourney
         }

@@ -31,7 +31,7 @@ struct StopDetail: View {
             }
             
             Section{
-                NavigationLink (destination: JourneyPlanView(initialOrigin: stop, stops: stops)) {
+                NavigationLink (destination: JourneyPlanView(initialOrigin: stop.stopName, stops: stops.lazy.map { ($0.stopName)})) {
                     Label("Plan Journey", systemImage: "map.fill")
                         .padding()
                 }
