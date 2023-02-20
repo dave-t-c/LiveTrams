@@ -105,7 +105,8 @@ struct NonInterchangeJourneyView: View {
             Section {
                 Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
                     .font(.headline)
-                    .padding(.all, 10)
+                    .padding(.trailing, 10)
+                    .padding(.bottom, 10)
                 ForEach(Array(processedPlannedJourney!.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
                     if(index == 0){
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -125,10 +126,12 @@ struct NonInterchangeJourneyView: View {
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
-                        .padding(.all, 10)
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(processedPlannedJourney!.formattedStopsFromOriginTime)
-                        .padding(.all, 10)
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
@@ -139,14 +142,13 @@ struct NonInterchangeJourneyView: View {
                     .font(.headline)
                     .padding(.top, 10)
                     .padding(.trailing, 10)
-                    .padding(.leading, 10)
                 let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
                 if(stopsFromOrigin.count > 0)
                 {
                     Text("After \(stopsFromOrigin.last!.stopName)")
+                        .font(.subheadline)
                         .padding(.bottom, 10)
                         .padding(.trailing, 10)
-                        .padding(.leading, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     
                 }
