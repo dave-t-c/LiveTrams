@@ -77,10 +77,13 @@ struct JourneyPlanView: View {
                 }
             }
             
+            
             if(plannedJourney != nil)
             {
-                Text(processedPlannedJourney!.formattedTime).font(.headline)
                 
+                Text(processedPlannedJourney!.formattedTime)
+                    .font(.title3)
+        
                 if (plannedJourney!.requiresInterchange){
                     InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }
@@ -104,7 +107,7 @@ struct NonInterchangeJourneyView: View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
             Section {
                 Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
-                    .font(.headline)
+                    .font(.title3)
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
                 ForEach(Array(processedPlannedJourney!.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
@@ -112,8 +115,6 @@ struct NonInterchangeJourneyView: View {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(routeColor)
                             .frame(height: 10, alignment: .center)
-                            //.padding(.top, 5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
-                            //.padding(.bottom, 5)
                             
                     } else {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -126,6 +127,7 @@ struct NonInterchangeJourneyView: View {
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
+                        .font(.title3)
                         .padding(.trailing, 10)
                         .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
@@ -139,14 +141,13 @@ struct NonInterchangeJourneyView: View {
             
             Section {
                 Text("Exit at \(processedPlannedJourney!.plannedJourney.destinationStop.stopName)")
-                    .font(.headline)
+                    .font(.title3)
                     .padding(.top, 10)
                     .padding(.trailing, 10)
                 let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
                 if(stopsFromOrigin.count > 0)
                 {
                     Text("After \(stopsFromOrigin.last!.stopName)")
-                        .font(.subheadline)
                         .padding(.bottom, 10)
                         .padding(.trailing, 10)
                         .fixedSize(horizontal: false, vertical: true)
@@ -155,7 +156,6 @@ struct NonInterchangeJourneyView: View {
             }
             
         }
-        .background(.clear)
     }
 }
 
@@ -166,93 +166,113 @@ struct InterchangeJourneyView: View {
     
     
     var body: some View {
-        VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+        //VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
             
-            HStack {
-                Image(systemName: "smallcircle.filled.circle")
-                    .frame(width: 30)
-                    .scaleEffect(1.5)
-                    .padding(.leading, 3.5)
-                    .padding(.bottom, 3.5)
-                Text(plannedJourney!.originStop.stopName)
-                Spacer()
-            }
-            HStack(spacing: 0) {
+            Section {
+                VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+                Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
+                    .font(.title3)
+                    .padding(.trailing, 10)
+                    .padding(.bottom, 10)
                 ForEach(Array(processedPlannedJourney!.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
                     if(index == 0){
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(routeColor)
-                            .frame(width: 5, height: 150, alignment: .center)
-                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
-                            
+                            .frame(height: 10, alignment: .center)
+                        
                     } else {
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(routeColor)
-                            .frame(width: 5, height: 150, alignment: .leading)
-                            
+                            .frame(height: 10, alignment: .center)
+                        
                     }
                 }
-
+                
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
-                        .padding(.leading, 15)
+                        .font(.title3)
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(processedPlannedJourney!.formattedStopsFromOriginTime)
-                        .padding(.top, 10)
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
-
-            HStack {
-                Image(systemName: "smallcircle.filled.circle")
-                    .frame(width: 30)
-                    .scaleEffect(1.5)
-                    .padding(.leading, 3.5)
-                    .padding(.bottom, 3.5)
-                Text(plannedJourney!.interchangeStop!.stopName)
-                Spacer()
-            }
             
-            
-            HStack(spacing: 0) {
-                ForEach(Array(processedPlannedJourney!.routeFromInterchangeUIColors.enumerated()), id: \.element) { index, routeColor in
-                    if(index == 0){
-                        Rectangle()
-                            .foregroundColor(routeColor)
-                            .frame(width: 5, height: 150, alignment: .center)
-                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromInterchangeUIColors.count - 1)))
-                            
-                    } else {
-                        Rectangle()
-                            .foregroundColor(routeColor)
-                            .frame(width: 5, height: 150, alignment: .leading)
-                            
+            Section {
+                VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+                    Text("Change at \(processedPlannedJourney!.plannedJourney.interchangeStop!.stopName)")
+                        .font(.title3)
+                        .padding(.top, 10)
+                        .padding(.trailing, 10)
+                    let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
+                    if(stopsFromOrigin.count > 0)
+                    {
+                        Text("After \(stopsFromOrigin.last!.stopName)")
+                            .font(.subheadline)
+                            .padding(.bottom, 10)
+                            .padding(.trailing, 10)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
                     }
                 }
-
-                Spacer()
-                VStack{
-                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange)
-                        .padding(.leading, 15)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromInterchangeTime)
-                        .padding(.top, 10)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                Spacer()
             }
+            .padding(.bottom, 20)
             
-            HStack {
-                Image(systemName: "smallcircle.filled.circle")
-                    .frame(width: 30)
-                    .scaleEffect(1.5)
-                    .padding(.leading, 3.5)
-                    .padding(.bottom, 3.5)
-                Text(plannedJourney!.destinationStop.stopName)
-                Spacer()
+            Section {
+                VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+                    ForEach(Array(processedPlannedJourney!.routeFromInterchangeUIColors.enumerated()), id: \.element) { index, routeColor in
+                        if(index == 0){
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .foregroundColor(routeColor)
+                                .frame(height: 10, alignment: .center)
+                            
+                        } else {
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .foregroundColor(routeColor)
+                                .frame(height: 10, alignment: .center)
+                            
+                        }
+                    }
+                    
+                    Spacer()
+                    VStack{
+                        Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange)
+                            .font(.title3)
+                            .padding(.trailing, 10)
+                            .padding(.bottom, 10)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(processedPlannedJourney!.formattedStopsFromInterchangeTime)
+                            .padding(.trailing, 10)
+                            .padding(.bottom, 10)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    Spacer()
+                }
+            }
+                
+            Section {
+                VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+                    Text("Exit at \(processedPlannedJourney!.plannedJourney.destinationStop.stopName)")
+                        .font(.title3)
+                        .padding(.top, 10)
+                        .padding(.trailing, 10)
+                    let stopsFromInterchange = processedPlannedJourney!.plannedJourney.stopsFromInterchange
+                    if(stopsFromInterchange!.count > 0)
+                    {
+                        Text("After \(stopsFromInterchange!.last!.stopName)")
+                            .padding(.bottom, 10)
+                            .padding(.trailing, 10)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                    }
+                }
             }
         }
+    
     }
 }
