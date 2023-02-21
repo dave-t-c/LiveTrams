@@ -31,7 +31,7 @@ struct JourneyPlanView: View {
                         }
                     }
                     .onAppear {
-                        originStop = initialOrigin
+                        originStop = originStop == "" ? initialOrigin : originStop
                     }
                     
                     
@@ -51,9 +51,6 @@ struct JourneyPlanView: View {
                         ForEach(stops, id: \.self) { stop in
                             Text(stop).tag(stop)
                         }
-                    }
-                    .onAppear {
-                        destinationStop = stops[0]
                     }
                 }
                 
