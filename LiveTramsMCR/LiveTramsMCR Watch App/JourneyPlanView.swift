@@ -217,6 +217,7 @@ struct InterchangeJourneyView: View {
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
                                 .foregroundColor(routeColor)
                                 .frame(height: 10, alignment: .center)
+                                .padding(.top, 10)
                             
                         } else {
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
