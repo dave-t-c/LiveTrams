@@ -32,6 +32,9 @@ The project currently features:
 
 ![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-1.png) 
 ![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-2.png)
+![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-3.png)
+![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-4.png)
+![Journey Planner watchOS](./Demo-Screenshots/journey-planner-watchOS-5.png)
 ### All Stops
 ![All Stops](./Demo-Screenshots/all-stops.png)
 ![All Stops watchOS](./Demo-Screenshots/all-stops-watchOS.png)
