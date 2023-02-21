@@ -101,8 +101,8 @@ struct NonInterchangeJourneyView: View {
     
     
     var body: some View {
-        VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-            Section {
+        Section {
+            VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
                 Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
                     .font(.title3)
                     .padding(.trailing, 10)
@@ -112,15 +112,15 @@ struct NonInterchangeJourneyView: View {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(routeColor)
                             .frame(height: 10, alignment: .center)
-                            
+                        
                     } else {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(routeColor)
                             .frame(height: 10, alignment: .center)
-                            
+                        
                     }
                 }
-
+                
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
@@ -129,14 +129,14 @@ struct NonInterchangeJourneyView: View {
                         .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(processedPlannedJourney!.formattedStopsFromOriginTime)
-                        .padding(.trailing, 10)
-                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
+        }
             
-            Section {
+        Section {
+            VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
                 Text("Exit at \(processedPlannedJourney!.plannedJourney.destinationStop.stopName)")
                     .font(.title3)
                     .padding(.top, 10)
@@ -145,14 +145,12 @@ struct NonInterchangeJourneyView: View {
                 if(stopsFromOrigin.count > 0)
                 {
                     Text("After \(stopsFromOrigin.last!.stopName)")
-                        .padding(.bottom, 10)
-                        .padding(.trailing, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     
                 }
             }
-            
         }
+        
     }
 }
 
@@ -163,7 +161,6 @@ struct InterchangeJourneyView: View {
     
     
     var body: some View {
-        //VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
             
             Section {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
@@ -193,8 +190,6 @@ struct InterchangeJourneyView: View {
                         .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(processedPlannedJourney!.formattedStopsFromOriginTime)
-                        .padding(.trailing, 10)
-                        .padding(.bottom, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
@@ -204,21 +199,16 @@ struct InterchangeJourneyView: View {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
                     Text("Change at \(processedPlannedJourney!.plannedJourney.interchangeStop!.stopName)")
                         .font(.title3)
-                        .padding(.top, 10)
-                        .padding(.trailing, 10)
                     let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
                     if(stopsFromOrigin.count > 0)
                     {
                         Text("After \(stopsFromOrigin.last!.stopName)")
                             .font(.subheadline)
-                            .padding(.bottom, 10)
-                            .padding(.trailing, 10)
                             .fixedSize(horizontal: false, vertical: true)
                         
                     }
                 }
             }
-            .padding(.bottom, 20)
             
             Section {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
@@ -244,8 +234,6 @@ struct InterchangeJourneyView: View {
                             .padding(.bottom, 10)
                             .fixedSize(horizontal: false, vertical: true)
                         Text(processedPlannedJourney!.formattedStopsFromInterchangeTime)
-                            .padding(.trailing, 10)
-                            .padding(.bottom, 10)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer()
@@ -262,8 +250,6 @@ struct InterchangeJourneyView: View {
                     if(stopsFromInterchange!.count > 0)
                     {
                         Text("After \(stopsFromInterchange!.last!.stopName)")
-                            .padding(.bottom, 10)
-                            .padding(.trailing, 10)
                             .fixedSize(horizontal: false, vertical: true)
                         
                     }
