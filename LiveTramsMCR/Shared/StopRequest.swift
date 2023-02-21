@@ -11,7 +11,7 @@ class StopRequest: ObservableObject {
     @Published var stops = [Stop]()
     
     func requestStops(completion:@escaping ([Stop]) -> ()) {
-        guard let url = URL(string: "https://livetramsmcr-apim.azure-api.net/api/stops") else {
+        guard let url = URL(string: "https://api.livetramsmcr.com/v1/stops") else {
             print("Invalid url...")
             return
         }
