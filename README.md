@@ -9,10 +9,10 @@
 
 
 ## Introduction
-This is an iOS application built using SwiftUI that uses the [TfGM-API-Wrapper Project](https://github.com/dave-t-c/TfGM-API-Wrapper) to retreive and present data related to Manchester Metrolink Services / Stops
+This is an iOS application built using SwiftUI that uses the [LiveTramsMCR-API Project](https://github.com/dave-t-c/LiveTramsMCR-API) to retreive and present data related to Manchester Metrolink Services / Stops
 
 ## Project Goals
-- Create a mobile frontend for the TfGM-API-Wrapper project- Experiment with SwiftUI
+- Create a mobile frontend for the LiveTramsMCR project- Experiment with SwiftUI
 - Learn some Swift in the process
 - Use some of Swifts features such as MapKit
 
@@ -51,10 +51,12 @@ The project currently features:
 ![Nearby Locations](./Demo-Screenshots/nearby.png)
 
 ## Declaration
+The App icon used for this program is from [Zondicons](https://github.com/dukestreetstudio/zondicons) which was 
+created by [dukestreetstudio](https://github.com/dukestreetstudio). This is used under the [MIT License](https://github.com/dukestreetstudio/zondicons/blob/master/LICENSE).
+A copy of this license has been included [here](./LiveTramsMCR/Shared/Assets.xcassets/AppIconLicense.md).
+
 This program is in no way associated with TfGM.
 
 The data in this application is used under the Open Government Licence v3.0
 
 This program contains Transport for Greater Manchester data
-
-The app icon currently uses SF Symbols, which belong to Apple. This app icon is being used for testing and development. The final app icon will not contain SF Symbols as to comply with App store guidelines. 
