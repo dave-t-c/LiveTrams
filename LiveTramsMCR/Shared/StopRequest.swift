@@ -22,9 +22,17 @@ class StopRequest: ObservableObject {
                         return
                     }
                 }
-                let stops = try! JSONDecoder().decode([Stop].self, from: data!)
+                var stops: [Stop] = []
+                do {
+                    if data != nil {
+                        stops = try JSONDecoder().decode([Stop].self, from: data!)
+                    }
+                    completion(stops)
+                }
+                catch {
+                    completion(stops)
+                }
                 
-                completion(stops)
             }
         }.resume()
         

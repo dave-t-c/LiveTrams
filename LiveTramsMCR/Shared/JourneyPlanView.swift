@@ -60,7 +60,7 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
-                            plannedJourney = try! await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                             if(plannedJourney == nil){
                                 return
                             }
