@@ -17,12 +17,22 @@ class JourneyPlannerRequest: ObservableObject {
             print("Invalid url...")
             return plannedJourney
         }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        if let httpResponse = response as? HTTPURLResponse {
-            if httpResponse.statusCode != 200{
-                return plannedJourney
+        var data: Data
+        var response: URLResponse
+        var plannedJourney: PlannedJourney?
+        do {
+            (data, response) = try await URLSession.shared.data(from: url)
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode != 200{
+                    return plannedJourney
+                }
             }
+            plannedJourney = try JSONDecoder().decode(PlannedJourney.self, from: data)
+            
+            return plannedJourney
         }
-        return try! JSONDecoder().decode(PlannedJourney.self, from: data)
+        catch {
+            return plannedJourney
+        }
     }
 }
