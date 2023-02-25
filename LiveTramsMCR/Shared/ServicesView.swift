@@ -25,42 +25,44 @@ struct ServicesView: View {
                 DestinationView(destination: destination, trams: self.viewModel.services.destinations[destination]!)
             }
             
-            Section(header: Text("Service Updates")){
-                ForEach(self.viewModel.services.messages, id: \.self) {
-                    message in
-                    HStack {
-                        Spacer()
-                        Label(message, systemImage: "message.fill")
-                        Spacer()
-                    }
-                }
-                
-                if(self.viewModel.services.destinations.count == 0){
-                    VStack {
+            
+            if (!self.viewModel.services.messages.isEmpty){
+                Section(header: Text("Service Updates")){
+                    ForEach(self.viewModel.services.messages, id: \.self) {
+                        message in
                         HStack {
                             Spacer()
-                            Text("No Service information available")
+                            Label(message, systemImage: "message.fill")
                             Spacer()
-                        }.padding()
-
-                        HStack {
-                            Spacer()
-                            Link("Please check TfGM.com for first and last tram times", destination: URL(string: "https://tfgm.com/public-transport/tram/tram-schedule")!)
-                            Spacer()
-                        }.padding()
+                        }
                     }
                     
-                }
-                HStack {
-                    Spacer()
-                    Text("Contains Transport for Greater Manchester data")
-                        .foregroundColor(.secondary)
-                        .font(.footnote)
-                    Spacer()
-                }
+                    if(self.viewModel.services.destinations.count == 0){
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Text("No Service information available")
+                                Spacer()
+                            }.padding()
+                            
+                            HStack {
+                                Spacer()
+                                Link("Please check TfGM.com for first and last tram times", destination: URL(string: "https://tfgm.com/public-transport/tram/tram-schedule")!)
+                                Spacer()
+                            }.padding()
+                        }
+                    }
+                }.headerProminence(.increased)
             }
-            .headerProminence(.increased)
-            
+            Section {
+                HStack {
+                        Spacer()
+                        Text("Contains Transport for Greater Manchester data")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                        Spacer()
+                    }
+            }
         }
         .navigationTitle("Live Services")
         .onAppear {
