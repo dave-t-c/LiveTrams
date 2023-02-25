@@ -11,7 +11,7 @@ class ServicesRequest: ObservableObject {
     @Published var services = FormattedServices(destinations: [:], messages: [])
     
     func requestServices(tlaref: String) async throws ->  FormattedServices {
-        guard let url = URL(string: "https://localhost:5001/v1/services/\(tlaref)") else {
+        guard let url = URL(string: "https://api.livetramsmcr.com/v1/services/\(tlaref)") else {
             print("Invalid url...")
             return FormattedServices(destinations: [:], messages: [])
         }
