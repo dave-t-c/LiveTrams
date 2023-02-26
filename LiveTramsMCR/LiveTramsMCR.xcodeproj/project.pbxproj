@@ -69,6 +69,7 @@
 		9EC2FB6F2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
 		9EC47AC928FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
+		9ED1012E29AB9AF500B79B22 /* LiveTramsMCR Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9EE694B629A2D55500C82599 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE694B529A2D55500C82599 /* JourneyPlanView.swift */; };
 		9EE8F313299EE16C000DE425 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
 		9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */; };
@@ -91,7 +92,28 @@
 			remoteGlobalIDString = 9E84E2AC2812AAA600571ECA;
 			remoteInfo = "TfGM-API-Wrapper-iOS (macOS)";
 		};
+		9ED1012F29AB9AF500B79B22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E84E2982812AAA400571ECA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E208FF5299ECD3F008F9168;
+			remoteInfo = "LiveTramsMCR Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9ED1013129AB9AF500B79B22 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9ED1012E29AB9AF500B79B22 /* LiveTramsMCR Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveTramsMCR Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +227,7 @@
 				9E84E2C32812AAA600571ECA /* Tests macOS */,
 				9E208FF7299ECD3F008F9168 /* LiveTramsMCR Watch App */,
 				9E84E2A82812AAA600571ECA /* Products */,
+				9ED1012D29AB9AF500B79B22 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,6 +298,13 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		9ED1012D29AB9AF500B79B22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,10 +332,12 @@
 				9E84E2A32812AAA600571ECA /* Sources */,
 				9E84E2A42812AAA600571ECA /* Frameworks */,
 				9E84E2A52812AAA600571ECA /* Resources */,
+				9ED1013129AB9AF500B79B22 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9ED1013029AB9AF500B79B22 /* PBXTargetDependency */,
 			);
 			name = "LiveTramsMCR (iOS)";
 			productName = "TfGM-API-Wrapper-iOS (iOS)";
@@ -570,6 +602,11 @@
 			target = 9E84E2AC2812AAA600571ECA /* LiveTramsMCR (macOS) */;
 			targetProxy = 9E84E2C12812AAA600571ECA /* PBXContainerItemProxy */;
 		};
+		9ED1013029AB9AF500B79B22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E208FF5299ECD3F008F9168 /* LiveTramsMCR Watch App */;
+			targetProxy = 9ED1012F29AB9AF500B79B22 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -588,13 +625,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LiveTramsMCR;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .com.dccompsci.LiveTramsMCR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -621,13 +658,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LiveTramsMCR;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .com.dccompsci.LiveTramsMCR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -768,12 +805,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR.watchkitapp;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
@@ -798,12 +836,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR.watchkitapp;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
