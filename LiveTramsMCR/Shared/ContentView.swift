@@ -76,6 +76,11 @@ struct ContentView: View {
                 
                 
             }
+            .refreshable {
+                StopRequest().requestStops { (stops) in
+                    self.stops = stops
+                }
+            }
         }
     }
     
