@@ -21,7 +21,7 @@ class StopRequest: ObservableObject {
                     if httpResponse.statusCode != 200{
                         return
                     }
-                }
+                } 
                 var stops: [Stop] = []
                 do {
                     if data != nil {
