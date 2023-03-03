@@ -54,6 +54,14 @@ struct Home: View {
                             }
                         }
                     }
+                    
+                    if (stops.count == 0){
+                        HStack{
+                            Spacer()
+                            Text("Service information is currently unavailable")
+                            Spacer()
+                        }
+                    }
                 }
                 
             }
