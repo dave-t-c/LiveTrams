@@ -8,35 +8,41 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
+struct Provider: IntentTimelineProvider {
     
     public typealias Entry = SimpleEntry
     
+    typealias Intent = LiveTramStopSelectionIntent
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0], seletedStop: "PlaceHolder")
+        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0], seletedStop: "Snapshot")
+    func getSnapshot(for configuration: LiveTramStopSelectionIntent,
+                     in context: Context,
+                     completion: @escaping (SimpleEntry) -> Void) {
+        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
             completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(for configuration: LiveTramStopSelectionIntent,
+                     in context: Context,
+                     completion: @escaping (Timeline<Entry>) -> Void) {
         Task {
             var entries: [SimpleEntry] = []
             var entry: SimpleEntry
             var timeline: Timeline<SimpleEntry>
-            let selectedStop = "ALT"
+            let selectedStop = configuration.stop?.identifier
             do  {
                 let serviceRequester = ServicesRequest()
-                let formattedServices = try await serviceRequester.requestServices(tlaref: selectedStop)
-                entry = SimpleEntry(date: Date(), formattedServices: formattedServices, seletedStop: selectedStop)
+                let formattedServices = try await serviceRequester.requestServices(tlaref: selectedStop!)
+                entry = SimpleEntry(date: Date(), formattedServices: formattedServices)
                 entries.append(entry)
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }
             catch {
-                entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0], seletedStop: "Exception")
+                entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }
@@ -47,7 +53,6 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let formattedServices: FormattedServices
-    let seletedStop: String
 }
 
 struct LiveTramTimesWidgetEntryView : View {
@@ -71,7 +76,9 @@ struct LiveTramTimesWidget: Widget {
     let kind: String = "LiveTramTimesWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind,
+                            intent: LiveTramStopSelectionIntent.self,
+                            provider: Provider()) { entry in
             LiveTramTimesWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Live Trams")

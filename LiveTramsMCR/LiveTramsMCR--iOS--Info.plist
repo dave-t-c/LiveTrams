@@ -2,9 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>LiveTramStopSelectionIntent</string>
+	</array>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>IntentIntent</string>
 		<string>LiveDataStopSelectionIntent</string>
+		<string>LiveTramStopSelectionIntent</string>
 	</array>
 </dict>
 </plist>
