@@ -91,7 +91,5 @@ struct StopDetail: View {
             }
         }
         .navigationTitle(stop.stopName)
-        .edgesIgnoringSafeArea(.bottom)
-        .padding(.all)
     }
 }
