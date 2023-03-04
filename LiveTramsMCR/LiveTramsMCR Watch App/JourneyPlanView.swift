@@ -22,8 +22,7 @@ struct JourneyPlanView: View {
     var body: some View {
         List {
             Section{
-                
-                VStack{
+
                     Picker("Origin", selection: $originStop){
                         Text("Select Stop").tag("")
                         ForEach(stops, id: \.self) { stop in
@@ -36,6 +35,7 @@ struct JourneyPlanView: View {
                     
                     
                     HStack{
+                        Spacer()
                         Image(systemName: "arrow.triangle.swap")
                             .imageScale(.large)
                             .foregroundColor(.blue)
@@ -44,13 +44,13 @@ struct JourneyPlanView: View {
                                 destinationStop = originStop
                                 originStop = temp
                             }
-                        Spacer()
                     }
-                    Picker("Destination", selection: $destinationStop){
-                        Text("Select Stop").tag("")
-                        ForEach(stops, id: \.self) { stop in
-                            Text(stop).tag(stop)
-                        }
+                    .listRowBackground(Color.clear)
+                
+                Picker("Destination", selection: $destinationStop){
+                    Text("Select Stop").tag("")
+                    ForEach(stops, id: \.self) { stop in
+                        Text(stop).tag(stop)
                     }
                 }
                 
