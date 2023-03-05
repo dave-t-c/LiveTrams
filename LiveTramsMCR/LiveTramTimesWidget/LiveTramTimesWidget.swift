@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import OrderedCollections
 
 struct Provider: IntentTimelineProvider {
     
@@ -15,13 +16,13 @@ struct Provider: IntentTimelineProvider {
     typealias Intent = LiveTramStopSelectionIntent
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
+        SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
     }
 
     func getSnapshot(for configuration: LiveTramStopSelectionIntent,
                      in context: Context,
                      completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
+        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
             completion(entry)
     }
 
@@ -42,7 +43,7 @@ struct Provider: IntentTimelineProvider {
                 completion(timeline)
             }
             catch {
-                entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
+                entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }

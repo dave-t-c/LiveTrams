@@ -37,6 +37,13 @@
 		9E68BC5A29B101A500DAA02D /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E68BC5C29B13C6100DAA02D /* SystemSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BC5B29B13C6100DAA02D /* SystemSmallView.swift */; };
 		9E68BC5D29B13C8500DAA02D /* SystemSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BC5B29B13C6100DAA02D /* SystemSmallView.swift */; };
+		9E6B019D29B507830041A385 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6B019C29B507830041A385 /* OrderedCollections */; };
+		9E6B019F29B508220041A385 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6B019E29B508220041A385 /* OrderedCollections */; };
+		9E6B01A129B508290041A385 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6B01A029B508290041A385 /* OrderedCollections */; };
+		9E6B01A329B5082E0041A385 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6B01A229B5082E0041A385 /* OrderedCollections */; };
+		9E6B01A529B524AD0041A385 /* ServicesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B01A429B524AD0041A385 /* ServicesHelper.swift */; };
+		9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B01A429B524AD0041A385 /* ServicesHelper.swift */; };
+		9E6B01A729B52B8B0041A385 /* ServicesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B01A429B524AD0041A385 /* ServicesHelper.swift */; };
 		9E6BEDC329B3F3CD007DB4E8 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9E6BEDC429B3F4AD007DB4E8 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
@@ -152,6 +159,7 @@
 		9E68BC5B29B13C6100DAA02D /* SystemSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSmallView.swift; sourceTree = "<group>"; };
 		9E68BC6229B1406700DAA02D /* LiveTramsMCR--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveTramsMCR--iOS--Info.plist"; sourceTree = "<group>"; };
 		9E68BC6329B1406700DAA02D /* LiveTramsMCR-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveTramsMCR-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9E6B01A429B524AD0041A385 /* ServicesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesHelper.swift; sourceTree = "<group>"; };
 		9E7B1E9A2814B668007FA699 /* FormattedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedServices.swift; sourceTree = "<group>"; };
 		9E7B1E9D2814B679007FA699 /* Tram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tram.swift; sourceTree = "<group>"; };
 		9E7B1EA02814B7D3007FA699 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6B019F29B508220041A385 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +213,7 @@
 			files = (
 				9E68BC4929B0FD2500DAA02D /* SwiftUI.framework in Frameworks */,
 				9E68BC4829B0FD2500DAA02D /* WidgetKit.framework in Frameworks */,
+				9E6B01A129B508290041A385 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6B019D29B507830041A385 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6B01A329B5082E0041A385 /* OrderedCollections in Frameworks */,
 				9EE3044229B3D072000F20A7 /* Intents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +322,7 @@
 				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
 				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
 				9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */,
+				9E6B01A429B524AD0041A385 /* ServicesHelper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -388,6 +401,9 @@
 			dependencies = (
 			);
 			name = "LiveTramsMCR Watch App";
+			packageProductDependencies = (
+				9E6B019E29B508220041A385 /* OrderedCollections */,
+			);
 			productName = "LiveTramsMCR Watch App";
 			productReference = 9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -405,6 +421,9 @@
 			dependencies = (
 			);
 			name = LiveTramTimesWidgetExtension;
+			packageProductDependencies = (
+				9E6B01A029B508290041A385 /* OrderedCollections */,
+			);
 			productName = LiveTramTimesWidgetExtension;
 			productReference = 9E68BC4729B0FD2500DAA02D /* LiveTramTimesWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -427,6 +446,9 @@
 				9EE3044829B3D072000F20A7 /* PBXTargetDependency */,
 			);
 			name = "LiveTramsMCR (iOS)";
+			packageProductDependencies = (
+				9E6B019C29B507830041A385 /* OrderedCollections */,
+			);
 			productName = "TfGM-API-Wrapper-iOS (iOS)";
 			productReference = 9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */;
 			productType = "com.apple.product-type.application";
@@ -462,6 +484,9 @@
 			dependencies = (
 			);
 			name = LiveTramsIntentHandling;
+			packageProductDependencies = (
+				9E6B01A229B5082E0041A385 /* OrderedCollections */,
+			);
 			productName = LiveTramsIntentHandling;
 			productReference = 9EE3044129B3D072000F20A7 /* LiveTramsIntentHandling.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -503,6 +528,9 @@
 				Base,
 			);
 			mainGroup = 9E84E2972812AAA400571ECA;
+			packageReferences = (
+				9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 9E84E2A82812AAA600571ECA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -570,6 +598,7 @@
 				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
 				9E20900B299ECFBB008F9168 /* Tram.swift in Sources */,
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
+				9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E209014299ED03F008F9168 /* Route.swift in Sources */,
 				9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */,
 				9EF4B985299ED2D00054593E /* Home.swift in Sources */,
@@ -592,6 +621,7 @@
 				9E68BC5929B0FE5F00DAA02D /* Tram.swift in Sources */,
 				9EE3045529B3E550000F20A7 /* Stop.swift in Sources */,
 				9E68BC5829B0FE0D00DAA02D /* FormattedServices.swift in Sources */,
+				9E6B01A729B52B8B0041A385 /* ServicesHelper.swift in Sources */,
 				9E68BC5D29B13C8500DAA02D /* SystemSmallView.swift in Sources */,
 				9E68BC4C29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift in Sources */,
 				9E68BC5A29B101A500DAA02D /* ServicesRequest.swift in Sources */,
@@ -613,6 +643,7 @@
 				9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */,
 				9EC2FB6528147BB500C08784 /* Stop.swift in Sources */,
+				9E6B01A529B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E29363029B4B15000DF32CC /* SystemMediumView.swift in Sources */,
 				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
@@ -1155,6 +1186,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9E6B019C29B507830041A385 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		9E6B019E29B508220041A385 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		9E6B01A029B508290041A385 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		9E6B01A229B5082E0041A385 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E6B019B29B507830041A385 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9E84E29D2812AAA400571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld */ = {
