@@ -65,6 +65,8 @@ struct LiveTramTimesWidgetEntryView : View {
         switch family {
         case .systemSmall:
             SystemSmallView(formattedServices: entry.formattedServices)
+        case .systemMedium:
+            SystemMediumView(formattedServices: entry.formattedServices)
         default:
             SystemSmallView(formattedServices: entry.formattedServices)
         }
@@ -83,6 +85,6 @@ struct LiveTramTimesWidget: Widget {
         }
         .configurationDisplayName("Live Trams")
         .description("View live tram times for a stop")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
