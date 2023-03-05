@@ -15,17 +15,18 @@ struct SystemSmallView: View {
     var body: some View {
         let destinationCount: Int = self.formattedServices.destinations.count
         let destinationsToShow: Int = destinationCount > maxDestinationsToShow ? maxDestinationsToShow : destinationCount
-        let filteredKeys = Array(formattedServices.destinations.keys.prefix(destinationsToShow))
-        
-        ForEach(filteredKeys, id: \.self) { stopName in
+        let orderedServices = ServicesHelper().getDestinationsAsOrderedDict(destinations: self.formattedServices.destinations, limit: destinationsToShow)
+        Spacer()
+        ForEach(orderedServices.keys, id: \.self) { stopName in
             let trams: [Tram] = formattedServices.destinations[stopName]!
             let tramTimes = trams.map {$0.wait}
             let formattedTramTimes = tramTimes.joined(separator: ", ") + " mins"
             VStack {
                 Text(stopName)
                     .font(.headline)
+                    .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.top, .leading])
+                    .padding(.leading)
                 Text(formattedTramTimes)
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .trailing)
