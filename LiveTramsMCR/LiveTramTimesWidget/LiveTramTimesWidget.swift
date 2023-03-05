@@ -16,13 +16,13 @@ struct Provider: IntentTimelineProvider {
     typealias Intent = LiveTramStopSelectionIntent
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
+        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
     }
 
     func getSnapshot(for configuration: LiveTramStopSelectionIntent,
                      in context: Context,
                      completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
+        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
             completion(entry)
     }
 
