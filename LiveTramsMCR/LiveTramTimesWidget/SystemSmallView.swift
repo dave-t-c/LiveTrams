@@ -10,9 +10,20 @@ import SwiftUI
 struct SystemSmallView: View {
     var formattedServices: FormattedServices
     
+    private let maxDestinationsToShow: Int = 2
+    
     var body: some View {
-        ForEach(Array(self.formattedServices.destinations.keys), id: \.self) { dest in
-            let trams: [Tram]? = self.formattedServices.destinations[dest]
+        let destinationCount: Int = self.formattedServices.destinations.count
+        var destinationsToShow: Int = destinationCount > maxDestinationsToShow ? maxDestinationsToShow : destinationCount
+        
+        var takenKeys = Array(self.formattedServices.destinations.keys).prefix(destinationsToShow)
+        
+        let filteredTrams = formattedServices.destinations.filter {takenKeys.contains($0.key)}
+        
+        let filteredServices = FormattedServices(destinations: filteredTrams, messages: self.formattedServices.messages)
+        
+        ForEach(Array(filteredServices.destinations.keys), id: \.self) { dest in
+            let trams: [Tram]? = filteredServices.destinations[dest]
             let tramTimes = trams?.map {$0.wait}
             let formattedTramTimes = tramTimes!.joined(separator: ", ") + " mins"
             VStack {
