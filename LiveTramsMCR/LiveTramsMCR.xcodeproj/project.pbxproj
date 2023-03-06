@@ -166,10 +166,6 @@
 		9E84E2A22812AAA600571ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTramsMCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E84E2AF2812AAA600571ECA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		9E84E2B82812AAA600571ECA /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		9E84E2BA2812AAA600571ECA /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
-		9E84E2C42812AAA600571ECA /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		9E84E2C62812AAA600571ECA /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9E84E2E02812AC6000571ECA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
@@ -274,8 +270,6 @@
 				9E68BC6229B1406700DAA02D /* LiveTramsMCR--iOS--Info.plist */,
 				9E84E29C2812AAA400571ECA /* Shared */,
 				9E84E2AE2812AAA600571ECA /* macOS */,
-				9E84E2B72812AAA600571ECA /* Tests iOS */,
-				9E84E2C32812AAA600571ECA /* Tests macOS */,
 				9E208FF7299ECD3F008F9168 /* LiveTramsMCR Watch App */,
 				9E68BC4A29B0FD2500DAA02D /* LiveTramTimesWidget */,
 				9EE3044329B3D072000F20A7 /* LiveTramsIntentHandling */,
@@ -331,24 +325,6 @@
 				9E84E2AF2812AAA600571ECA /* macOS.entitlements */,
 			);
 			path = macOS;
-			sourceTree = "<group>";
-		};
-		9E84E2B72812AAA600571ECA /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				9E84E2B82812AAA600571ECA /* Tests_iOS.swift */,
-				9E84E2BA2812AAA600571ECA /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		9E84E2C32812AAA600571ECA /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				9E84E2C42812AAA600571ECA /* Tests_macOS.swift */,
-				9E84E2C62812AAA600571ECA /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 		9ED1012D29AB9AF500B79B22 /* Frameworks */ = {
