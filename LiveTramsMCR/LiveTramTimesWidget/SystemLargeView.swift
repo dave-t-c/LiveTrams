@@ -36,6 +36,15 @@ struct SystemLargeView: View {
                 }
                 Spacer()
             }
+            if(self.formattedServices.destinations.isEmpty)
+            {
+                Text("No service information available")
+                    .font(.headline)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                Spacer()
+            }
             
             ForEach(self.formattedServices.messages, id: \.self) {
                 message in

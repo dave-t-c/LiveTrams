@@ -10,7 +10,7 @@ import SwiftUI
 struct SystemMediumView: View {
     var formattedServices: FormattedServices
     
-    private let maxDestinationsToShow: Int = 4
+    private let maxDestinationsToShow: Int = 3
     
     var body: some View {
         let destinationCount: Int = self.formattedServices.destinations.count
@@ -33,6 +33,15 @@ struct SystemMediumView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing)
             }
+            Spacer()
+        }
+        if(self.formattedServices.destinations.isEmpty)
+        {
+            Text("No service information available")
+                .font(.headline)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
             Spacer()
         }
     }
