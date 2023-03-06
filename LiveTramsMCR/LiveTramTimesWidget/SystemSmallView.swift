@@ -27,6 +27,7 @@ struct SystemSmallView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
+                
                 Text(formattedTramTimes)
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .trailing)

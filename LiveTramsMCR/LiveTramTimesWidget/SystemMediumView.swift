@@ -24,7 +24,7 @@ struct SystemMediumView: View {
             HStack {
                 Text(stopName)
                     .font(.headline)
-                    .fixedSize()
+                    .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
                 
