@@ -22,14 +22,28 @@ struct ContentView: View {
                 {
                     Section(header: Text("Favourites")){
                         ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                            StopCell(stop: stop, stops: stops).environmentObject(favouritesStore)
+                            NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
+                                VStack(alignment: .leading) {
+                                    Text(stop.stopName)
+                                    Text(stop.street)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
                         }
                     }
                 }
                 
                 Section(header: Text("All Stops")){
                     ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
-                        StopCell(stop: stop, stops: stops).environmentObject(favouritesStore)
+                        NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
+                            VStack(alignment: .leading) {
+                                Text(stop.stopName)
+                                Text(stop.street)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                     }
                     
                     if (stops.count == 0){
@@ -93,12 +107,5 @@ struct ContentView: View {
     }
     
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(stops: testData)
-    }
-}
-
 
 
