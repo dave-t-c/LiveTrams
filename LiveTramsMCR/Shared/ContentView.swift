@@ -17,57 +17,83 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             
-            List {
-                
-                if (!favouritesStore.stops.isEmpty)
-                {
-                    Section(header: Text("Favourites")){
-                        ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel)) {
+            ScrollViewReader { scrollView in
+                List {
+                    if (!favouritesStore.stops.isEmpty)
+                    {
+                        Section(header: Text("Favourites")){
+                            ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
+                                NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel)) {
+                                    VStack(alignment: .leading) {
+                                        Text(stop.stopName)
+                                        Text(stop.street)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("All Stops")){
+                        ForEach(stopViewModel.stops) { stop in
+                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
+                            }.id((stop.tlaref))
+                        }
+                        
+                        if (stopViewModel.stops.count == 0){
+                            HStack{
+                                Spacer()
+                                Text("Service information is currently unavailable")
+                                Spacer()
                             }
                         }
-                    }
-                }
-                
-                Section(header: Text("All Stops")){
-                    ForEach(stopViewModel.stops) { stop in
-                        NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
-                            VStack(alignment: .leading) {
-                                Text(stop.stopName)
-                                Text(stop.street)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    
-                    if (stopViewModel.stops.count == 0){
+                        
                         HStack{
                             Spacer()
-                            Text("Service information is currently unavailable")
+                            Text("\(searchResults.count) Stops Found")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            Text("Contains Transport for Greater Manchester data")
+                                .foregroundColor(.secondary)
+                                .font(.footnote)
                             Spacer()
                         }
                     }
-                    
-                    HStack{
-                        Spacer()
-                        Text("\(searchResults.count) Stops Found")
-                            .foregroundColor(.secondary)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        Text("Contains Transport for Greater Manchester data")
-                            .foregroundColor(.secondary)
-                            .font(.footnote)
-                        Spacer()
+                    .onOpenURL { url in
+                        guard let url = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+                            return
+                        }
+                        
+                        if (url.scheme != "livetramsmcr") {
+                            return
+                        }
+                        
+                        if (url.host != "services")
+                        {
+                            return
+                        }
+                        
+                        // Take the first char off as this will be '/'
+                        if (url.path.isEmpty)
+                        {
+                            return
+                        }
+                        
+                        let pathTlaref = String(url.path.dropFirst())
+                        scrollView.scrollTo(pathTlaref, anchor: .top)
+                        self.stopViewModel.currentStopTlaref = pathTlaref
+                        self.stopViewModel.currentViewSelection = .services
                     }
                 }
             }
@@ -96,30 +122,7 @@ struct ContentView: View {
                     self.stopViewModel.stops = stops
                 }
             }
-            .onOpenURL { url in
-                guard let url = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-                    return
-                }
-                
-                if (url.scheme != "livetramsmcr") {
-                    return
-                }
-                
-                if (url.host != "services")
-                {
-                    return
-                }
-                
-                // Take the first char off as this will be '/'
-                if (url.path.isEmpty)
-                {
-                    return
-                }
-                
-                let pathTlaref = String(url.path.dropFirst())
-                self.stopViewModel.currentStopTlaref = pathTlaref
-                self.stopViewModel.currentViewSelection = .services
-            }
+            
         }
     }
     
