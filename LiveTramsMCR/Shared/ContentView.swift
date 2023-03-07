@@ -9,10 +9,11 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @State var stops: [Stop] = []
     @State private var searchText = ""
     
     @StateObject private var favouritesStore = FavouriteStopStore()
+    @StateObject private var stopViewModel = StopViewModel()
+    
     var body: some View {
         NavigationView {
             
@@ -22,7 +23,7 @@ struct ContentView: View {
                 {
                     Section(header: Text("Favourites")){
                         ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                            NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
+                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel)) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
@@ -35,8 +36,8 @@ struct ContentView: View {
                 }
                 
                 Section(header: Text("All Stops")){
-                    ForEach(searchResults.sorted { $0.stopName < $1.stopName }) { stop in
-                        NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
+                    ForEach(stopViewModel.stops) { stop in
+                        NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                             VStack(alignment: .leading) {
                                 Text(stop.stopName)
                                 Text(stop.street)
@@ -46,7 +47,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    if (stops.count == 0){
+                    if (stopViewModel.stops.count == 0){
                         HStack{
                             Spacer()
                             Text("Service information is currently unavailable")
@@ -85,24 +86,48 @@ struct ContentView: View {
                 }
                 
                 StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                    self.stopViewModel.stops = stops
                 }
                 
                 
             }
             .refreshable {
                 StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                    self.stopViewModel.stops = stops
                 }
+            }
+            .onOpenURL { url in
+                guard let url = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+                    return
+                }
+                
+                if (url.scheme != "livetramsmcr") {
+                    return
+                }
+                
+                if (url.host != "services")
+                {
+                    return
+                }
+                
+                // Take the first char off as this will be '/'
+                if (url.path.isEmpty)
+                {
+                    return
+                }
+                
+                let pathTlaref = String(url.path.dropFirst())
+                self.stopViewModel.currentStopTlaref = pathTlaref
+                self.stopViewModel.currentViewSelection = .services
             }
         }
     }
     
     var searchResults: [Stop] {
         if searchText.isEmpty {
-            return stops
+            return self.stopViewModel.stops
         } else {
-            return stops.filter { $0.stopName.contains(searchText)}
+            return self.stopViewModel.stops.filter { $0.stopName.contains(searchText)}
         }
     }
     

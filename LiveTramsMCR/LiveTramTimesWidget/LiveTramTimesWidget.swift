@@ -16,13 +16,13 @@ struct Provider: IntentTimelineProvider {
     typealias Intent = LiveTramStopSelectionIntent
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
+        SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0], tlaref: "")
     }
 
     func getSnapshot(for configuration: LiveTramStopSelectionIntent,
                      in context: Context,
                      completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0])
+        let entry = SimpleEntry(date: Date(), formattedServices: FormattedServicesData().testFormattedServicesData[0], tlaref: "")
             completion(entry)
     }
 
@@ -37,13 +37,13 @@ struct Provider: IntentTimelineProvider {
             do  {
                 let serviceRequester = ServicesRequest()
                 let formattedServices = try await serviceRequester.requestServices(tlaref: selectedStop!)
-                entry = SimpleEntry(date: Date(), formattedServices: formattedServices)
+                entry = SimpleEntry(date: Date(), formattedServices: formattedServices, tlaref: selectedStop!)
                 entries.append(entry)
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }
             catch {
-                entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []))
+                entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []), tlaref: "")
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }
@@ -54,6 +54,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let formattedServices: FormattedServices
+    let tlaref: String
 }
 
 struct LiveTramTimesWidgetEntryView : View {
@@ -66,12 +67,16 @@ struct LiveTramTimesWidgetEntryView : View {
         switch family {
         case .systemSmall:
             SystemSmallView(formattedServices: entry.formattedServices)
+                .widgetURL(URL(string: "livetramsmcr://services/\(entry.tlaref)"))
         case .systemMedium:
             SystemMediumView(formattedServices: entry.formattedServices)
+                .widgetURL(URL(string: "livetramsmcr://services/\(entry.tlaref)"))
         case .systemLarge:
             SystemLargeView(formattedServices: entry.formattedServices)
+                .widgetURL(URL(string: "livetramsmcr://services/\(entry.tlaref)"))
         default:
             SystemSmallView(formattedServices: entry.formattedServices)
+                .widgetURL(URL(string: "livetramsmcr://services/\(entry.tlaref)"))
         }
         
     }

@@ -15,7 +15,9 @@ struct StopDetail: View {
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
+    @EnvironmentObject var stopViewModel: StopViewModel
     
+    @ViewBuilder
     var body: some View {
         List {
             Section {
@@ -24,7 +26,7 @@ struct StopDetail: View {
             }
             
             Section{
-                NavigationLink (destination: ServicesView(stop: stop)) {
+                NavigationLink (destination: ServicesView(stop: stop), tag: SelectedStopView.services, selection: $stopViewModel.currentViewSelection) {
                     Label("View Live Departures", systemImage: "clock.fill")
                         .padding()
                 }
