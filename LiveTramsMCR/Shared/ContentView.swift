@@ -37,8 +37,7 @@ struct ContentView: View {
                     
                     Section(header: Text("All Stops")){
                         ForEach(stopViewModel.stops) { stop in
-                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore)
-                            , tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
