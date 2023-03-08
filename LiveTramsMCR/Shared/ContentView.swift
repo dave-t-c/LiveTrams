@@ -18,7 +18,7 @@ struct ContentView: View {
         NavigationView {
             
             ScrollViewReader { scrollView in
-                List {
+                ScrollView {
                     if (!favouritesStore.stops.isEmpty)
                     {
                         Section(header: Text("Favourites")){
