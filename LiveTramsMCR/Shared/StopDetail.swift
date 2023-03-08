@@ -15,7 +15,6 @@ struct StopDetail: View {
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
-    @State var stopViewModel: StopViewModel
     
     @ViewBuilder
     var body: some View {
@@ -26,14 +25,14 @@ struct StopDetail: View {
             }
             
             Section{
-                NavigationLink (destination: ServicesView(stop: stop), tag: SelectedStopView.services, selection: $stopViewModel.currentViewSelection) {
+                NavigationLink (destination: ServicesView(stop: stop)) {
                     Label("View Live Departures", systemImage: "clock.fill")
                         .padding()
                 }
             }
             
             Section{
-                NavigationLink (destination: JourneyPlanView(initialOrigin: stop.stopName, stops: stops.lazy.map { ($0.stopName)}), tag: SelectedStopView.planJourney, selection: $stopViewModel.currentViewSelection) {
+                NavigationLink (destination: JourneyPlanView(initialOrigin: stop.stopName, stops: stops.lazy.map { ($0.stopName)})) {
                     Label("Plan Journey", systemImage: "map.fill")
                         .padding()
                 }
@@ -47,7 +46,7 @@ struct StopDetail: View {
             }
             .padding()
             
-            NavigationLink (destination: NearPublicTransport(stop: stop), tag: SelectedStopView.nearby, selection: $stopViewModel.currentViewSelection) {
+            NavigationLink (destination: NearPublicTransport(stop: stop)) {
                 Label("Nearby", systemImage: "mappin.and.ellipse")
                     .padding()
             }

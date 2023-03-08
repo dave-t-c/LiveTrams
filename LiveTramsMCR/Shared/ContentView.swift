@@ -10,6 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @State private var searchText = ""
+    @State private var stops: [Stop] = []
     
     @StateObject private var favouritesStore = FavouriteStopStore()
     @StateObject private var stopViewModel = StopViewModel()
@@ -18,12 +19,12 @@ struct ContentView: View {
         NavigationView {
             
             ScrollViewReader { scrollView in
-                ScrollView {
+                List {
                     if (!favouritesStore.stops.isEmpty)
                     {
                         Section(header: Text("Favourites")){
                             ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                                NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore)) {
+                                NavigationLink(destination: StopDetail(stop: stop, stops: self.stops).environmentObject(favouritesStore)) {
                                     VStack(alignment: .leading) {
                                         Text(stop.stopName)
                                         Text(stop.street)
@@ -36,8 +37,8 @@ struct ContentView: View {
                     }
                     
                     Section(header: Text("All Stops")){
-                        ForEach(stopViewModel.stops) { stop in
-                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                        ForEach(self.stops) { stop in
+                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
@@ -47,7 +48,7 @@ struct ContentView: View {
                             }.id((stop.tlaref))
                         }
                         
-                        if (stopViewModel.stops.count == 0){
+                        if (self.stops.count == 0){
                             HStack{
                                 Spacer()
                                 Text("Service information is currently unavailable")
@@ -91,9 +92,8 @@ struct ContentView: View {
                         }
                         
                         let pathTlaref = String(url.path.dropFirst())
-                        scrollView.scrollTo(pathTlaref, anchor: .top)
+                        scrollView.scrollTo(pathTlaref)
                         self.stopViewModel.currentStopTlaref = pathTlaref
-                        self.stopViewModel.currentViewSelection = .services
                     }
                 }
             }
@@ -112,14 +112,14 @@ struct ContentView: View {
                 }
                 
                 StopRequest().requestStops { (stops) in
-                    self.stopViewModel.stops = stops
+                    self.stops = stops
                 }
                 
                 
             }
             .refreshable {
                 StopRequest().requestStops { (stops) in
-                    self.stopViewModel.stops = stops
+                    self.stops = stops
                 }
             }
             
@@ -128,9 +128,9 @@ struct ContentView: View {
     
     var searchResults: [Stop] {
         if searchText.isEmpty {
-            return self.stopViewModel.stops
+            return self.stops
         } else {
-            return self.stopViewModel.stops.filter { $0.stopName.contains(searchText)}
+            return self.stops.filter { $0.stopName.contains(searchText)}
         }
     }
     
