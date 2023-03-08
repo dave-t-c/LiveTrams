@@ -23,7 +23,7 @@ struct ContentView: View {
                     {
                         Section(header: Text("Favourites")){
                             ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                                NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel)) {
+                                NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore)) {
                                     VStack(alignment: .leading) {
                                         Text(stop.stopName)
                                         Text(stop.street)
@@ -37,7 +37,8 @@ struct ContentView: View {
                     
                     Section(header: Text("All Stops")){
                         ForEach(stopViewModel.stops) { stop in
-                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops).environmentObject(favouritesStore).environmentObject(self.stopViewModel), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                            NavigationLink(destination: StopDetail(stop: stop, stops: self.stopViewModel.stops, stopViewModel: self.stopViewModel).environmentObject(favouritesStore)
+                            , tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
