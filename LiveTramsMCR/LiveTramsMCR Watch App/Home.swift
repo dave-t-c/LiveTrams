@@ -26,7 +26,7 @@ struct Home: View {
         NavigationView {
             List {
                 
-                if (!favouritesStore.stops.isEmpty)
+                if (!favouritesStore.stops.isEmpty && searchText.isEmpty)
                 {
                     Section(header: Text("Favourites")){
                         ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
