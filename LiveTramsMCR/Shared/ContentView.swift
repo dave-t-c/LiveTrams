@@ -90,10 +90,14 @@ struct ContentView: View {
                         {
                             return
                         }
-                        
+                        self.stopViewModel.currentStopTlaref = nil
                         let pathTlaref = String(url.path.dropFirst())
                         scrollView.scrollTo(pathTlaref)
-                        self.stopViewModel.currentStopTlaref = pathTlaref
+                        
+                        // Delay 1s to wait for list animations to complete
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.stopViewModel.currentStopTlaref = pathTlaref
+                        }
                     }
                 }
             }
