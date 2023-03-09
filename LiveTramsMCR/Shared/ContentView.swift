@@ -90,6 +90,7 @@ struct ContentView: View {
                         {
                             return
                         }
+                        self.searchText = ""
                         self.stopViewModel.currentStopTlaref = nil
                         let pathTlaref = String(url.path.dropFirst())
                         scrollView.scrollTo(pathTlaref)
