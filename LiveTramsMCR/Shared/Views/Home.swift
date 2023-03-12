@@ -95,29 +95,32 @@ struct Home: View {
                         self.stopViewModel.currentStopTlaref = nil
                         
                         Task {
-                            var loadedStops = false
-                            if (stops.isEmpty)
-                            {
-                                let duration = UInt64(1.5 * 1_000_000_000)
-                                try await Task.sleep(nanoseconds: duration)
-                                
-                                if (stops.isEmpty) {
-                                    return
+                            do {
+                                if (stops.isEmpty)
+                                {
+                                    let duration = UInt64(1.5 * 1_000_000_000)
+                                    try await Task.sleep(nanoseconds: duration)
+                                    
+                                    if (stops.isEmpty) {
+                                        return
+                                    }
+                                    
                                 }
-                                loadedStops = true
-                            }
-                            
-                            let pathTlaref = String(url.path.dropFirst())
-                            scrollView.scrollTo(pathTlaref)
-                            
-                            if(!loadedStops)
-                            {
+                                
+                                let pathTlaref = String(url.path.dropFirst())
+                                scrollView.scrollTo(pathTlaref)
+                                
+
                                 let duration = UInt64(1 * 1_000_000_000)
                                 try await Task.sleep(nanoseconds: duration)
+                                
+                                
+                                self.stopViewModel.currentStopTlaref = pathTlaref
                             }
                             
-                            self.stopViewModel.currentStopTlaref = pathTlaref
-                            
+                            catch {
+                                return
+                            }
                         }
                     }
                 }
