@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "TfGM_API_Wrapper_iOS")
+        container = NSPersistentCloudKitContainer(name: "LiveTramsMCR")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

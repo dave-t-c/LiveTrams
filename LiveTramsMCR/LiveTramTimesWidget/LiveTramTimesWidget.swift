@@ -92,7 +92,7 @@ struct LiveTramTimesWidget: Widget {
             LiveTramTimesWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Live Trams")
-        .description("View live tram times for a stop")
+        .description("View live trams for a stop")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

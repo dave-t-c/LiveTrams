@@ -90,14 +90,34 @@ struct Home: View {
                         {
                             return
                         }
+                        
                         self.searchText = ""
                         self.stopViewModel.currentStopTlaref = nil
-                        let pathTlaref = String(url.path.dropFirst())
-                        scrollView.scrollTo(pathTlaref)
                         
-                        // Delay 1s to wait for list animations to complete
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        Task {
+                            var loadedStops = false
+                            if (stops.isEmpty)
+                            {
+                                let duration = UInt64(1.5 * 1_000_000_000)
+                                try await Task.sleep(nanoseconds: duration)
+                                
+                                if (stops.isEmpty) {
+                                    return
+                                }
+                                loadedStops = true
+                            }
+                            
+                            let pathTlaref = String(url.path.dropFirst())
+                            scrollView.scrollTo(pathTlaref)
+                            
+                            if(!loadedStops)
+                            {
+                                let duration = UInt64(1 * 1_000_000_000)
+                                try await Task.sleep(nanoseconds: duration)
+                            }
+                            
                             self.stopViewModel.currentStopTlaref = pathTlaref
+                            
                         }
                     }
                 }
