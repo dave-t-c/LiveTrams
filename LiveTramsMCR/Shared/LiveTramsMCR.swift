@@ -8,12 +8,12 @@
 import SwiftUI
 
 @main
-struct TfGM_API_Wrapper_iOSApp: App {
+struct LiveTramsMCR: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Home()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

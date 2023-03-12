@@ -56,11 +56,11 @@
 		9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
 		9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
 		9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
-		9E84E2C82812AAA600571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E29D2812AAA400571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld */; };
-		9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */; };
+		9E84E2C82812AAA600571ECA /* LiveTramsMCR.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E29D2812AAA400571ECA /* LiveTramsMCR.xcdatamodeld */; };
+		9E84E2CA2812AAA600571ECA /* LiveTramsMCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E29F2812AAA400571ECA /* LiveTramsMCR.swift */; };
 		9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2A12812AAA400571ECA /* Persistence.swift */; };
 		9E84E2D02812AAA600571ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
-		9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2E02812AC6000571ECA /* ContentView.swift */; };
+		9E84E2E12812AC6000571ECA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2E02812AC6000571ECA /* Home.swift */; };
 		9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
@@ -165,12 +165,12 @@
 		9E7BAF5C29B3C97800153732 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		9E7BAF6729B3C97900153732 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		9E84E29E2812AAA400571ECA /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
-		9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfGM_API_Wrapper_iOSApp.swift; sourceTree = "<group>"; };
+		9E84E29F2812AAA400571ECA /* LiveTramsMCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTramsMCR.swift; sourceTree = "<group>"; };
 		9E84E2A12812AAA400571ECA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9E84E2A22812AAA600571ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTramsMCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E84E2AF2812AAA600571ECA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		9E84E2E02812AC6000571ECA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E84E2E02812AC6000571ECA /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
 		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 				9E449E5829BE35C000C6ED79 /* Journeys */,
 				9E449E5729BE35B900C6ED79 /* Services */,
 				9E449E5629BE35B200C6ED79 /* Stops */,
-				9E84E2E02812AC6000571ECA /* ContentView.swift */,
+				9E84E2E02812AC6000571ECA /* Home.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,9 +424,9 @@
 				9E34D1E129B7C5AD00A7CB9A /* ViewModel */,
 				9E34D1E029B7C5A400A7CB9A /* Views */,
 				9E34D1DD29B7C56C00A7CB9A /* Model */,
-				9E84E29F2812AAA400571ECA /* TfGM_API_Wrapper_iOSApp.swift */,
+				9E84E29F2812AAA400571ECA /* LiveTramsMCR.swift */,
 				9E84E2A22812AAA600571ECA /* Assets.xcassets */,
-				9E84E29D2812AAA400571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld */,
+				9E84E29D2812AAA400571ECA /* LiveTramsMCR.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -695,7 +695,7 @@
 				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E34D1D929B7BD5300A7CB9A /* StopViewModel.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
-				9E84E2CA2812AAA600571ECA /* TfGM_API_Wrapper_iOSApp.swift in Sources */,
+				9E84E2CA2812AAA600571ECA /* LiveTramsMCR.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
 				9EE3045129B3D0E3000F20A7 /* LiveTramsIntent.intentdefinition in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
@@ -710,11 +710,11 @@
 				9E6B01A929B532690041A385 /* SystemLargeView.swift in Sources */,
 				9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
-				9E84E2E12812AC6000571ECA /* ContentView.swift in Sources */,
+				9E84E2E12812AC6000571ECA /* Home.swift in Sources */,
 				9E68BC5C29B13C6100DAA02D /* SystemSmallView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
 				9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */,
-				9E84E2C82812AAA600571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld in Sources */,
+				9E84E2C82812AAA600571ECA /* LiveTramsMCR.xcdatamodeld in Sources */,
 				9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1216,13 +1216,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9E84E29D2812AAA400571ECA /* TfGM_API_Wrapper_iOS.xcdatamodeld */ = {
+		9E84E29D2812AAA400571ECA /* LiveTramsMCR.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				9E84E29E2812AAA400571ECA /* Shared.xcdatamodel */,
 			);
 			currentVersion = 9E84E29E2812AAA400571ECA /* Shared.xcdatamodel */;
-			path = TfGM_API_Wrapper_iOS.xcdatamodeld;
+			path = LiveTramsMCR.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

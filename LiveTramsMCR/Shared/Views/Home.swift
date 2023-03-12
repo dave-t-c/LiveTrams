@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct Home: View {
     @State private var searchText = ""
     @State private var stops: [Stop] = []
     
