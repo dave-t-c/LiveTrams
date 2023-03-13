@@ -46,7 +46,7 @@ struct SystemLargeView: View {
                 Spacer()
             }
             
-            ForEach(self.formattedServices.messages, id: \.self) {
+            ForEach(Array(self.formattedServices.messages.prefix(1)), id: \.self) {
                 message in
                 HStack {
                     Spacer()
