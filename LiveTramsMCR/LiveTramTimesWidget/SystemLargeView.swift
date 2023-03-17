@@ -51,6 +51,8 @@ struct SystemLargeView: View {
                 HStack {
                     Spacer()
                     Label(message, systemImage: "message.fill")
+                        .font(.subheadline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                 }
                 .padding(.bottom)
