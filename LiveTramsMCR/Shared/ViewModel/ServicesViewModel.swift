@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OrderedCollections
 
 class ServicesViewModel : ObservableObject {
     
@@ -19,7 +20,10 @@ class ServicesViewModel : ObservableObject {
     }
     
     func getDestinationsAlphabetical() -> [String] {
-        return Array(self.services.destinations.keys).sorted {
+        // Get the destinations
+        let dests = services.destinations.keys
+        
+        return Array(dests).sorted {
             $0 < $1
         }
     }

@@ -16,6 +16,14 @@ struct StopDetail: View {
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
     
+    
+    init(selectedStop: Stop, stopList: [Stop]) {
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+        self.stop = selectedStop
+        self.stops = stopList
+    }
+    
+    @ViewBuilder
     var body: some View {
         List {
             Section {
@@ -91,7 +99,5 @@ struct StopDetail: View {
             }
         }
         .navigationTitle(stop.stopName)
-        .edgesIgnoringSafeArea(.bottom)
-        .padding(.all)
     }
 }

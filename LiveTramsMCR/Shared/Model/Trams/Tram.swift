@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tram: Identifiable, Codable {
+struct Tram: Identifiable, Codable, Hashable {
     let destination: String
     let carriages: String
     let status: String

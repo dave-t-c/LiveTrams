@@ -9,7 +9,7 @@
 
 
 ## Introduction
-This is an iOS application built using SwiftUI that uses the [LiveTramsMCR-API Project](https://github.com/dave-t-c/LiveTramsMCR-API) to retreive and present data related to Manchester Metrolink Services / Stops
+This is an iOS application built using SwiftUI that uses the [LiveTramsMCR-API Project](https://github.com/dave-t-c/LiveTramsMCR-API) to retrieve and present data related to Manchester Metrolink Services / Stops
 
 ## Project Goals
 - Create a mobile frontend for the LiveTramsMCR project- Experiment with SwiftUI
@@ -54,6 +54,8 @@ The project currently features:
 The App icon used for this program is from [Zondicons](https://github.com/dukestreetstudio/zondicons) which was 
 created by [dukestreetstudio](https://github.com/dukestreetstudio). This is used under the [MIT License](https://github.com/dukestreetstudio/zondicons/blob/master/LICENSE).
 A copy of this license has been included [here](./LiveTramsMCR/Shared/Assets.xcassets/AppIconLicense.md).
+
+This app uses the [swift-collections](https://github.com/apple/swift-collections) library under the [Apache-2.0 license](https://github.com/apple/swift-collections/blob/main/LICENSE.txt). A copy of this license has been included [here](./LiveTramsMCR/Shared/Assets.xcassets/Swift-Collections-License.md).
 
 This program is in no way associated with TfGM.
 

@@ -21,7 +21,7 @@ class StopRequest: ObservableObject {
                     if httpResponse.statusCode != 200{
                         return
                     }
-                }
+                } 
                 var stops: [Stop] = []
                 do {
                     if data != nil {
@@ -32,9 +32,38 @@ class StopRequest: ObservableObject {
                 catch {
                     completion(stops)
                 }
-                
             }
         }.resume()
+        
+    }
+    
+    func requestStopsAsync() async throws ->  [Stop] {
+        guard let url = URL(string: "https://api.livetramsmcr.com/v1/stops") else {
+            print("Invalid url...")
+            return []
+        }
+        var data: Data
+        var response: URLResponse
+        do {
+            (data, response) = try await URLSession.shared.data(from: url)
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode != 200{
+                    return []
+                }
+            }
+        }
+        catch {
+            return []
+        }
+        
+        var stops: [Stop] = []
+        do {
+            stops = try JSONDecoder().decode([Stop].self, from: data)
+            return stops
+        }
+        catch {
+            return stops
+        }
         
     }
 }

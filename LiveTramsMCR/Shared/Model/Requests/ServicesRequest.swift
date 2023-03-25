@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OrderedCollections
 
 class ServicesRequest: ObservableObject {
     @Published var services = FormattedServices(destinations: [:], messages: [])
@@ -32,9 +33,11 @@ class ServicesRequest: ObservableObject {
         var formattedServices = FormattedServices(destinations: [:], messages: [])
         do {
             formattedServices = try JSONDecoder().decode(FormattedServices.self, from: data)
+            
             return formattedServices
         }
         catch {
+            print("Error: \(error)")
             return formattedServices
         }
         

@@ -21,8 +21,9 @@ struct ServicesView: View {
         List {
             
             ForEach(self.viewModel.getDestinationsAlphabetical(), id: \.self) {
-                destination in
-                DestinationView(destination: destination, trams: self.viewModel.services.destinations[destination]!)
+                stop in
+                
+                DestinationView(destination: stop, trams: self.viewModel.services.destinations[stop]!)
             }
             
             
