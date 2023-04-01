@@ -28,7 +28,6 @@ struct StopDetail: View {
         GeometryReader { geometry in
             List {
                 Section {
-                    
                     switch UIDevice.current.userInterfaceIdiom {
                     case .pad :
                             Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
