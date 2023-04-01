@@ -22,7 +22,21 @@ struct GetNextTramIntent: AppIntent {
             throw $stop.needsValueError("Which stop?")
         }
         
-        return .result(dialog: "Ok, doing something with \(stop)")
+        let serviceRequester = ServicesRequest()
+        let services = try await serviceRequester.requestDepartureBoardServices(tlaref: stop)
+        let trams = services.trams
+        
+        if trams.isEmpty && services.messages.isEmpty {
+            return .result(dialog: "There is currently no live service information for \(stop)")
+        }
+        
+        if trams.isEmpty && !services.messages.isEmpty {
+            return .result(dialog: "There is currently no live service information for \(stop), however there is a service update: \(services.messages.first!)")
+        }
+        
+        let nextTram = trams.first!
+        
+        return .result(dialog: "The next tram from \(stop) is to \(nextTram.destination) in \(nextTram.wait) mins")
     }
     
 }
