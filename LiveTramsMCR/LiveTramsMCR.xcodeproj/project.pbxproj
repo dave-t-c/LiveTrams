@@ -20,6 +20,7 @@
 		9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
 		9E209014299ED03F008F9168 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
+		9E28C8F329D8360300727F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
 		9E29362F29B4B14600DF32CC /* SystemMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29362E29B4B14600DF32CC /* SystemMediumView.swift */; };
 		9E29363029B4B15000DF32CC /* SystemMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29362E29B4B14600DF32CC /* SystemMediumView.swift */; };
 		9E2A946028F737B60096F7A9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
@@ -620,6 +621,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E28C8F329D8360300727F80 /* Assets.xcassets in Resources */,
 				9E68BC5029B0FD2600DAA02D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
