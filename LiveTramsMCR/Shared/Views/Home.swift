@@ -150,6 +150,7 @@ struct Home: View {
                     self.stops = stops
                 }
             }
+            .navigationViewStyle(.stack)
             
             Text("No stop selected")
                 .font(.largeTitle)
