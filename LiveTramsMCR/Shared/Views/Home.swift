@@ -150,7 +150,7 @@ struct Home: View {
                     self.stops = stops
                 }
             }
-            Text("No stop selected. Select a stop from the menu in the top right")
+            Text("No stop selected. Select a stop from the menu in the top left")
                 .font(.title2)
         }
     }
