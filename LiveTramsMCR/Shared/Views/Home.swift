@@ -150,10 +150,8 @@ struct Home: View {
                     self.stops = stops
                 }
             }
-            .navigationViewStyle(.stack)
-            
-            Text("No stop selected")
-                .font(.largeTitle)
+            Text("No stop selected. Select a stop from the menu in the top right")
+                .font(.title2)
         }
     }
     
