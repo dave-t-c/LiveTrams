@@ -97,7 +97,7 @@ struct Home: View {
                                 let pathTlaref = String(url.path.dropFirst())
                                 scrollView.scrollTo(pathTlaref)
                                 
-                                
+
                                 let duration = UInt64(1 * 1_000_000_000)
                                 try await Task.sleep(nanoseconds: duration)
                                 
@@ -140,10 +140,8 @@ struct Home: View {
         } detail: {
             if let selectedTlaref = stopViewModel.currentStopTlaref {
                 if let stop = self.stops.first(where: {$0.tlaref == selectedTlaref}) {
-                    
                     StopDetail(selectedStop: stop, stopList: self.stops)
                         .environmentObject(favouritesStore)
-                        .id(stop.tlaref)
                 }
                 
             } else {
