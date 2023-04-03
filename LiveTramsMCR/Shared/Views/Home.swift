@@ -16,23 +16,36 @@ struct Home: View {
     @StateObject private var stopViewModel = StopViewModel()
     
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             
             ScrollViewReader { scrollView in
-                List (selection: $stopViewModel.currentStopTlaref) {
+                List {
                     if (!favouritesStore.stops.isEmpty && searchText.isEmpty)
                     {
                         Section(header: Text("Favourites")){
                             ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                                NavigationLink(stop.stopName, value: stop.tlaref)
+                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stops).environmentObject(favouritesStore)) {
+                                    VStack(alignment: .leading) {
+                                        Text(stop.stopName)
+                                        Text(stop.street)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
                             }
                         }
                     }
                     
                     Section(header: Text("All Stops")){
                         ForEach(searchResults) { stop in
-                            NavigationLink(stop.stopName, value: stop.tlaref)
-                                .id(stop.tlaref)
+                            NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                                VStack(alignment: .leading) {
+                                    Text(stop.stopName)
+                                    Text(stop.street)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            }.id((stop.tlaref))
                         }
                         
                         if (self.stops.count == 0){
@@ -137,16 +150,8 @@ struct Home: View {
                     self.stops = stops
                 }
             }
-        } detail: {
-            if let selectedTlaref = stopViewModel.currentStopTlaref {
-                if let stop = self.stops.first(where: {$0.tlaref == selectedTlaref}) {
-                    StopDetail(selectedStop: stop, stopList: self.stops)
-                        .environmentObject(favouritesStore)
-                }
-                
-            } else {
-                Text("No Stop selected")
-            }
+            Text("No stop selected. Select a stop from the menu in the top left")
+                .font(.title2)
         }
     }
     
