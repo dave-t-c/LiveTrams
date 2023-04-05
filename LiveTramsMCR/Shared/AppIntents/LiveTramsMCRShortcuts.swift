@@ -8,15 +8,14 @@
 import AppIntents
 
 struct LiveTramsMCRShortcuts: AppShortcutsProvider {
-    static var appShortcuts: [AppShortcut] {
+    static var appShortcuts: [AppShortcut] = [
         AppShortcut(
             intent: GetNextTramIntent(),
             phrases: [
-                "Start \(.applicationName) intent",
                 "Ask \(.applicationName) for live services",
                 "Ask \(.applicationName) for the next tram",
                 "Get the next tram from \(.applicationName)"
             ]
         )
-    }
+    ]
 }
