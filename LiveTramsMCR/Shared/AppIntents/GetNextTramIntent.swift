@@ -31,6 +31,9 @@ struct GetNextTramIntent: AppIntent {
         if !stops.contains(where: {$0.stopName == stop}) {
             let possibleStops = stops.filter {$0.stopName.contains(stop)}
             let stopNames = possibleStops.map { $0.stopName }
+            if stopNames.isEmpty {
+                throw $stop.needsValueError("Stop not found, which stop?")
+            }
             throw $stop.needsDisambiguationError(among: stopNames)
         }
         
