@@ -80,18 +80,27 @@ private struct NextServicesSummaryView: View {
             let trams: [Tram] = orderedServices[stopName]!
             let tramTimes = trams.map {$0.wait}
             let formattedTramTimes = tramTimes.joined(separator: ", ") + " mins"
-            HStack {
-                Text(stopName)
-                    .font(.title3)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading)
+            VStack {
+                HStack {
+                    Text(stopName)
+                        .font(.title3)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                    
+                    Spacer()
+                }
                 
-                Text(formattedTramTimes)
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.trailing)
+                HStack {
+                    Spacer()
+                    
+                    Text(formattedTramTimes)
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.horizontal)
+                }
             }
+            
             Spacer()
         }
     }

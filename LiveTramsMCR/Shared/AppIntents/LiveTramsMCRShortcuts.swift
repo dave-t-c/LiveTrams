@@ -12,6 +12,7 @@ struct LiveTramsMCRShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: GetNextTramIntent(),
             phrases: [
+                "Get live services from \(.applicationName)",
                 "Ask \(.applicationName) for live services",
                 "Ask \(.applicationName) for the next tram",
                 "Get the next tram from \(.applicationName)"
