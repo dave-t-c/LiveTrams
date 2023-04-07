@@ -20,7 +20,7 @@ struct Stop: Identifiable, Codable, Equatable, Hashable{
     let tlaref: String
     let stopZone: String
     var id: Int {
-        ids[0]
+        tlaref.hashValue
     }
 }
 
