@@ -9,6 +9,8 @@ import Foundation
 
 class StopViewModel: ObservableObject {
     @Published var currentStopTlaref: String?
+    @Published var nearestStops: [Stop] = []
+    @Published var stops: [Stop] = []
 }
 
 enum SelectedStopView: String {

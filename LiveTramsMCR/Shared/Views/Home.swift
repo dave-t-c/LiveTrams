@@ -140,14 +140,14 @@ struct Home: View {
                 }
                 
                 StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                    self.stopViewModel.stops = stops
                 }
                 
                 
             }
             .refreshable {
                 StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                    self.stopViewModel.stops = stops
                 }
             }
             Text("No stop selected. Select a stop from the menu in the top left")
@@ -157,9 +157,9 @@ struct Home: View {
     
     var searchResults: [Stop] {
         if searchText.isEmpty {
-            return self.stops
+            return self.stopViewModel.stops
         } else {
-            return self.stops.filter { $0.stopName.contains(searchText)}
+            return self.stopViewModel.stops.filter { $0.stopName.contains(searchText)}
         }
     }
     

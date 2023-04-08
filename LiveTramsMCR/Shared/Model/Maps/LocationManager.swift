@@ -27,10 +27,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func requestPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
-    
-    func requestLocation() {
-        locationManager.requestLocation()
-    }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
