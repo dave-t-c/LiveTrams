@@ -8,8 +8,8 @@
 import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
-    @Published var authorizationStatus: CLAuthorizationStatus
-    @Published var lastSeenLocation: CLLocation?
+    var authorizationStatus: CLAuthorizationStatus
+    var lastSeenLocation: CLLocation?
         
     private let locationManager: CLLocationManager
     
