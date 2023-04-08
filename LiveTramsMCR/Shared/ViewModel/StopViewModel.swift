@@ -6,11 +6,22 @@
 //
 
 import Foundation
+import Combine
 
 class StopViewModel: ObservableObject {
     @Published var currentStopTlaref: String?
     @Published var nearestStops: [Stop] = []
     @Published var stops: [Stop] = []
+    @Published var locationManager: LocationManager = LocationManager()
+    private var subscribers = Set<AnyCancellable>()
+    
+    init() {
+        self.locationManager.$lastSeenLocation
+                .sink { newLocation in
+                    let _ = print("New location recieved: \(newLocation?.coordinate.latitude ?? 1)")
+                }
+                .store(in: &subscribers)
+    }
 }
 
 enum SelectedStopView: String {
