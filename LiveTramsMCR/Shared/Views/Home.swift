@@ -42,10 +42,10 @@ struct Home: View {
                                 NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore)) {
                                     VStack(alignment: .leading) {
                                         Text(stop.stopName)
-                                        let distance = self.stopViewModel.stopDistances[stop.tlaref]
-                                        if (distance != nil)
+                                        let distanceString = self.stopViewModel.GetFormattedStopDistance(stop: stop)
+                                        if (!distanceString.isEmpty)
                                         {
-                                            Text(String(distance!))
+                                            Text(distanceString)
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }

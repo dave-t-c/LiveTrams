@@ -63,7 +63,24 @@ class StopViewModel: ObservableObject {
         catch {
             return
         }
+    }
+    
+    func GetFormattedStopDistance(stop: Stop) -> String {
+        let stopDistance = stopDistances[stop.tlaref]
+        if stopDistance == nil {
+            return ""
+        }
         
+        if (stopDistance! >= 1000) {
+            let kmDistance = stopDistance! / 1000
+            let formattedDistance = (kmDistance * 100).rounded() / 100
+            return "\(String(formattedDistance)) km"
+        }
+        
+        let fomrmattedDistance = stopDistance!.rounded()
+        let formattedDistanceString = String(format: "%.0f", fomrmattedDistance)
+        return "\(String(formattedDistanceString))m"
+
     }
 }
 
