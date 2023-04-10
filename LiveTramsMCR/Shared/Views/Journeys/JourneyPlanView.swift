@@ -18,6 +18,7 @@ struct JourneyPlanView: View {
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var gettingJourneyRequest: Bool = false
     
     var body: some View {
         List {
@@ -60,16 +61,24 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
+                            gettingJourneyRequest = true
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                             if(plannedJourney == nil){
                                 return
                             }
+                            gettingJourneyRequest = false
                             processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
                         }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
                     }
                     .padding()
+                    
+                    if (gettingJourneyRequest) {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
+                    
                     Spacer()
                 }
             }
