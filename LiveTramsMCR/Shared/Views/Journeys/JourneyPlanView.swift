@@ -63,10 +63,11 @@ struct JourneyPlanView: View {
                         Task {
                             gettingJourneyRequest = true
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            gettingJourneyRequest = false
                             if(plannedJourney == nil){
                                 return
                             }
-                            gettingJourneyRequest = false
+                            
                             processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
                         }
                     }) {
