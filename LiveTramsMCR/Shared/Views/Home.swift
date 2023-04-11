@@ -176,8 +176,8 @@ struct Home: View {
                     }
                 }
             }
-            Text("No stop selected. Select a stop from the menu in the top left")
-                .font(.title2)
+            Text("No stop selected")
+                .font(.headline)
         }
     }
     
