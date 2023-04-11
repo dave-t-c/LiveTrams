@@ -10,7 +10,6 @@ import CoreData
 
 struct Home: View {
     @State private var searchText = ""
-    @State private var stops: [Stop] = []
     
     @StateObject private var favouritesStore = FavouriteStopStore()
     @StateObject private var stopViewModel = StopViewModel()
@@ -24,7 +23,7 @@ struct Home: View {
                     {
                         Section(header: Text("Favourites")){
                             ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stops).environmentObject(favouritesStore)) {
+                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore)) {
                                     VStack(alignment: .leading) {
                                         Text(stop.stopName)
                                         Text(stop.street)
@@ -36,9 +35,30 @@ struct Home: View {
                         }
                     }
                     
+                    if (!self.stopViewModel.nearestStops.isEmpty && searchText.isEmpty)
+                    {
+                        Section(header: Text("Nearby")){
+                            ForEach(self.stopViewModel.nearestStops) { stop in
+                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore)) {
+                                    VStack(alignment: .leading) {
+                                        Text(stop.stopName)
+                                        let distanceString = self.stopViewModel.GetFormattedStopDistance(stop: stop)
+                                        if (!distanceString.isEmpty)
+                                        {
+                                            Text(distanceString)
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
                     Section(header: Text("All Stops")){
                         ForEach(searchResults) { stop in
-                            NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                            NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
                                     Text(stop.street)
@@ -48,7 +68,7 @@ struct Home: View {
                             }.id((stop.tlaref))
                         }
                         
-                        if (self.stops.count == 0){
+                        if (self.stopViewModel.stops.count == 0){
                             HStack{
                                 Spacer()
                                 Text("Service information is currently unavailable")
@@ -96,12 +116,12 @@ struct Home: View {
                         
                         Task {
                             do {
-                                if (stops.isEmpty)
+                                if (self.stopViewModel.stops.isEmpty)
                                 {
                                     let duration = UInt64(1.5 * 1_000_000_000)
                                     try await Task.sleep(nanoseconds: duration)
                                     
-                                    if (stops.isEmpty) {
+                                    if (self.stopViewModel.stops.isEmpty) {
                                         return
                                     }
                                     
@@ -140,26 +160,32 @@ struct Home: View {
                 }
                 
                 StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                    self.stopViewModel.stops = stops
                 }
                 
-                
+                Task {
+                    await self.stopViewModel.UpdateNearestStops()
+                }
             }
             .refreshable {
-                StopRequest().requestStops { (stops) in
-                    self.stops = stops
+                Task {
+                    await self.stopViewModel.UpdateNearestStops()
+                    
+                    StopRequest().requestStops { (stops) in
+                        self.stopViewModel.stops = stops
+                    }
                 }
             }
-            Text("No stop selected. Select a stop from the menu in the top left")
-                .font(.title2)
+            Text("No stop selected")
+                .font(.headline)
         }
     }
     
     var searchResults: [Stop] {
         if searchText.isEmpty {
-            return self.stops
+            return self.stopViewModel.stops
         } else {
-            return self.stops.filter { $0.stopName.contains(searchText)}
+            return self.stopViewModel.stops.filter { $0.stopName.contains(searchText)}
         }
     }
     

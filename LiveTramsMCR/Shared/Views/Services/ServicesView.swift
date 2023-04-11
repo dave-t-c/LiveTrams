@@ -78,17 +78,6 @@ struct ServicesView: View {
     }
 }
 
-struct ServicesView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            NavigationView {
-                ServicesView(stop: testData[0])
-            }
-        }
-        
-    }
-}
-
 struct DestinationView: View {
     var destination: String
     var trams: [Tram]
