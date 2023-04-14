@@ -46,4 +46,22 @@ class MapManager: NSObject, ObservableObject {
         
         return Array(Set(sortedItems))
     }
+    
+    func findRoute(origin: CLLocation, destination: CLLocation, transportType: MKDirectionsTransportType) async throws -> MKRoute? {
+        
+        let originPlacemark = MKPlacemark(coordinate: origin.coordinate)
+        let destinationPlacemark = MKPlacemark(coordinate: destination.coordinate)
+        
+        let request = MKDirections.Request()
+        request.transportType = transportType
+        request.source = MKMapItem(placemark: originPlacemark)
+        request.destination = MKMapItem(placemark: destinationPlacemark)
+        
+        let directions = MKDirections(request: request)
+        
+        
+        let response = try await directions.calculate()
+        
+        return response.routes.first
+    }
 }

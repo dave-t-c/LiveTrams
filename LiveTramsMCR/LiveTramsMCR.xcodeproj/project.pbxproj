@@ -28,7 +28,6 @@
 		9E34D1DF29B7C57800A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E34D1E329B7C85C00A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
-		9E34D1E429B7E31400A7CB9A /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1D829B7BD5300A7CB9A /* StopViewModel.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */; };
 		9E449E4F29BE31CA00C6ED79 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
@@ -681,7 +680,6 @@
 				9E964B6729D8AC4700BB536A /* GetNextTramIntent.swift in Sources */,
 				9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */,
 				9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */,
-				9E34D1E429B7E31400A7CB9A /* StopViewModel.swift in Sources */,
 				9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */,
 				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
