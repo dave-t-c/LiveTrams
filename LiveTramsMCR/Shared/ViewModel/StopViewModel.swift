@@ -47,7 +47,7 @@ class StopViewModel: ObservableObject {
                 stopDistances[stop.tlaref] = distanceFromLocation
             }
             
-            let sortedDict = stopDistances.sorted {$0.1 < $1.1}
+            let sortedDict = stopDistances.sorted {$0.value < $1.value}
             
             self.stopDistances = OrderedDictionary<String, Double>()
             
