@@ -98,7 +98,7 @@ class StopViewModel: ObservableObject {
         }
     }
     
-    func GetFormattedStopDistance(stop: Stop) -> String {
+    private func GetFormattedStopDistance(stop: Stop) -> String {
         let stopDistance = stopRoutes[stop.tlaref]?.distance
         if stopDistance == nil {
             return ""
@@ -107,13 +107,33 @@ class StopViewModel: ObservableObject {
         if (stopDistance! >= 1000) {
             let kmDistance = stopDistance! / 1000
             let formattedDistance = (kmDistance * 100).rounded() / 100
-            return "\(String(formattedDistance)) km - \(String(stopRoutes[stop.tlaref]!.expectedTravelTime))"
+            return "\(String(formattedDistance)) km"
         }
         
         let fomrmattedDistance = stopDistance!.rounded()
         let formattedDistanceString = String(format: "%.0f", fomrmattedDistance)
-        return "\(String(formattedDistanceString))m - \(String(stopRoutes[stop.tlaref]!.expectedTravelTime))"
+        return "\(String(formattedDistanceString))m"
+    }
+    
+    private func GetFormattedStopWalkTime(stop: Stop) -> String {
+        let travelTimeSeconds = stopRoutes[stop.tlaref]?.expectedTravelTime
+        if travelTimeSeconds == nil {
+            return ""
+        }
+        
+        // Convert the travel time from s to rounded up mins
+        let roundedTimeInt = Int(ceil(travelTimeSeconds! / 60))
 
+        return "\(roundedTimeInt) min walk"
+
+    }
+    
+    func GetFormattedStopInformation(stop: Stop) -> String {
+        let distance = self.GetFormattedStopDistance(stop: stop)
+        
+        let walkTime = GetFormattedStopWalkTime(stop: stop)
+        
+        return "\(distance) - \(walkTime)"
     }
 }
 
