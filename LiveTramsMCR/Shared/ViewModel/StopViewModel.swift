@@ -17,6 +17,7 @@ class StopViewModel: ObservableObject {
     private var locationManager: LocationManager = LocationManager()
     private let maxNearestStops = 6
     private let nearestStopsToDisplay = 3
+    private let nearStopThresholdMetres = 5000
     private var stopDistances: OrderedDictionary<String, Double> = OrderedDictionary<String, Double>()
     private var stopRoutes: OrderedDictionary<String, MKRoute> = OrderedDictionary<String, MKRoute>()
     
@@ -59,6 +60,15 @@ class StopViewModel: ObservableObject {
             // point to point but longer for walking directions
             let orderedKeys = self.stopDistances.keys.prefix(maxNearestStops)
             
+            // Check that all of these are above a 5k threshold. All stops further away than the threshold should be removed
+            var filteredKeys: [String] = orderedKeys.map{ $0 }
+            filteredKeys.removeAll { Int(self.stopDistances[$0]!) > nearStopThresholdMetres}
+            
+            if filteredKeys.isEmpty {
+                self.nearestStops = []
+                return
+            }
+            
             // For the nearest stops, find the walking distance then re-order based on calculated distance
             let mapManager = MapManager()
             var unsortedStopRoutes = Dictionary<String, MKRoute>()
@@ -73,6 +83,10 @@ class StopViewModel: ObservableObject {
                 if (route == nil)
                 {
                     return
+                }
+                
+                if Int(route!.distance) > nearStopThresholdMetres {
+                    continue
                 }
                 
                 unsortedStopRoutes[key] = route
