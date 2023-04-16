@@ -60,10 +60,32 @@ struct Home: View {
                         ForEach(searchResults) { stop in
                             NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                 VStack(alignment: .leading) {
-                                    Text(stop.stopName)
-                                    Text(stop.street)
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                                    
+                                    HStack {
+                                        Text(stop.stopName)
+                                        
+                                        Text("Zone \(stop.stopZone)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                            .padding(.trailing, 5)
+                                    }
+                                    
+                                    
+                                    
+                                    HStack {
+                                        
+                                        
+                                        let routeColors = self.stopViewModel.GetRouteColors(stop: stop)
+                                        ForEach(routeColors, id: \.self) {color in
+                                            Rectangle()
+                                                .fill(color)
+                                                .frame(width: 20, height: 5)
+                                                .padding(.trailing, 2)
+                                            
+                                        }
+                                        Spacer()
+                                    }
+                                    
                                 }
                             }.id((stop.tlaref))
                         }

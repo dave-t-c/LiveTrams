@@ -8,6 +8,7 @@
 import OrderedCollections
 import CoreLocation
 import MapKit
+import SwiftUI
 
 @MainActor
 class StopViewModel: ObservableObject {
@@ -148,6 +149,38 @@ class StopViewModel: ObservableObject {
         let walkTime = GetFormattedStopWalkTime(stop: stop)
         
         return "\(distance) - \(walkTime)"
+    }
+    
+    func GetRouteColors(stop: Stop) -> [Color] {
+        if stop.routes == nil {
+            return []
+        }
+        var routeColors: [Color] = []
+        for route in stop.routes! {
+            routeColors.append(hexStringToUIColor(hex: route.colour))
+        }
+        return routeColors
+    }
+    
+    private func hexStringToUIColor (hex:String) -> Color {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return Color.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return Color(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+        )
     }
 }
 
