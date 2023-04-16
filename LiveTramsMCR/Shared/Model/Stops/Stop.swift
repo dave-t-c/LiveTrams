@@ -10,7 +10,6 @@ import MapKit
 
 struct Stop: Identifiable, Codable, Equatable, Hashable{
     let atcoCode: String
-    let ids: [Int]?
     let latitude: Double
     let line: String
     let longitude: Double
