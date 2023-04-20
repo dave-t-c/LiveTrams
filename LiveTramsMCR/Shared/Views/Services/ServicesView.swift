@@ -55,15 +55,27 @@ struct ServicesView: View {
                     }
                 }.headerProminence(.increased)
             }
-            Section {
-                HStack {
+            VStack {
+                if self.viewModel.services.localLastUpdated != nil {
+                    HStack {
                         Spacer()
-                        Text("Contains Transport for Greater Manchester data")
+                        Text("Last updated: \(self.viewModel.services.localLastUpdated!)")
                             .foregroundColor(.secondary)
-                            .font(.footnote)
+                            .font(.caption)
                         Spacer()
                     }
+                }
+                
+                HStack {
+                    Spacer()
+                    Text("Contains Transport for Greater Manchester data")
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
+                    Spacer()
+                }
             }
+            
+            
         }
         .navigationTitle("Live Services")
         .onAppear {
