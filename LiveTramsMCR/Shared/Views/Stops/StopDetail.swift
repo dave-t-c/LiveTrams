@@ -26,8 +26,23 @@ struct StopDetail: View {
     @ViewBuilder
     var body: some View {
         GeometryReader { geometry in
+            
             List {
                 Section {
+                    if (stop.routes != nil) {
+                        let routeColors = GetRouteColors(stop: stop)
+                        HStack{
+                            
+                            ForEach(routeColors, id: \.self) {color in
+                                Rectangle()
+                                    .fill(color)
+                                    .frame(height: 10)
+                                    
+                            }
+                            Spacer()
+                        }
+                    }
+                    
                     switch UIDevice.current.userInterfaceIdiom {
                     case .pad :
                             Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
@@ -39,6 +54,7 @@ struct StopDetail: View {
                             .aspectRatio(contentMode: .fit)
                     }
                 }
+                .listRowBackground(Color.clear)
                 
                 Section{
                     NavigationLink (destination: ServicesView(stop: stop)) {
@@ -110,4 +126,35 @@ struct StopDetail: View {
             .navigationTitle(stop.stopName)
         }
     }
+}
+private func GetRouteColors(stop: Stop) -> [Color] {
+    if stop.routes == nil {
+        return []
+    }
+    var routeColors: [Color] = []
+    for route in stop.routes! {
+        routeColors.append(hexStringToUIColor(hex: route.colour))
+    }
+    return routeColors
+}
+
+private func hexStringToUIColor (hex:String) -> Color {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
+    }
+
+    if ((cString.count) != 6) {
+        return Color.gray
+    }
+
+    var rgbValue:UInt64 = 0
+    Scanner(string: cString).scanHexInt64(&rgbValue)
+
+    return Color(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+    )
 }
