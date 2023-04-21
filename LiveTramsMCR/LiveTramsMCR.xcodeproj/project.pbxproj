@@ -28,13 +28,20 @@
 		9E34D1DF29B7C57800A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E34D1E329B7C85C00A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
-		9E34D1E429B7E31400A7CB9A /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1D829B7BD5300A7CB9A /* StopViewModel.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
 		9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */; };
 		9E449E4F29BE31CA00C6ED79 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E449E5A29BE362900C6ED79 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E449E5B29BE363D00C6ED79 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
 		9E449E5C29BE36B000C6ED79 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
+		9E49869E29EC7E0900CBCC34 /* RouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49869D29EC7E0900CBCC34 /* RouteV2.swift */; };
+		9E49869F29EC7E0900CBCC34 /* RouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49869D29EC7E0900CBCC34 /* RouteV2.swift */; };
+		9E4986A129EC7E2E00CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
+		9E4986A229EC7E2E00CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
+		9E4986A329EC7EE700CBCC34 /* RouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49869D29EC7E0900CBCC34 /* RouteV2.swift */; };
+		9E4986A429EC7EE700CBCC34 /* RouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49869D29EC7E0900CBCC34 /* RouteV2.swift */; };
+		9E4986A529EC827000CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
+		9E4986A629EC827100CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
 		9E68BC4829B0FD2500DAA02D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */; };
 		9E68BC4929B0FD2500DAA02D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */; };
 		9E68BC4C29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BC4B29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift */; };
@@ -158,6 +165,8 @@
 		9E34D1DE29B7C57800A7CB9A /* Tram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tram.swift; sourceTree = "<group>"; };
 		9E3F2C0E2815609A00C863FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
+		9E49869D29EC7E0900CBCC34 /* RouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteV2.swift; sourceTree = "<group>"; };
+		9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopKeys.swift; sourceTree = "<group>"; };
 		9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		9E68BC4729B0FD2500DAA02D /* LiveTramTimesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveTramTimesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				9EC2FB6428147BB500C08784 /* Stop.swift */,
+				9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */,
 			);
 			path = Stops;
 			sourceTree = "<group>";
@@ -352,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				9E2A945F28F737B60096F7A9 /* Route.swift */,
+				9E49869D29EC7E0900CBCC34 /* RouteV2.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -681,11 +692,11 @@
 				9E964B6729D8AC4700BB536A /* GetNextTramIntent.swift in Sources */,
 				9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */,
 				9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */,
-				9E34D1E429B7E31400A7CB9A /* StopViewModel.swift in Sources */,
 				9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */,
 				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
 				9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */,
+				9E4986A229EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
 				9E209014299ED03F008F9168 /* Route.swift in Sources */,
 				9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */,
 				9EF4B985299ED2D00054593E /* Home.swift in Sources */,
@@ -696,6 +707,7 @@
 				9EB4234829E0AB45004208B1 /* LocationManager.swift in Sources */,
 				9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */,
 				9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */,
+				9E49869F29EC7E0900CBCC34 /* RouteV2.swift in Sources */,
 				9E964B6429D8A3E300BB536A /* DepartureBoardServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,9 +725,11 @@
 				9E6B01A729B52B8B0041A385 /* ServicesHelper.swift in Sources */,
 				9E68BC5D29B13C8500DAA02D /* SystemSmallView.swift in Sources */,
 				9E68BC4C29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift in Sources */,
+				9E4986A329EC7EE700CBCC34 /* RouteV2.swift in Sources */,
 				9E6B01AB29B532690041A385 /* SystemLargeView.swift in Sources */,
 				9E34D1E329B7C85C00A7CB9A /* Tram.swift in Sources */,
 				9EE3044F29B3D08D000F20A7 /* LiveTramTimesIntent.intentdefinition in Sources */,
+				9E4986A529EC827000CBCC34 /* StopKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +748,7 @@
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
 				9EE3045129B3D0E3000F20A7 /* LiveTramTimesIntent.intentdefinition in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
+				9E4986A129EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
 				9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */,
 				9EC2FB6528147BB500C08784 /* Stop.swift in Sources */,
@@ -753,6 +768,7 @@
 				9E964B5F29D896C000BB536A /* GetNextTramIntent.swift in Sources */,
 				9E84E2C82812AAA600571ECA /* LiveTramsMCR.xcdatamodeld in Sources */,
 				9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */,
+				9E49869E29EC7E0900CBCC34 /* RouteV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,10 +780,12 @@
 				9E0D174E29BE3A1F003F76FA /* Tram.swift in Sources */,
 				9E449E4F29BE31CA00C6ED79 /* ServicesRequest.swift in Sources */,
 				9EE3044529B3D072000F20A7 /* IntentHandler.swift in Sources */,
+				9E4986A429EC7EE700CBCC34 /* RouteV2.swift in Sources */,
 				9EE3045329B3DDB3000F20A7 /* Stop.swift in Sources */,
 				9E449E5B29BE363D00C6ED79 /* FormattedServices.swift in Sources */,
 				9E6BEDC329B3F3CD007DB4E8 /* StopRequest.swift in Sources */,
 				9E964B6629D8A3E400BB536A /* DepartureBoardServices.swift in Sources */,
+				9E4986A629EC827100CBCC34 /* StopKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +818,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -813,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -834,7 +852,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -847,7 +865,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -868,7 +886,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -880,7 +898,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramTimesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -898,7 +916,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -910,7 +928,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramTimesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1042,7 +1060,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1061,7 +1079,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
@@ -1081,7 +1099,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1100,7 +1118,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
@@ -1119,7 +1137,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
@@ -1131,7 +1149,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramsIntentHandling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1147,7 +1165,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
@@ -1159,7 +1177,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramsIntentHandling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

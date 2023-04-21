@@ -9,12 +9,12 @@ import Foundation
 import OrderedCollections
 
 class ServicesRequest: ObservableObject {
-    @Published var services = FormattedServices(destinations: [:], messages: [])
+    @Published var services = FormattedServices(destinations: [:], messages: [], lastUpdated: "")
     
     func requestServices(tlaref: String) async throws ->  FormattedServices {
         guard let url = URL(string: "https://api.livetramsmcr.com/v1/services/\(tlaref)") else {
             print("Invalid url...")
-            return FormattedServices(destinations: [:], messages: [])
+            return FormattedServices(destinations: [:], messages: [], lastUpdated: "")
         }
         var data: Data
         var response: URLResponse
@@ -22,15 +22,15 @@ class ServicesRequest: ObservableObject {
             (data, response) = try await URLSession.shared.data(from: url)
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200{
-                    return FormattedServices(destinations: [:], messages: [])
+                    return FormattedServices(destinations: [:], messages: [], lastUpdated: "")
                 }
             }
         }
         catch {
-            return FormattedServices(destinations: [:], messages: [])
+            return FormattedServices(destinations: [:], messages: [], lastUpdated: "")
         }
         
-        var formattedServices = FormattedServices(destinations: [:], messages: [])
+        var formattedServices = FormattedServices(destinations: [:], messages: [], lastUpdated: "")
         do {
             formattedServices = try JSONDecoder().decode(FormattedServices.self, from: data)
             

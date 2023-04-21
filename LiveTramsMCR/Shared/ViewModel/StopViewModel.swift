@@ -7,6 +7,8 @@
 
 import OrderedCollections
 import CoreLocation
+import MapKit
+import SwiftUI
 
 @MainActor
 class StopViewModel: ObservableObject {
@@ -14,8 +16,11 @@ class StopViewModel: ObservableObject {
     @Published var nearestStops: [Stop] = []
     @Published var stops: [Stop] = []
     private var locationManager: LocationManager = LocationManager()
-    private let maxNearestStops = 3
-    var stopDistances: OrderedDictionary<String, Double> = OrderedDictionary<String, Double>()
+    private let maxNearestStops = 6
+    private let nearestStopsToDisplay = 3
+    private let nearStopThresholdMetres = 5000
+    private var stopDistances: OrderedDictionary<String, Double> = OrderedDictionary<String, Double>()
+    private var stopRoutes: OrderedDictionary<String, MKRoute> = OrderedDictionary<String, MKRoute>()
     
     
     func UpdateNearestStops() async -> Void {
@@ -43,7 +48,7 @@ class StopViewModel: ObservableObject {
                 stopDistances[stop.tlaref] = distanceFromLocation
             }
             
-            let sortedDict = stopDistances.sorted {$0.1 < $1.1}
+            let sortedDict = stopDistances.sorted {$0.value < $1.value}
             
             self.stopDistances = OrderedDictionary<String, Double>()
             
@@ -52,9 +57,52 @@ class StopViewModel: ObservableObject {
                 self.stopDistances[entry.key] = entry.value
             }
             
+            // Take more than the stops to display in case there are stops that are closer
+            // point to point but longer for walking directions
             let orderedKeys = self.stopDistances.keys.prefix(maxNearestStops)
+            
+            // Check that all of these are above a 5k threshold. All stops further away than the threshold should be removed
+            var filteredKeys: [String] = orderedKeys.map{ $0 }
+            filteredKeys.removeAll { Int(self.stopDistances[$0]!) > nearStopThresholdMetres}
+            
+            if filteredKeys.isEmpty {
+                self.nearestStops = []
+                return
+            }
+            
+            // For the nearest stops, find the walking distance then re-order based on calculated distance
+            let mapManager = MapManager()
+            var unsortedStopRoutes = Dictionary<String, MKRoute>()
+
+            for key in orderedKeys {
+                let stop = self.stops.first(where: { $0.tlaref == key })
+                
+                let stopLocation = CLLocation(latitude: stop!.latitude, longitude: stop!.longitude)
+                
+                let route = try await mapManager.findRoute(origin: location!, destination: stopLocation, transportType: .walking)
+                
+                if (route == nil)
+                {
+                    return
+                }
+                
+                if Int(route!.distance) > nearStopThresholdMetres {
+                    continue
+                }
+                
+                unsortedStopRoutes[key] = route
+            }
+            
+            let sortedStopRoutes = unsortedStopRoutes.sorted {$0.value.distance < $1.value.distance}
+            
+            self.stopRoutes = OrderedDictionary<String, MKRoute>()
+            for entry in sortedStopRoutes {
+                self.stopRoutes[entry.key] = entry.value
+            }
+            
+            let nearestStopTlarefs = self.stopRoutes.keys.prefix(nearestStopsToDisplay)
             self.nearestStops = []
-            orderedKeys.forEach { key in
+            for key in nearestStopTlarefs {
                 let stop = self.stops.first(where: { $0.tlaref == key })
                 self.nearestStops.append(stop!)
             }
@@ -65,8 +113,8 @@ class StopViewModel: ObservableObject {
         }
     }
     
-    func GetFormattedStopDistance(stop: Stop) -> String {
-        let stopDistance = stopDistances[stop.tlaref]
+    private func GetFormattedStopDistance(stop: Stop) -> String {
+        let stopDistance = stopRoutes[stop.tlaref]?.distance
         if stopDistance == nil {
             return ""
         }
@@ -80,7 +128,59 @@ class StopViewModel: ObservableObject {
         let fomrmattedDistance = stopDistance!.rounded()
         let formattedDistanceString = String(format: "%.0f", fomrmattedDistance)
         return "\(String(formattedDistanceString))m"
+    }
+    
+    private func GetFormattedStopWalkTime(stop: Stop) -> String {
+        let travelTimeSeconds = stopRoutes[stop.tlaref]?.expectedTravelTime
+        if travelTimeSeconds == nil {
+            return ""
+        }
+        
+        // Convert the travel time from s to rounded up mins
+        let roundedTimeInt = Int(ceil(travelTimeSeconds! / 60))
 
+        return "\(roundedTimeInt) min walk"
+
+    }
+    
+    func GetFormattedStopInformation(stop: Stop) -> String {
+        let distance = self.GetFormattedStopDistance(stop: stop)
+        
+        let walkTime = GetFormattedStopWalkTime(stop: stop)
+        
+        return "\(distance) - \(walkTime)"
+    }
+    
+    func GetRouteColors(stop: Stop) -> [Color] {
+        if stop.routes == nil {
+            return []
+        }
+        var routeColors: [Color] = []
+        for route in stop.routes! {
+            routeColors.append(hexStringToUIColor(hex: route.colour))
+        }
+        return routeColors
+    }
+    
+    private func hexStringToUIColor (hex:String) -> Color {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return Color.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return Color(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+        )
     }
 }
 

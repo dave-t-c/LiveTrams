@@ -10,7 +10,7 @@ import OrderedCollections
 
 class ServicesViewModel : ObservableObject {
     
-    @Published var services = FormattedServices(destinations: [:], messages: [])
+    @Published var services = FormattedServices(destinations: [:], messages: [], lastUpdated: "")
     
     @Published var stop: Stop? = nil
     

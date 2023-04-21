@@ -43,7 +43,7 @@ struct Provider: IntentTimelineProvider {
                 completion(timeline)
             }
             catch {
-                entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: []), tlaref: "")
+                entry = SimpleEntry(date: Date(), formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""), tlaref: "")
                 timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }

@@ -22,12 +22,6 @@ struct NearPublicTransport: View {
     }
 }
 
-struct NearPublicTransport_Previews: PreviewProvider {
-    static var previews: some View {
-        NearPublicTransport(stop: testData[0])
-    }
-}
-
 
 struct GenericNearTransport: View {
     var stop: Stop
