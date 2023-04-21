@@ -34,7 +34,7 @@ struct StopDetail: View {
                         HStack{
                             
                             ForEach(routeColors, id: \.self) {color in
-                                Rectangle()
+                                RoundedRectangle(cornerRadius: 25, style: .continuous)
                                     .fill(color)
                                     .frame(height: 10)
                                     

@@ -77,7 +77,7 @@ struct Home: View {
                                         
                                         let routeColors = self.stopViewModel.GetRouteColors(stop: stop)
                                         ForEach(routeColors, id: \.self) {color in
-                                            Rectangle()
+                                            RoundedRectangle(cornerRadius: 25, style: .continuous)
                                                 .fill(color)
                                                 .frame(width: 20, height: 5)
                                                 .padding(.trailing, 2)
