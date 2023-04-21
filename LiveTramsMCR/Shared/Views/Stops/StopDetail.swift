@@ -47,11 +47,13 @@ struct StopDetail: View {
                     case .pad :
                             Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
                             .frame(width: geometry.size.width * 0.95, height: geometry.size.height / 2)
+                            .cornerRadius(10)
                         
                         
                     default:
                         Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
                             .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
                     }
                 }
                 .listRowBackground(Color.clear)
