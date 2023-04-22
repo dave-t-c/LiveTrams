@@ -9,53 +9,80 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-
-  let region: MKCoordinateRegion
-  let lineCoordinates: [CLLocationCoordinate2D]
-
-  func makeUIView(context: Context) -> MKMapView {
-    let mapView = MKMapView()
-    mapView.delegate = context.coordinator
-    mapView.region = region
-
-    let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-    mapView.addOverlay(polyline)
-
-    return mapView
-  }
-
-  func updateUIView(_ view: MKMapView, context: Context) {
-      view.region = region
-
-      let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-      view.overlays.forEach {
-          if !($0 is MKUserLocation) {
-              view.removeOverlay($0)
-          }
-      }
-      view.addOverlay(polyline)
-  }
-
-  func makeCoordinator() -> Coordinator {
-    Coordinator(self)
-  }
-
+    
+    let region: MKCoordinateRegion
+    let lineCoordinatesFromOrigin: [CLLocationCoordinate2D]
+    var lineCoordinatesFromInterchange: [CLLocationCoordinate2D]? = nil
+    let lineColorFromOrigin: Color
+    var lineColorFromInterchange: Color? = nil
+    
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+        mapView.region = region
+    
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin, count: lineCoordinatesFromOrigin.count)
+        polyline.routeColor = UIColor(lineColorFromOrigin)
+        mapView.addOverlay(polyline)
+        
+        if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
+            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!, count: lineCoordinatesFromInterchange!.count)
+            polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
+            mapView.addOverlay(polylineFromInterchange)
+        }
+        
+        
+        return mapView
+    }
+    
+    func updateUIView(_ view: MKMapView, context: Context) {
+        view.region = region
+        
+        view.overlays.forEach {
+            if !($0 is MKUserLocation) {
+                view.removeOverlay($0)
+            }
+        }
+        
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin, count: lineCoordinatesFromOrigin.count)
+        polyline.routeColor = UIColor(lineColorFromOrigin)
+        view.addOverlay(polyline)
+        
+        if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
+            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!, count: lineCoordinatesFromInterchange!.count)
+            polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
+            view.addOverlay(polylineFromInterchange)
+        }
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
 }
 
 class Coordinator: NSObject, MKMapViewDelegate {
-  var parent: MapView
-
-  init(_ parent: MapView) {
-    self.parent = parent
-  }
-
-  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if let routePolyline = overlay as? MKPolyline {
-      let renderer = MKPolylineRenderer(polyline: routePolyline)
-      renderer.strokeColor = UIColor.systemBlue
-      renderer.lineWidth = 10
-      return renderer
+    var parent: MapView
+    
+    init(_ parent: MapView) {
+        self.parent = parent
     }
-    return MKOverlayRenderer()
-  }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        guard let routePolyline = overlay as? RoutePolyline else {
+                   return MKOverlayRenderer(overlay: overlay)
+        }
+        
+        let renderer = MKPolylineRenderer(polyline: routePolyline)
+        renderer.strokeColor = routePolyline.routeColor
+        renderer.lineWidth = 5
+        return renderer
+        
+    }
+}
+
+class RoutePolyline: MKPolyline {
+    var routeColor: UIColor = UIColor.clear
 }

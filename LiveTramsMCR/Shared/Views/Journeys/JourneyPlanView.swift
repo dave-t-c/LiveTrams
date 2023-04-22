@@ -165,8 +165,8 @@ struct NonInterchangeJourneyView: View {
                 center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
                 span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             )
-            let routeCoordinates = getRouteCoordinates(plannedJourney: plannedJourney)
-            MapView(region: region, lineCoordinates: routeCoordinates)
+            let routeCoordinates = getRouteCoordinatesFromOriginNoInterchange(plannedJourney: plannedJourney)
+            MapView(region: region, lineCoordinatesFromOrigin: routeCoordinates, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(15)
                 .padding([.top, .bottom])
@@ -269,10 +269,28 @@ struct InterchangeJourneyView: View {
                 Text(plannedJourney!.destinationStop.stopName)
                 Spacer()
             }
+            
+            Spacer()
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
+            let routeCoordinatesFromOrigin = getRouteCoordinatesFromOriginToInterchange(plannedJourney: plannedJourney)
+            let routeCoordinatesFromInterchange = getRouteCoordinatesFromInterchange(plannedJourney: plannedJourney)
+            MapView(
+                region: region,
+                lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
+                lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
+                lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
+                lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(15)
+                .padding([.top, .bottom])
+            Spacer()
         }
     }
 }
-func getRouteCoordinates(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
+func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
     var routeCoordinates: [CLLocationCoordinate2D] = []
     routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude))
     
@@ -281,6 +299,36 @@ func getRouteCoordinates(plannedJourney: PlannedJourney?) -> [CLLocationCoordina
     }
     
     routeCoordinates.append(contentsOf: stopsFromOriginCoordinates)
+    
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude))
+    
+    return routeCoordinates
+}
+
+func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
+    var routeCoordinates: [CLLocationCoordinate2D] = []
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude))
+    
+    let stopsFromOriginCoordinates = plannedJourney!.stopsFromOrigin.map { stop in
+        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    }
+    
+    routeCoordinates.append(contentsOf: stopsFromOriginCoordinates)
+    
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude))
+    
+    return routeCoordinates
+}
+
+func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
+    var routeCoordinates: [CLLocationCoordinate2D] = []
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude))
+    
+    let stopsFromInterchangeCoordinates = plannedJourney!.stopsFromInterchange!.map { stop in
+        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    }
+    
+    routeCoordinates.append(contentsOf: stopsFromInterchangeCoordinates)
     
     routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude))
     
