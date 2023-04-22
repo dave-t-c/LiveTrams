@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct JourneyPlanView: View {
     
@@ -19,6 +20,9 @@ struct JourneyPlanView: View {
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
     @State private var gettingJourneyRequest: Bool = false
+    @State private var journeyMapAvailable: Bool = false
+    
+    
     
     var body: some View {
         List {
@@ -106,10 +110,16 @@ struct NonInterchangeJourneyView: View {
     var plannedJourney: PlannedJourney?
     var processedPlannedJourney: ProcessedPlannedJourney?
     
-    
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-            
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
+            let routeCoordinates = getRouteCoordinates(plannedJourney: plannedJourney)
+            MapView(region: region, lineCoordinates: routeCoordinates)
+                .aspectRatio(contentMode: .fit)
+            Spacer()
             HStack {
                 Image(systemName: "smallcircle.filled.circle")
                     .frame(width: 30)
@@ -256,4 +266,18 @@ struct InterchangeJourneyView: View {
             }
         }
     }
+}
+func getRouteCoordinates(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
+    var routeCoordinates: [CLLocationCoordinate2D] = []
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude))
+    
+    let stopsFromOriginCoordinates = plannedJourney!.stopsFromOrigin.map { stop in
+        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    }
+    
+    routeCoordinates.append(contentsOf: stopsFromOriginCoordinates)
+    
+    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude))
+    
+    return routeCoordinates
 }
