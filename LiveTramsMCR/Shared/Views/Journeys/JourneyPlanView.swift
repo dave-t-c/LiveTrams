@@ -112,13 +112,6 @@ struct NonInterchangeJourneyView: View {
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-            let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            )
-            let routeCoordinates = getRouteCoordinates(plannedJourney: plannedJourney)
-            MapView(region: region, lineCoordinates: routeCoordinates)
-                .aspectRatio(contentMode: .fit)
             Spacer()
             HStack {
                 Image(systemName: "smallcircle.filled.circle")
@@ -166,6 +159,18 @@ struct NonInterchangeJourneyView: View {
                 Text(plannedJourney!.destinationStop.stopName)
                 Spacer()
             }
+            
+            Spacer()
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
+            let routeCoordinates = getRouteCoordinates(plannedJourney: plannedJourney)
+            MapView(region: region, lineCoordinates: routeCoordinates)
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(15)
+                .padding([.top, .bottom])
+            Spacer()
         }
     }
 }

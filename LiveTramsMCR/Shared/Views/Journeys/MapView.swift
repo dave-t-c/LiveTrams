@@ -24,7 +24,17 @@ struct MapView: UIViewRepresentable {
     return mapView
   }
 
-  func updateUIView(_ view: MKMapView, context: Context) {}
+  func updateUIView(_ view: MKMapView, context: Context) {
+      view.region = region
+
+      let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+      view.overlays.forEach {
+          if !($0 is MKUserLocation) {
+              view.removeOverlay($0)
+          }
+      }
+      view.addOverlay(polyline)
+  }
 
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
