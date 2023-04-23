@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import OrderedCollections
 
 struct JourneyPlanView: View {
     
@@ -163,7 +164,8 @@ struct NonInterchangeJourneyView: View {
             Spacer()
             let routeCoordinatesFromOrigin = getRouteCoordinatesFromOriginNoInterchange(plannedJourney: plannedJourney)
             
-            let allCoordinates = routeCoordinatesFromOrigin
+            
+            let allCoordinates = routeCoordinatesFromOrigin.map {$0.value}
             
             let latitudes = allCoordinates.map { $0.latitude }
             let longitudes = allCoordinates.map { $0.longitude }
@@ -289,7 +291,7 @@ struct InterchangeJourneyView: View {
             let routeCoordinatesFromOrigin = getRouteCoordinatesFromOriginToInterchange(plannedJourney: plannedJourney)
             let routeCoordinatesFromInterchange = getRouteCoordinatesFromInterchange(plannedJourney: plannedJourney)
             
-            let allCoordinates = routeCoordinatesFromOrigin + routeCoordinatesFromInterchange
+            let allCoordinates = routeCoordinatesFromOrigin.map{ $0.value } + routeCoordinatesFromInterchange.map { $0.value }
             
             let latitudes = allCoordinates.map { $0.latitude }
             let longitudes = allCoordinates.map { $0.longitude }
@@ -322,47 +324,45 @@ struct InterchangeJourneyView: View {
             }
     }
 }
-func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
-    var routeCoordinates: [CLLocationCoordinate2D] = []
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude))
+func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
+        routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
+                
+        for stop in plannedJourney!.stopsFromOrigin {
+            routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+        }
+        
+        routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
+        
+        
+        return routeCoordinates
+}
+
+func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
+    routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
     
-    let stopsFromOriginCoordinates = plannedJourney!.stopsFromOrigin.map { stop in
-        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    for stop in plannedJourney!.stopsFromOrigin {
+        routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
     }
     
-    routeCoordinates.append(contentsOf: stopsFromOriginCoordinates)
+    routeCoordinates[plannedJourney!.interchangeStop!.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude)
     
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude))
     
     return routeCoordinates
 }
 
-func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
-    var routeCoordinates: [CLLocationCoordinate2D] = []
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude))
+func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
     
-    let stopsFromOriginCoordinates = plannedJourney!.stopsFromOrigin.map { stop in
-        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    routeCoordinates[plannedJourney!.interchangeStop!.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude)
+    
+    for stop in plannedJourney!.stopsFromInterchange! {
+        routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
     }
     
-    routeCoordinates.append(contentsOf: stopsFromOriginCoordinates)
+    routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
     
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude))
-    
-    return routeCoordinates
-}
-
-func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
-    var routeCoordinates: [CLLocationCoordinate2D] = []
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude))
-    
-    let stopsFromInterchangeCoordinates = plannedJourney!.stopsFromInterchange!.map { stop in
-        CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-    }
-    
-    routeCoordinates.append(contentsOf: stopsFromInterchangeCoordinates)
-    
-    routeCoordinates.append(CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude))
     
     return routeCoordinates
 }

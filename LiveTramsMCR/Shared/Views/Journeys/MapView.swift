@@ -7,12 +7,13 @@
 
 import SwiftUI
 import MapKit
+import OrderedCollections
 
 struct MapView: UIViewRepresentable {
     
     let region: MKCoordinateRegion
-    let lineCoordinatesFromOrigin: [CLLocationCoordinate2D]
-    var lineCoordinatesFromInterchange: [CLLocationCoordinate2D]? = nil
+    let lineCoordinatesFromOrigin: OrderedDictionary<String, CLLocationCoordinate2D>
+    var lineCoordinatesFromInterchange: OrderedDictionary<String, CLLocationCoordinate2D>? = nil
     let lineColorFromOrigin: Color
     var lineColorFromInterchange: Color? = nil
     
@@ -21,16 +22,27 @@ struct MapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.region = region
     
-        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin, count: lineCoordinatesFromOrigin.count)
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
         mapView.addOverlay(polyline)
         
-        if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
-            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!, count: lineCoordinatesFromInterchange!.count)
-            polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
-            mapView.addOverlay(polylineFromInterchange)
+        for stop in lineCoordinatesFromOrigin.keys {
+            let annotation = MKCircle(center: lineCoordinatesFromOrigin[stop]!, radius: 10)
+            annotation.title = stop
+            mapView.addOverlay(annotation)
         }
         
+        if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
+            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!.map {$0.value}, count: lineCoordinatesFromInterchange!.count)
+            polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
+            mapView.addOverlay(polylineFromInterchange)
+            
+            for stop in lineCoordinatesFromInterchange!.keys {
+                let annotation = MKCircle(center: lineCoordinatesFromInterchange![stop]!, radius: 10)
+                annotation.title = stop
+                mapView.addOverlay(annotation)
+            }
+        }
         
         return mapView
     }
@@ -44,15 +56,28 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin, count: lineCoordinatesFromOrigin.count)
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
         view.addOverlay(polyline)
         
+        for stop in lineCoordinatesFromOrigin.keys {
+            let annotation = MKCircle(center: lineCoordinatesFromOrigin[stop]!, radius: 10)
+            annotation.title = stop
+            view.addOverlay(annotation)
+        }
+        
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
-            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!, count: lineCoordinatesFromInterchange!.count)
+            let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!.map {$0.value}, count: lineCoordinatesFromInterchange!.count)
             polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
             view.addOverlay(polylineFromInterchange)
+            
+            for stop in lineCoordinatesFromInterchange!.keys {
+                let annotation = MKCircle(center: lineCoordinatesFromInterchange![stop]!, radius: 10)
+                annotation.title = stop
+                view.addOverlay(annotation)
+            }
         }
+        
         
     }
     
@@ -71,14 +96,23 @@ class Coordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-        guard let routePolyline = overlay as? RoutePolyline else {
-                   return MKOverlayRenderer(overlay: overlay)
+        if overlay is MKCircle {
+            let renderer = MKCircleRenderer(overlay: overlay)
+            renderer.fillColor = UIColor.white.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.black
+            renderer.lineWidth = 2
+            return renderer
+        } else if overlay is MKPolyline {
+            let routePolyline = overlay as? RoutePolyline
+            let renderer = MKPolylineRenderer(polyline: routePolyline!)
+            renderer.strokeColor = routePolyline!.routeColor
+            renderer.lineWidth = 5
+            return renderer
         }
         
-        let renderer = MKPolylineRenderer(polyline: routePolyline)
-        renderer.strokeColor = routePolyline.routeColor
-        renderer.lineWidth = 5
-        return renderer
+        return MKOverlayRenderer(overlay: overlay)
+        
+        
         
     }
 }
