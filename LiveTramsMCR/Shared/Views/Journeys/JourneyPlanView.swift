@@ -161,12 +161,26 @@ struct NonInterchangeJourneyView: View {
             }
             
             Spacer()
+            let routeCoordinatesFromOrigin = getRouteCoordinatesFromOriginNoInterchange(plannedJourney: plannedJourney)
+            
+            let allCoordinates = routeCoordinatesFromOrigin
+            
+            let latitudes = allCoordinates.map { $0.latitude }
+            let longitudes = allCoordinates.map { $0.longitude }
+            
+            let avgLatitude = latitudes.reduce(0.0, +) / Double(latitudes.count)
+            
+            let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 1.4
+            
+            let avgLongitude = longitudes.reduce(0.0, +) / Double(longitudes.count)
+            
+            let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 1.4
+            
             let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
+                span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
             )
-            let routeCoordinates = getRouteCoordinatesFromOriginNoInterchange(plannedJourney: plannedJourney)
-            MapView(region: region, lineCoordinatesFromOrigin: routeCoordinates, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
+            MapView(region: region, lineCoordinatesFromOrigin: routeCoordinatesFromOrigin, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(15)
                 .padding([.top, .bottom])
@@ -271,23 +285,41 @@ struct InterchangeJourneyView: View {
             }
             
             Spacer()
-            let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            )
+            
             let routeCoordinatesFromOrigin = getRouteCoordinatesFromOriginToInterchange(plannedJourney: plannedJourney)
             let routeCoordinatesFromInterchange = getRouteCoordinatesFromInterchange(plannedJourney: plannedJourney)
-            MapView(
-                region: region,
-                lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
-                lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
-                lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
-                lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(15)
+            
+            let allCoordinates = routeCoordinatesFromOrigin + routeCoordinatesFromInterchange
+            
+            let latitudes = allCoordinates.map { $0.latitude }
+            let longitudes = allCoordinates.map { $0.longitude }
+            
+            let avgLatitude = latitudes.reduce(0.0, +) / Double(latitudes.count)
+            
+            let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 1.4
+            
+            let avgLongitude = longitudes.reduce(0.0, +) / Double(longitudes.count)
+            
+            let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 1.4
+            
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
+                span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+            )
+            
+
+                MapView(
+                    region: region,
+                    lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
+                    lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
+                    lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
+                    lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                .aspectRatio(contentMode: .fill)
+                .cornerRadius(10)
                 .padding([.top, .bottom])
-            Spacer()
-        }
+                Spacer()
+             
+            }
     }
 }
 func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> [CLLocationCoordinate2D]{
