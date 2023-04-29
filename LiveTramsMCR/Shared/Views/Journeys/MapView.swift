@@ -29,18 +29,18 @@ struct MapView: UIViewRepresentable {
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
             if index == 0 {
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Start"
+                annotation.stopSize = CGSize(width: 20, height: 20)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Change here"
+                annotation.stopSize = CGSize(width: 20, height: 20)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Destination"
+                annotation.stopSize = CGSize(width: 20, height: 20)
             }
             
             annotation.coordinate = lineCoordinatesFromOrigin[stop]!
@@ -61,8 +61,8 @@ struct MapView: UIViewRepresentable {
                 let annotation = StopAnnotation()
                 
                 if index == lineCoordinatesFromInterchange!.keys.count - 1 {
-                    annotation.stopColor = .cyan
                     annotation.subtitle = "Destination"
+                    annotation.stopSize = CGSize(width: 20, height: 20)
                 }
                     
                 annotation.coordinate = lineCoordinatesFromInterchange![stop]!
@@ -78,15 +78,11 @@ struct MapView: UIViewRepresentable {
         view.region = region
         
         view.overlays.forEach {
-            if !($0 is MKUserLocation) {
-                view.removeOverlay($0)
-            }
+            view.removeOverlay($0)
         }
         
         view.annotations.forEach {
-            if !($0 is StopAnnotation) {
-                view.removeAnnotation($0)
-            }
+            view.removeAnnotation($0)
         }
         
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
@@ -96,19 +92,16 @@ struct MapView: UIViewRepresentable {
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
             if index == 0 {
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Start"
                 annotation.stopSize = CGSize(width: 20, height: 20)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Change here"
                 annotation.stopSize = CGSize(width: 20, height: 20)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
-                annotation.stopColor = .cyan
                 annotation.subtitle = "Destination"
                 annotation.stopSize = CGSize(width: 20, height: 20)
             }
@@ -132,7 +125,6 @@ struct MapView: UIViewRepresentable {
                 let annotation = StopAnnotation()
                 
                 if index == lineCoordinatesFromInterchange!.keys.count - 1 {
-                    annotation.stopColor = .cyan
                     annotation.subtitle = "Destination"
                     annotation.stopSize = CGSize(width: 20, height: 20)
                 }
