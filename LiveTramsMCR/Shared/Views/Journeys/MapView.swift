@@ -25,12 +25,27 @@ struct MapView: UIViewRepresentable {
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
         mapView.addOverlay(polyline)
-        
-        for stop in lineCoordinatesFromOrigin.keys {
+        var stopAnnotations: [StopAnnotation] = []
+        for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
+            if index == 0 {
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Start"
+            }
+            
+            if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Change here"
+            }
+            
+            if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Destination"
+            }
+            
             annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
-            mapView.addAnnotation(annotation)
+            stopAnnotations.append(annotation)
         }
         
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
@@ -38,14 +53,24 @@ struct MapView: UIViewRepresentable {
             polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
             mapView.addOverlay(polylineFromInterchange)
             
-            for stop in lineCoordinatesFromInterchange!.keys {
+            for (index, stop) in lineCoordinatesFromInterchange!.keys.enumerated() {
+                if index == 0 {
+                    continue
+                }
+                
                 let annotation = StopAnnotation()
+                
+                if index == lineCoordinatesFromInterchange!.keys.count - 1 {
+                    annotation.stopColor = .cyan
+                    annotation.subtitle = "Destination"
+                }
+                    
                 annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
-                mapView.addAnnotation(annotation)
+                stopAnnotations.append(annotation)
             }
         }
-        
+        mapView.addAnnotations(stopAnnotations)
         return mapView
     }
     
@@ -58,15 +83,39 @@ struct MapView: UIViewRepresentable {
             }
         }
         
+        view.annotations.forEach {
+            if !($0 is StopAnnotation) {
+                view.removeAnnotation($0)
+            }
+        }
+        
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
         view.addOverlay(polyline)
-        
-        for stop in lineCoordinatesFromOrigin.keys {
+        var stopAnnotations: [StopAnnotation] = []
+        for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
+            if index == 0 {
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Start"
+                annotation.stopSize = CGSize(width: 20, height: 20)
+            }
+            
+            if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Change here"
+                annotation.stopSize = CGSize(width: 20, height: 20)
+            }
+            
+            if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
+                annotation.stopColor = .cyan
+                annotation.subtitle = "Destination"
+                annotation.stopSize = CGSize(width: 20, height: 20)
+            }
+            
             annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
-            view.addAnnotation(annotation)
+            stopAnnotations.append(annotation)
         }
         
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
@@ -74,13 +123,29 @@ struct MapView: UIViewRepresentable {
             polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
             view.addOverlay(polylineFromInterchange)
             
-            for stop in lineCoordinatesFromInterchange!.keys {
+            
+            for (index, stop) in lineCoordinatesFromInterchange!.keys.enumerated() {
+                if index == 0 {
+                    continue
+                }
+                
                 let annotation = StopAnnotation()
+                
+                if index == lineCoordinatesFromInterchange!.keys.count - 1 {
+                    annotation.stopColor = .cyan
+                    annotation.subtitle = "Destination"
+                    annotation.stopSize = CGSize(width: 20, height: 20)
+                }
+                    
+                
                 annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
-                view.addAnnotation(annotation)
+                stopAnnotations.append(annotation)
+                
             }
         }
+        
+        view.addAnnotations(stopAnnotations)
         
         
     }
@@ -114,10 +179,9 @@ class Coordinator: NSObject, MKMapViewDelegate {
             let annotation = annotation as? StopAnnotation
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: UUID().uuidString)
             annotationView.canShowCallout = true
-            let size = CGSize(width: 10, height: 10)
-            annotationView.image = UIImage(systemName: "smallcircle.filled.circle")?.withTintColor(.white)
-            annotationView.image = UIGraphicsImageRenderer(size:size).image {
-                 _ in annotationView.image!.draw(in:CGRect(origin:.zero, size:size))
+            annotationView.image = UIImage(systemName: "smallcircle.filled.circle")?.withTintColor(annotation!.stopColor)
+            annotationView.image = UIGraphicsImageRenderer(size: annotation!.stopSize).image {
+                 _ in annotationView.image!.draw(in:CGRect(origin: .zero, size: annotation!.stopSize))
             }
             return annotationView
         }
@@ -133,4 +197,5 @@ class RoutePolyline: MKPolyline {
 
 class StopAnnotation: MKPointAnnotation {
     var stopColor: UIColor = UIColor.white
+    var stopSize: CGSize = CGSize(width: 10, height: 10)
 }
