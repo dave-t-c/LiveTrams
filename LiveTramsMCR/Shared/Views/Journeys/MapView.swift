@@ -27,9 +27,10 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlay(polyline)
         
         for stop in lineCoordinatesFromOrigin.keys {
-            let annotation = MKCircle(center: lineCoordinatesFromOrigin[stop]!, radius: 10)
+            let annotation = StopAnnotation()
+            annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
-            mapView.addOverlay(annotation)
+            mapView.addAnnotation(annotation)
         }
         
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
@@ -38,9 +39,10 @@ struct MapView: UIViewRepresentable {
             mapView.addOverlay(polylineFromInterchange)
             
             for stop in lineCoordinatesFromInterchange!.keys {
-                let annotation = MKCircle(center: lineCoordinatesFromInterchange![stop]!, radius: 10)
+                let annotation = StopAnnotation()
+                annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
-                mapView.addOverlay(annotation)
+                mapView.addAnnotation(annotation)
             }
         }
         
@@ -61,9 +63,10 @@ struct MapView: UIViewRepresentable {
         view.addOverlay(polyline)
         
         for stop in lineCoordinatesFromOrigin.keys {
-            let annotation = MKCircle(center: lineCoordinatesFromOrigin[stop]!, radius: 10)
+            let annotation = StopAnnotation()
+            annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
-            view.addOverlay(annotation)
+            view.addAnnotation(annotation)
         }
         
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
@@ -72,9 +75,10 @@ struct MapView: UIViewRepresentable {
             view.addOverlay(polylineFromInterchange)
             
             for stop in lineCoordinatesFromInterchange!.keys {
-                let annotation = MKCircle(center: lineCoordinatesFromInterchange![stop]!, radius: 10)
+                let annotation = StopAnnotation()
+                annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
-                view.addOverlay(annotation)
+                view.addAnnotation(annotation)
             }
         }
         
@@ -95,28 +99,38 @@ class Coordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        if overlay is MKCircle {
-            let renderer = MKCircleRenderer(overlay: overlay)
-            renderer.fillColor = UIColor.white.withAlphaComponent(0.5)
-            renderer.strokeColor = UIColor.black
-            renderer.lineWidth = 2
-            return renderer
-        } else if overlay is MKPolyline {
+        if overlay is MKPolyline {
             let routePolyline = overlay as? RoutePolyline
             let renderer = MKPolylineRenderer(polyline: routePolyline!)
             renderer.strokeColor = routePolyline!.routeColor
             renderer.lineWidth = 5
             return renderer
         }
-        
         return MKOverlayRenderer(overlay: overlay)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is StopAnnotation {
+            let annotation = annotation as? StopAnnotation
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: UUID().uuidString)
+            annotationView.canShowCallout = true
+            let size = CGSize(width: 10, height: 10)
+            annotationView.image = UIImage(systemName: "smallcircle.filled.circle")?.withTintColor(.white)
+            annotationView.image = UIGraphicsImageRenderer(size:size).image {
+                 _ in annotationView.image!.draw(in:CGRect(origin:.zero, size:size))
+            }
+            return annotationView
+        }
         
-        
-        
+
+        return nil
     }
 }
 
 class RoutePolyline: MKPolyline {
     var routeColor: UIColor = UIColor.clear
+}
+
+class StopAnnotation: MKPointAnnotation {
+    var stopColor: UIColor = UIColor.white
 }
