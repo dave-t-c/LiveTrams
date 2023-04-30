@@ -113,7 +113,9 @@ struct JourneyPlanView: View {
                 
                 
             }
+            
         }
+        
         .navigationTitle("Journey Planner")
     }
 }
@@ -146,6 +148,7 @@ struct NonInterchangeJourneyView: View {
     
     var plannedJourney: PlannedJourney?
     var processedPlannedJourney: ProcessedPlannedJourney?
+    private let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
@@ -166,15 +169,15 @@ struct NonInterchangeJourneyView: View {
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .center)
                             .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
-                            
+                        
                     } else {
                         Rectangle()
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .leading)
-                            
+                        
                     }
                 }
-
+                
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
@@ -218,10 +221,21 @@ struct NonInterchangeJourneyView: View {
                 center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
                 span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
             )
-            MapView(region: region, lineCoordinatesFromOrigin: routeCoordinatesFromOrigin, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(15)
-                .padding([.top, .bottom])
+            
+            if deviceIdiom == .pad {
+                MapView(region: region, lineCoordinatesFromOrigin: routeCoordinatesFromOrigin, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
+                    .aspectRatio(4/3, contentMode: .fill)
+                    .frame(maxHeight: 800)
+                    .cornerRadius(15)
+                    .padding([.top, .bottom])
+                
+            } else {
+                MapView(region: region, lineCoordinatesFromOrigin: routeCoordinatesFromOrigin, lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!)
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(15)
+                    .padding([.top, .bottom])
+            }
+            
             Spacer()
         }
     }
@@ -231,7 +245,7 @@ struct InterchangeJourneyView: View {
     
     var plannedJourney: PlannedJourney?
     var processedPlannedJourney: ProcessedPlannedJourney?
-    
+    private let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
@@ -252,15 +266,15 @@ struct InterchangeJourneyView: View {
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .center)
                             .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
-                            
+                        
                     } else {
                         Rectangle()
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .leading)
-                            
+                        
                     }
                 }
-
+                
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
@@ -272,7 +286,7 @@ struct InterchangeJourneyView: View {
                 }
                 Spacer()
             }
-
+            
             HStack {
                 Image(systemName: "smallcircle.filled.circle")
                     .frame(width: 30)
@@ -291,15 +305,15 @@ struct InterchangeJourneyView: View {
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .center)
                             .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromInterchangeUIColors.count - 1)))
-                            
+                        
                     } else {
                         Rectangle()
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .leading)
-                            
+                        
                     }
                 }
-
+                
                 Spacer()
                 VStack{
                     Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange)
@@ -345,7 +359,19 @@ struct InterchangeJourneyView: View {
                 span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
             )
             
-
+            
+            if deviceIdiom == .pad {
+                MapView(
+                    region: region,
+                    lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
+                    lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
+                    lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
+                    lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                .aspectRatio(4/3, contentMode: .fill)
+                .frame(maxHeight: 800)
+                .cornerRadius(10)
+                .padding([.top, .bottom])
+            } else {
                 MapView(
                     region: region,
                     lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
@@ -355,23 +381,26 @@ struct InterchangeJourneyView: View {
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
                 .padding([.top, .bottom])
-                Spacer()
-             
             }
+            
+            
+            Spacer()
+            
+        }
     }
 }
 func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
     var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
-        routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
-                
-        for stop in plannedJourney!.stopsFromOrigin {
-            routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-        }
-        
-        routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
-        
-        
-        return routeCoordinates
+    routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
+    
+    for stop in plannedJourney!.stopsFromOrigin {
+        routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+    }
+    
+    routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
+    
+    
+    return routeCoordinates
 }
 
 func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
