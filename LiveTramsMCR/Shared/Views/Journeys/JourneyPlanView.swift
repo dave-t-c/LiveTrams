@@ -69,10 +69,11 @@ struct JourneyPlanView: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
-                            serviceInformation = []
+                            var serviceInformationHolder: [FormattedServices] = []
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: originStop))
-                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
+                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                            serviceInformation = serviceInformationHolder
                             gettingJourneyRequest = false
                             if(plannedJourney == nil){
                                 return
@@ -103,7 +104,7 @@ struct JourneyPlanView: View {
                     ServiceInformationView(serviceInformation: serviceInformation)
                     
                     if (plannedJourney!.requiresInterchange){
-                        InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                        InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                     }
                     else{
                         NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
@@ -243,11 +244,12 @@ struct NonInterchangeJourneyView: View {
 
 struct InterchangeJourneyView: View {
     
-    var plannedJourney: PlannedJourney?
-    var processedPlannedJourney: ProcessedPlannedJourney?
+    var plannedJourney: PlannedJourney
+    var processedPlannedJourney: ProcessedPlannedJourney
     private let deviceIdiom = UIDevice.current.userInterfaceIdiom
     
     var body: some View {
+        
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
             
             HStack {
@@ -256,16 +258,16 @@ struct InterchangeJourneyView: View {
                     .scaleEffect(1.5)
                     .padding(.leading, 3.5)
                     .padding(.bottom, 3.5)
-                Text(plannedJourney!.originStop.stopName)
+                Text(plannedJourney.originStop.stopName)
                 Spacer()
             }
             HStack(spacing: 0) {
-                ForEach(Array(processedPlannedJourney!.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
+                ForEach(Array(processedPlannedJourney.routeFromOriginUIColors.enumerated()), id: \.element) { index, routeColor in
                     if(index == 0){
                         Rectangle()
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .center)
-                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromOriginUIColors.count - 1)))
+                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney.routeFromOriginUIColors.count - 1)))
                         
                     } else {
                         Rectangle()
@@ -277,10 +279,10 @@ struct InterchangeJourneyView: View {
                 
                 Spacer()
                 VStack{
-                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromOrigin)
+                    Text("Take the tram towards" + processedPlannedJourney.formattedTerminiFromOrigin)
                         .padding(.leading, 15)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromOriginTime)
+                    Text(processedPlannedJourney.formattedStopsFromOriginTime)
                         .padding(.top, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -293,18 +295,18 @@ struct InterchangeJourneyView: View {
                     .scaleEffect(1.5)
                     .padding(.leading, 3.5)
                     .padding(.bottom, 3.5)
-                Text(plannedJourney!.interchangeStop!.stopName)
+                Text(plannedJourney.interchangeStop!.stopName)
                 Spacer()
             }
             
             
             HStack(spacing: 0) {
-                ForEach(Array(processedPlannedJourney!.routeFromInterchangeUIColors.enumerated()), id: \.element) { index, routeColor in
+                ForEach(Array(processedPlannedJourney.routeFromInterchangeUIColors.enumerated()), id: \.element) { index, routeColor in
                     if(index == 0){
                         Rectangle()
                             .foregroundColor(routeColor)
                             .frame(width: 5, height: 150, alignment: .center)
-                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney!.routeFromInterchangeUIColors.count - 1)))
+                            .padding(.leading, 15.5 - (2.5 * CGFloat(processedPlannedJourney.routeFromInterchangeUIColors.count - 1)))
                         
                     } else {
                         Rectangle()
@@ -316,10 +318,10 @@ struct InterchangeJourneyView: View {
                 
                 Spacer()
                 VStack{
-                    Text("Take the tram towards" + processedPlannedJourney!.formattedTerminiFromInterchange)
+                    Text("Take the tram towards" + processedPlannedJourney.formattedTerminiFromInterchange)
                         .padding(.leading, 15)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(processedPlannedJourney!.formattedStopsFromInterchangeTime)
+                    Text(processedPlannedJourney.formattedStopsFromInterchangeTime)
                         .padding(.top, 10)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -332,7 +334,7 @@ struct InterchangeJourneyView: View {
                     .scaleEffect(1.5)
                     .padding(.leading, 3.5)
                     .padding(.bottom, 3.5)
-                Text(plannedJourney!.destinationStop.stopName)
+                Text(plannedJourney.destinationStop.stopName)
                 Spacer()
             }
             
@@ -365,8 +367,8 @@ struct InterchangeJourneyView: View {
                     region: region,
                     lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
                     lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
-                    lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
-                    lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                    lineColorFromOrigin: processedPlannedJourney.routeFromOriginUIColors.first!,
+                    lineColorFromInterchange: processedPlannedJourney.routeFromInterchangeUIColors.first!)
                 .aspectRatio(4/3, contentMode: .fill)
                 .frame(maxHeight: 800)
                 .cornerRadius(10)
@@ -376,8 +378,8 @@ struct InterchangeJourneyView: View {
                     region: region,
                     lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
                     lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
-                    lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
-                    lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                    lineColorFromOrigin: processedPlannedJourney.routeFromOriginUIColors.first!,
+                    lineColorFromInterchange: processedPlannedJourney.routeFromInterchangeUIColors.first!)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
                 .padding([.top, .bottom])

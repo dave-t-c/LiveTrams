@@ -16,12 +16,15 @@ struct MapView: UIViewRepresentable {
     var lineCoordinatesFromInterchange: OrderedDictionary<String, CLLocationCoordinate2D>? = nil
     let lineColorFromOrigin: Color
     var lineColorFromInterchange: Color? = nil
+    @Environment(\.colorScheme) private var displayMode
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.region = region
-    
+        mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
+        
+        
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
         mapView.addOverlay(polyline)
@@ -30,19 +33,20 @@ struct MapView: UIViewRepresentable {
             let annotation = StopAnnotation()
             if index == 0 {
                 annotation.subtitle = "Start"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
                 annotation.subtitle = "Change here"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
                 annotation.subtitle = "Destination"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
             
+            annotation.stopColor = displayMode == .dark ? .white : .black
             annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
             stopAnnotations.append(annotation)
@@ -62,9 +66,10 @@ struct MapView: UIViewRepresentable {
                 
                 if index == lineCoordinatesFromInterchange!.keys.count - 1 {
                     annotation.subtitle = "Destination"
-                    annotation.stopSize = CGSize(width: 20, height: 20)
+                    annotation.stopSize = CGSize(width: 30, height: 30)
                 }
-                    
+                 
+                annotation.stopColor = displayMode == .dark ? .white : .black
                 annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
                 stopAnnotations.append(annotation)
@@ -93,19 +98,19 @@ struct MapView: UIViewRepresentable {
             let annotation = StopAnnotation()
             if index == 0 {
                 annotation.subtitle = "Start"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange != nil{
                 annotation.subtitle = "Change here"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
             
             if index == lineCoordinatesFromOrigin.keys.count - 1 && lineColorFromInterchange == nil{
                 annotation.subtitle = "Destination"
-                annotation.stopSize = CGSize(width: 20, height: 20)
+                annotation.stopSize = CGSize(width: 30, height: 30)
             }
-            
+            annotation.stopColor = displayMode == .dark ? .white : .black
             annotation.coordinate = lineCoordinatesFromOrigin[stop]!
             annotation.title = stop
             stopAnnotations.append(annotation)
@@ -123,13 +128,12 @@ struct MapView: UIViewRepresentable {
                 }
                 
                 let annotation = StopAnnotation()
-                
                 if index == lineCoordinatesFromInterchange!.keys.count - 1 {
                     annotation.subtitle = "Destination"
-                    annotation.stopSize = CGSize(width: 20, height: 20)
+                    annotation.stopSize = CGSize(width: 30, height: 30)
                 }
                     
-                
+                annotation.stopColor = displayMode == .dark ? .white : .black
                 annotation.coordinate = lineCoordinatesFromInterchange![stop]!
                 annotation.title = stop
                 stopAnnotations.append(annotation)
@@ -188,6 +192,6 @@ class RoutePolyline: MKPolyline {
 }
 
 class StopAnnotation: MKPointAnnotation {
-    var stopColor: UIColor = UIColor.white
-    var stopSize: CGSize = CGSize(width: 10, height: 10)
+    var stopColor: UIColor = .white
+    var stopSize: CGSize = CGSize(width: 15, height: 15)
 }
