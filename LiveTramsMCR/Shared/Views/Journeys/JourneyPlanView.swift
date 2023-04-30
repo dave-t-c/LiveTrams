@@ -20,6 +20,8 @@ struct JourneyPlanView: View {
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var servicesRequest = ServicesRequest()
+    @State private var serviceInformation: [FormattedServices] = []
     @State private var gettingJourneyRequest: Bool = false
     @State private var journeyMapAvailable: Bool = false
     
@@ -67,7 +69,10 @@ struct JourneyPlanView: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
+                            serviceInformation = []
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: originStop))
+                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: destinationStop))
                             gettingJourneyRequest = false
                             if(plannedJourney == nil){
                                 return
@@ -89,20 +94,48 @@ struct JourneyPlanView: View {
                 }
             }
             
-            if(plannedJourney != nil)
+            if(plannedJourney != nil && processedPlannedJourney != nil)
             {
-                Text(processedPlannedJourney!.formattedTime).font(.headline)
+                Section {
+                    
+                    Text(processedPlannedJourney!.formattedTime).font(.headline)
+                    
+                    ServiceInformationView(serviceInformation: serviceInformation)
+                    
+                    if (plannedJourney!.requiresInterchange){
+                        InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                    }
+                    else{
+                        NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                    }
+                }
                 
-                if (plannedJourney!.requiresInterchange){
-                    InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
-                }
-                else{
-                    NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
-                }
+                
                 
             }
         }
         .navigationTitle("Journey Planner")
+    }
+}
+
+
+
+struct ServiceInformationView: View {
+    var serviceInformation: [FormattedServices]
+    
+    var body: some View {
+        VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
+            Text("Service updates for your journey:")
+                .font(.headline)
+                .padding(.top, 10)
+            
+            ForEach(serviceInformation) { information in
+                Text(information.messages.first ?? "")
+                    .padding(.top, 10)
+            }
+        }
+        .padding(.bottom, 0)
+        
     }
 }
 
