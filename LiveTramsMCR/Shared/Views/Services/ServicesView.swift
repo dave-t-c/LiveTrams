@@ -74,6 +74,7 @@ struct ServicesView: View {
                     Spacer()
                 }
             }
+            .listRowBackground(Color.clear)
             
             
         }
