@@ -43,11 +43,11 @@ class ProcessedJourneyData {
         
         let avgLatitude = latitudes.reduce(0.0, +) / Double(latitudes.count)
         
-        let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 1.4
+        let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 3
         
         let avgLongitude = longitudes.reduce(0.0, +) / Double(longitudes.count)
         
-        let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 1.4
+        let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 6
         
         self.region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
