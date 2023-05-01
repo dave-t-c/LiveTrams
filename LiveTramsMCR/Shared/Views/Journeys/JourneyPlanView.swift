@@ -26,56 +26,29 @@ struct JourneyPlanView: View {
     @State private var journeyMapAvailable: Bool = false
     @State private var showBottomSheet = true
     @State private var routeHelper = RouteHelper()
-    
+    @State private var journeyData: ProcessedJourneyData? = nil
     
     
     var body: some View {
-        if (processedPlannedJourney != nil && plannedJourney != nil)
+        if (journeyData != nil)
         {
-            let routeCoordinatesFromOrigin = routeHelper.getRouteCoordinatesFromOriginToInterchange(plannedJourney: plannedJourney)
             
-            /*var routeCoordinatesFromInterchange: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
-            if plannedJourney?.interchangeStop != nil {
-                routeCoordinatesFromInterchange = routeHelper.getRouteCoordinatesFromInterchange(plannedJourney: plannedJourney)
-            }*/
-            
-            let routeCoordinatesFromInterchange = routeHelper.getRouteCoordinatesFromInterchange(plannedJourney: plannedJourney)
-            
-            // Extract this to a view model
-            
-            // Extract other views?
-            
-            let allCoordinates = routeCoordinatesFromOrigin.map{ $0.value } + routeCoordinatesFromInterchange.map { $0.value }
-            
-            let latitudes = allCoordinates.map { $0.latitude }
-            let longitudes = allCoordinates.map { $0.longitude }
-            
-            let avgLatitude = latitudes.reduce(0.0, +) / Double(latitudes.count)
-            
-            let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 1.4
-            
-            let avgLongitude = longitudes.reduce(0.0, +) / Double(longitudes.count)
-            
-            let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 1.4
-            
-            let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
-                span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-            )
+            let journeyData = journeyData!
             
             MapView(
-                region: region,
-                lineCoordinatesFromOrigin: routeCoordinatesFromOrigin,
-                lineCoordinatesFromInterchange: routeCoordinatesFromInterchange,
-                lineColorFromOrigin: processedPlannedJourney!.routeFromOriginUIColors.first!,
-                lineColorFromInterchange: processedPlannedJourney!.routeFromInterchangeUIColors.first!)
+                region: journeyData.region,
+                lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
+                lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
+                lineColorFromOrigin: journeyData.lineColorFromOrigin,
+                lineColorFromInterchange: journeyData.lineColorFromInterchange)
             .aspectRatio(contentMode: .fill)
             .cornerRadius(10)
             .ignoresSafeArea(.container)
         } else {
-            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
-                .aspectRatio(contentMode: .fit)
+            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))))
+                .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
+                .ignoresSafeArea(.all)
         }
         Text("")
         
@@ -134,6 +107,7 @@ struct JourneyPlanView: View {
                                 }
                                 
                                 processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
+                                journeyData = ProcessedJourneyData(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                             }
                         }) {
                             Label("Plan Journey", systemImage: "tram.fill")
