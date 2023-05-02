@@ -19,6 +19,7 @@ struct JourneyPlanView: View {
     @State private var gettingJourneyRequest: Bool = false
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
+    @State private var plannerDetent = PresentationDetent.fraction(0.3)
     
     var initialOrigin: String =  ""
     var stops: [String] = []
@@ -141,7 +142,7 @@ struct JourneyPlanView: View {
                 
             }
             .presentationDragIndicator(.visible)
-            .presentationDetents([.medium, .large, .fraction(0.3), .fraction(0.1)])
+            .presentationDetents([.medium, .large, .fraction(0.3), .fraction(0.1)], selection: $plannerDetent)
             .interactiveDismissDisabled(true)
             .presentationBackgroundInteraction(
                 .enabled(upThrough: .medium)
