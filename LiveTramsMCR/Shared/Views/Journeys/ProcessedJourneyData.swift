@@ -55,10 +55,4 @@ class ProcessedJourneyData {
         )
         
     }
-    
-    
-    func processJourneyData() -> Void {
-        
-    }
-    
 }

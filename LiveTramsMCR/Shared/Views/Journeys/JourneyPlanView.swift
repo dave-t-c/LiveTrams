@@ -13,19 +13,17 @@ struct JourneyPlanView: View {
     
     var initialOrigin: String =  ""
     var stops: [String] = []
+    private var routeHelper = RouteHelper()
+    private var servicesRequest = ServicesRequest()
     
     @State private var originStop: String = ""
-    
     @State private var destinationStop: String = ""
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
-    @State private var servicesRequest = ServicesRequest()
     @State private var serviceInformation: [FormattedServices] = []
     @State private var gettingJourneyRequest: Bool = false
-    @State private var journeyMapAvailable: Bool = false
     @State private var showBottomSheet = true
-    @State private var routeHelper = RouteHelper()
     @State private var journeyData: ProcessedJourneyData? = nil
     
     
