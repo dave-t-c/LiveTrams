@@ -126,14 +126,14 @@ struct JourneyPlanView: View {
                         
                         Text(processedPlannedJourney!.formattedTime).font(.headline)
                         
-                        ServiceInformationView(serviceInformation: serviceInformation)
-                        
                         if (plannedJourney!.requiresInterchange){
                             InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                         }
                         else{
                             NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                         }
+                        
+                        ServiceInformationView(serviceInformation: serviceInformation)
                     }
                     
                     
