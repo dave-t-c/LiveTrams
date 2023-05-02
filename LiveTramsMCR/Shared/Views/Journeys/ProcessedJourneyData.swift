@@ -24,7 +24,7 @@ class ProcessedJourneyData {
         self.plannedJourney = plannedJourney
         self.processedPlannedJourney = processedPlannedJourney
         
-        lineColorFromOrigin = processedPlannedJourney.routeFromOriginUIColors.first!
+        lineColorFromOrigin = processedPlannedJourney.routeFromOriginUIColors.first ?? .clear
         
         if plannedJourney.requiresInterchange {
             routeCoordinatesFromOrigin = routeHelper.getRouteCoordinatesFromOriginToInterchange(plannedJourney: plannedJourney)

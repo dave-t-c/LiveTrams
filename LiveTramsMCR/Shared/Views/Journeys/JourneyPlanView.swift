@@ -10,12 +10,6 @@ import MapKit
 import OrderedCollections
 
 struct JourneyPlanView: View {
-    
-    var initialOrigin: String =  ""
-    var stops: [String] = []
-    private var routeHelper = RouteHelper()
-    private var servicesRequest = ServicesRequest()
-    
     @State private var originStop: String = ""
     @State private var destinationStop: String = ""
     @State private var plannedJourney: PlannedJourney?
@@ -26,6 +20,10 @@ struct JourneyPlanView: View {
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
     
+    var initialOrigin: String =  ""
+    var stops: [String] = []
+    private let routeHelper = RouteHelper()
+    private let servicesRequest = ServicesRequest()
     
     var body: some View {
         if (journeyData != nil)
