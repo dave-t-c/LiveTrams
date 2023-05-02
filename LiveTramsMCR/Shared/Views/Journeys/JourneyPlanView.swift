@@ -141,7 +141,7 @@ struct JourneyPlanView: View {
                 
             }
             .presentationDragIndicator(.visible)
-            .presentationDetents([.medium, .large, .fraction(0.3)])
+            .presentationDetents([.medium, .large, .fraction(0.3), .fraction(0.1)])
             .interactiveDismissDisabled(true)
             .presentationBackgroundInteraction(
                 .enabled(upThrough: .medium)

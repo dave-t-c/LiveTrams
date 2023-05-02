@@ -41,18 +41,16 @@ class ProcessedJourneyData {
         let latitudes = allCoordinates.map { $0.latitude }
         let longitudes = allCoordinates.map { $0.longitude }
         
-        let avgLatitude = latitudes.reduce(0.0, +) / Double(latitudes.count)
-        
-        let latitudeDelta = (latitudes.max()! - latitudes.min()!) * 3
-        
-        let avgLongitude = longitudes.reduce(0.0, +) / Double(longitudes.count)
-        
-        let longitudeDelta = (longitudes.max()! - longitudes.min()!) * 6
-        
-        self.region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude),
-            span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-        )
+        let maxLat = latitudes.max()!
+        let minLat = latitudes.min()!
+        let maxLong = longitudes.max()!
+        let minLong = longitudes.min()!
+
+        let center = CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2,
+                                            longitude: (minLong + maxLong) / 2)
+        let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.5,
+                                    longitudeDelta: (maxLong - minLong) * 2.6)
+        self.region = MKCoordinateRegion(center: center, span: span)
         
     }
 }
