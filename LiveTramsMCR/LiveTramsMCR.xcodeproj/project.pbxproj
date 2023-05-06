@@ -12,6 +12,7 @@
 		9E0158A629FEF3EA009B6625 /* InterchangeJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0158A529FEF3EA009B6625 /* InterchangeJourneyView.swift */; };
 		9E0158A829FEF680009B6625 /* RouteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0158A729FEF680009B6625 /* RouteHelper.swift */; };
 		9E0D174E29BE3A1F003F76FA /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
+		9E19908C2A0039DC0059C45D /* ProcessedJourneyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E19908B2A0039DC0059C45D /* ProcessedJourneyData.swift */; };
 		9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E208FF8299ECD3F008F9168 /* LiveTramsMCRApp.swift */; };
 		9E208FFD299ECD43008F9168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E208FFC299ECD43008F9168 /* Assets.xcassets */; };
 		9E209000299ECD43008F9168 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E208FFF299ECD43008F9168 /* Preview Assets.xcassets */; };
@@ -164,6 +165,7 @@
 		9E0158A329FEF327009B6625 /* NonInterchangeJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonInterchangeJourneyView.swift; sourceTree = "<group>"; };
 		9E0158A529FEF3EA009B6625 /* InterchangeJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterchangeJourneyView.swift; sourceTree = "<group>"; };
 		9E0158A729FEF680009B6625 /* RouteHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHelper.swift; sourceTree = "<group>"; };
+		9E19908B2A0039DC0059C45D /* ProcessedJourneyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedJourneyData.swift; sourceTree = "<group>"; };
 		9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveTramsMCR Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E208FF8299ECD3F008F9168 /* LiveTramsMCRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTramsMCRApp.swift; sourceTree = "<group>"; };
 		9E208FFC299ECD43008F9168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				9E0158A329FEF327009B6625 /* NonInterchangeJourneyView.swift */,
 				9E0158A529FEF3EA009B6625 /* InterchangeJourneyView.swift */,
 				9E0158A729FEF680009B6625 /* RouteHelper.swift */,
+				9E19908B2A0039DC0059C45D /* ProcessedJourneyData.swift */,
 			);
 			path = Journeys;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
 				9EE3045129B3D0E3000F20A7 /* LiveTramTimesIntent.intentdefinition in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
+				9E19908C2A0039DC0059C45D /* ProcessedJourneyData.swift in Sources */,
 				9E4986A129EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
 				9E7B1E9B2814B668007FA699 /* FormattedServices.swift in Sources */,
 				9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */,
@@ -838,7 +842,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -872,7 +876,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -906,7 +910,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -925,7 +929,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -936,7 +940,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -955,7 +959,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1080,7 +1084,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1094,7 +1098,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR.watchkitapp;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1108,7 +1112,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1119,7 +1123,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1133,7 +1137,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dccompsci.LiveTramsMCR.watchkitapp;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1147,7 +1151,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1157,7 +1161,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
@@ -1176,7 +1180,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1185,7 +1189,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
@@ -1204,7 +1208,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

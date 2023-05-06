@@ -21,14 +21,16 @@ struct MapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
-        mapView.region = region
+        
         mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
         
         
+        
+        var stopAnnotations: [StopAnnotation] = []
+        var routePolylines: [RoutePolyline] = []
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
-        mapView.addOverlay(polyline)
-        var stopAnnotations: [StopAnnotation] = []
+        routePolylines.append(polyline)
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
             if index == 0 {
@@ -55,7 +57,7 @@ struct MapView: UIViewRepresentable {
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
             let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!.map {$0.value}, count: lineCoordinatesFromInterchange!.count)
             polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
-            mapView.addOverlay(polylineFromInterchange)
+            routePolylines.append(polylineFromInterchange)
             
             for (index, stop) in lineCoordinatesFromInterchange!.keys.enumerated() {
                 if index == 0 {
@@ -75,7 +77,13 @@ struct MapView: UIViewRepresentable {
                 stopAnnotations.append(annotation)
             }
         }
+        
+        mapView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
+        mapView.addOverlays(routePolylines)
         mapView.addAnnotations(stopAnnotations)
+        mapView.region = region
+        mapView.setRegion(region, animated: true)
+        
         return mapView
     }
     
@@ -90,10 +98,12 @@ struct MapView: UIViewRepresentable {
             view.removeAnnotation($0)
         }
         
+        
+        var stopAnnotations: [StopAnnotation] = []
+        var routePolylines: [RoutePolyline] = []
         let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
         polyline.routeColor = UIColor(lineColorFromOrigin)
-        view.addOverlay(polyline)
-        var stopAnnotations: [StopAnnotation] = []
+        routePolylines.append(polyline)
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
             if index == 0 {
@@ -119,7 +129,7 @@ struct MapView: UIViewRepresentable {
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
             let polylineFromInterchange = RoutePolyline(coordinates: lineCoordinatesFromInterchange!.map {$0.value}, count: lineCoordinatesFromInterchange!.count)
             polylineFromInterchange.routeColor = UIColor(lineColorFromInterchange!)
-            view.addOverlay(polylineFromInterchange)
+            routePolylines.append(polylineFromInterchange)
             
             
             for (index, stop) in lineCoordinatesFromInterchange!.keys.enumerated() {
@@ -141,9 +151,11 @@ struct MapView: UIViewRepresentable {
             }
         }
         
+        view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
+        view.addOverlays(routePolylines)
         view.addAnnotations(stopAnnotations)
-        
-        
+        view.region = region
+        view.setRegion(region, animated: true)
     }
     
     func makeCoordinator() -> Coordinator {
