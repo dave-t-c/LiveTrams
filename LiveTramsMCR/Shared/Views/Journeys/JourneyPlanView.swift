@@ -26,6 +26,16 @@ struct JourneyPlanView: View {
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
     
+    var availableDestinationStops: [String] {
+        let stopsCopy = stops
+        return stopsCopy.filter { $0 != originStop }
+    }
+    
+    var availableOriginStops: [String] {
+        let stopsCopy = stops
+        return stopsCopy.filter { $0 != destinationStop }
+    }
+    
     var body: some View {
         if (journeyData != nil)
         {
@@ -58,7 +68,7 @@ struct JourneyPlanView: View {
                             .font(.headline)
                         Picker("Origin", selection: $originStop){
                             Text("Select Stop").tag("")
-                            ForEach(stops, id: \.self) { stop in
+                            ForEach(availableOriginStops, id: \.self) { stop in
                                 Text(stop).tag(stop)
                             }
                         }
@@ -80,7 +90,7 @@ struct JourneyPlanView: View {
                         }
                         Picker("Destination", selection: $destinationStop){
                             Text("Select Stop").tag("")
-                            ForEach(stops, id: \.self) { stop in
+                            ForEach(availableDestinationStops, id: \.self) { stop in
                                 Text(stop).tag(stop)
                             }
                         }
