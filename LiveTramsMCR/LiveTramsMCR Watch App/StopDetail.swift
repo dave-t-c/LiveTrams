@@ -18,8 +18,25 @@ struct StopDetail: View {
     
     var body: some View {
         List {
-            
+                           
             Section{
+                if (stop.routes != nil) {
+                    let routeColors = GetRouteColors(stop: stop)
+                    HStack{
+                        
+                        ForEach(routeColors, id: \.self) {color in
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .fill(color)
+                                .frame(height: 10)
+                                .padding(.bottom, .zero)
+                            
+                        }
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)
+                }
+
+                
                 NavigationLink (destination: ServicesView(stop: stop)) {
                     Label("View Live Departures", systemImage: "clock.fill")
                         .padding()
@@ -30,6 +47,7 @@ struct StopDetail: View {
                         .padding()
                 }
             }
+            .padding(.top, 0)
             
             Section{
                 Button {
