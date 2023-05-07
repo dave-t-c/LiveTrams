@@ -27,6 +27,16 @@ struct JourneyPlanViewPad: View {
     @State private var journeyMapAvailable: Bool = false
     
     
+    var availableDestinationStops: [String] {
+        let stopsCopy = stops
+        return stopsCopy.filter { $0 != originStop }
+    }
+    
+    var availableOriginStops: [String] {
+        let stopsCopy = stops
+        return stopsCopy.filter { $0 != destinationStop }
+    }
+    
     
     var body: some View {
         List {
@@ -35,7 +45,7 @@ struct JourneyPlanViewPad: View {
                 VStack{
                     Picker("Origin", selection: $originStop){
                         Text("Select Stop").tag("")
-                        ForEach(stops, id: \.self) { stop in
+                        ForEach(availableOriginStops, id: \.self) { stop in
                             Text(stop).tag(stop)
                         }
                     }
@@ -57,7 +67,7 @@ struct JourneyPlanViewPad: View {
                     }
                     Picker("Destination", selection: $destinationStop){
                         Text("Select Stop").tag("")
-                        ForEach(stops, id: \.self) { stop in
+                        ForEach(availableDestinationStops, id: \.self) { stop in
                             Text(stop).tag(stop)
                         }
                     }
