@@ -43,12 +43,20 @@ struct StopDetail: View {
                         }
                     }
                     
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
+                    switch UIDevice.current.userInterfaceIdiom {
+                    case .pad :
+                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
+                            .frame(width: geometry.size.width * 0.95, height: geometry.size.height / 2)
+                            .cornerRadius(10)
+                        
+                        
+                    default:
+                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
+                    }
                 }
                 .listRowBackground(Color.clear)
-                
                 
                 Section{
                     NavigationLink (destination: ServicesView(stop: stop)) {
@@ -120,35 +128,35 @@ struct StopDetail: View {
             .navigationTitle(stop.stopName)
         }
     }
-    private func GetRouteColors(stop: Stop) -> [Color] {
-        if stop.routes == nil {
-            return []
-        }
-        var routeColors: [Color] = []
-        for route in stop.routes! {
-            routeColors.append(hexStringToUIColor(hex: route.colour))
-        }
-        return routeColors
+}
+private func GetRouteColors(stop: Stop) -> [Color] {
+    if stop.routes == nil {
+        return []
+    }
+    var routeColors: [Color] = []
+    for route in stop.routes! {
+        routeColors.append(hexStringToUIColor(hex: route.colour))
+    }
+    return routeColors
+}
+
+private func hexStringToUIColor (hex:String) -> Color {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
     }
     
-    private func hexStringToUIColor (hex:String) -> Color {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-        
-        if ((cString.count) != 6) {
-            return Color.gray
-        }
-        
-        var rgbValue:UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&rgbValue)
-        
-        return Color(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0
-        )
+    if ((cString.count) != 6) {
+        return Color.gray
     }
+    
+    var rgbValue:UInt64 = 0
+    Scanner(string: cString).scanHexInt64(&rgbValue)
+    
+    return Color(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+    )
 }
