@@ -70,10 +70,11 @@ struct JourneyPlanViewPad: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
-                            serviceInformation = []
+                            var serviceInformationHolder: [FormattedServices] = []
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: originStop))
-                            serviceInformation.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
+                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                            serviceInformation = serviceInformationHolder
                             gettingJourneyRequest = false
                             if(plannedJourney == nil){
                                 return
@@ -101,14 +102,14 @@ struct JourneyPlanViewPad: View {
                     
                     Text(processedPlannedJourney!.formattedTime).font(.headline)
                     
-                    ServiceInformationView(serviceInformation: serviceInformation)
-                    
                     if (plannedJourney!.requiresInterchange){
                         InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                     }
                     else{
                         NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                     }
+                    
+                    ServiceInformationView(serviceInformation: serviceInformation)
                 }
                 
                 
@@ -120,58 +121,3 @@ struct JourneyPlanViewPad: View {
         .navigationTitle("Journey Planner")
     }
 }
-
-
-   func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
-       var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
-       routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
-       
-       for stop in plannedJourney!.stopsFromOrigin {
-           routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-       }
-       
-       routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
-       
-       
-       return routeCoordinates
-   }
-
-   func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
-       var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
-       routeCoordinates[plannedJourney!.originStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.originStop.latitude, longitude: plannedJourney!.originStop.longitude)
-       
-       for stop in plannedJourney!.stopsFromOrigin {
-           routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-       }
-       
-       routeCoordinates[plannedJourney!.interchangeStop!.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude)
-       
-       
-       return routeCoordinates
-   }
-
-   func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
-       var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
-       
-       routeCoordinates[plannedJourney!.interchangeStop!.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.interchangeStop!.latitude, longitude: plannedJourney!.interchangeStop!.longitude)
-       
-       for stop in plannedJourney!.stopsFromInterchange! {
-           routeCoordinates[stop.stopName] = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-       }
-       
-       routeCoordinates[plannedJourney!.destinationStop.stopName] = CLLocationCoordinate2D(latitude: plannedJourney!.destinationStop.latitude, longitude: plannedJourney!.destinationStop.longitude)
-       
-       
-       return routeCoordinates
-   }
-
-   func getDistinctMessages(serviceInformation: [FormattedServices]) -> [String] {
-       var combinedMessages: [String] = []
-       
-       for information in serviceInformation {
-           combinedMessages.append(contentsOf: information.messages)
-       }
-       
-       return Array(Set(combinedMessages))
-   }
-
