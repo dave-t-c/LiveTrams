@@ -47,107 +47,108 @@ struct StopDetail: View {
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
                 }
-            }
-            .listRowBackground(Color.clear)
-            
-            Section{
-                NavigationLink (destination: ServicesView(stop: stop)) {
-                    Label("View Live Departures", systemImage: "clock.fill")
+                .listRowBackground(Color.clear)
+                
+                
+                Section{
+                    NavigationLink (destination: ServicesView(stop: stop)) {
+                        Label("View Live Departures", systemImage: "clock.fill")
+                            .padding()
+                    }
+                }
+                
+                Section{
+                    NavigationLink (destination: JourneyPlanView(initialOrigin: stop.stopName, stops: stops.lazy.map { ($0.stopName)})) {
+                        Label("Plan Journey", systemImage: "map.fill")
+                            .padding()
+                    }
+                }
+                
+                
+                Button {
+                    mapManager.openMapsFromStop(stop: stop)
+                } label: {
+                    Label("Open in Maps", systemImage: "arrow.turn.up.right")
+                }
+                .padding()
+                
+                NavigationLink (destination: NearPublicTransport(stop: stop)) {
+                    Label("Nearby", systemImage: "mappin.and.ellipse")
                         .padding()
                 }
-            }
-            
-            Section{
-                NavigationLink (destination: JourneyPlanView(initialOrigin: stop.stopName, stops: stops.lazy.map { ($0.stopName)})) {
-                    Label("Plan Journey", systemImage: "map.fill")
+                
+                Label(stop.street, systemImage: "car")
+                    .padding()
+                Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
+                    .padding()
+                
+                Section{
+                    if favouritesStore.stops.contains(self.stop) {
+                        Button(action: {
+                            // Remove stop from favourites
+                            
+                            favouritesStore.stops.removeAll {$0 == self.stop}
+                            FavouriteStopStore.save(favouriteStops: favouritesStore.stops) { result in
+                                if case .failure(let error) = result {
+                                    fatalError(error.localizedDescription)
+                                }
+                            }
+                            
+                            
+                        }) {
+                            Label("Remove from favourites", systemImage: "star.slash")
+                                .foregroundColor(.red)
+                        }
                         .padding()
+                        
+                    } else {
+                        Button(action: {
+                            // Adds the stop to favourites
+                            favouritesStore.stops.append(self.stop)
+                            FavouriteStopStore.save(favouriteStops: favouritesStore.stops) { result in
+                                if case .failure(let error) = result {
+                                    fatalError(error.localizedDescription)
+                                }
+                            }
+                        }) {
+                            Label("Add to favourites", systemImage: "star.fill")
+                        }
+                        .padding()
+                    }
                 }
             }
-            
-            
-            Button {
-                mapManager.openMapsFromStop(stop: stop)
-            } label: {
-                Label("Open in Maps", systemImage: "arrow.turn.up.right")
-            }
-            .padding()
-            
-            NavigationLink (destination: NearPublicTransport(stop: stop)) {
-                Label("Nearby", systemImage: "mappin.and.ellipse")
-                    .padding()
-            }
-            
-            Label(stop.street, systemImage: "car")
-                .padding()
-            Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
-                .padding()
-            
-            Section{
-                if favouritesStore.stops.contains(self.stop) {
-                    Button(action: {
-                        // Remove stop from favourites
-                        
-                        favouritesStore.stops.removeAll {$0 == self.stop}
-                        FavouriteStopStore.save(favouriteStops: favouritesStore.stops) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                        
-                        
-                    }) {
-                        Label("Remove from favourites", systemImage: "star.slash")
-                            .foregroundColor(.red)
-                    }
-                    .padding()
-                    
-                } else {
-                    Button(action: {
-                        // Adds the stop to favourites
-                        favouritesStore.stops.append(self.stop)
-                        FavouriteStopStore.save(favouriteStops: favouritesStore.stops) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                    }) {
-                        Label("Add to favourites", systemImage: "star.fill")
-                    }
-                    .padding()
-                }
-            }
+            .navigationTitle(stop.stopName)
         }
-        .navigationTitle(stop.stopName)
     }
-}
-private func GetRouteColors(stop: Stop) -> [Color] {
-    if stop.routes == nil {
-        return []
-    }
-    var routeColors: [Color] = []
-    for route in stop.routes! {
-        routeColors.append(hexStringToUIColor(hex: route.colour))
-    }
-    return routeColors
-}
-
-private func hexStringToUIColor (hex:String) -> Color {
-    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-    
-    if (cString.hasPrefix("#")) {
-        cString.remove(at: cString.startIndex)
+    private func GetRouteColors(stop: Stop) -> [Color] {
+        if stop.routes == nil {
+            return []
+        }
+        var routeColors: [Color] = []
+        for route in stop.routes! {
+            routeColors.append(hexStringToUIColor(hex: route.colour))
+        }
+        return routeColors
     }
     
-    if ((cString.count) != 6) {
-        return Color.gray
+    private func hexStringToUIColor (hex:String) -> Color {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return Color.gray
+        }
+        
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        return Color(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+        )
     }
-    
-    var rgbValue:UInt64 = 0
-    Scanner(string: cString).scanHexInt64(&rgbValue)
-    
-    return Color(
-        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-        blue: CGFloat(rgbValue & 0x0000FF) / 255.0
-    )
 }
