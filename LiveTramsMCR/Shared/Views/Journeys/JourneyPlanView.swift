@@ -17,7 +17,7 @@ struct JourneyPlanView: View {
     var body: some View {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
-            JourneyPlanViewPad()
+            JourneyPlanViewPad(initialOrigin: self.initialOrigin, stops: self.stops)
         default:
             JourneyPlanViewDefault(initialOrigin: self.initialOrigin, stops: self.stops)
         }
