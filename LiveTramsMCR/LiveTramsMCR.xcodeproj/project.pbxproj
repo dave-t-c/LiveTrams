@@ -47,6 +47,8 @@
 		9E4986A429EC7EE700CBCC34 /* RouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49869D29EC7E0900CBCC34 /* RouteV2.swift */; };
 		9E4986A529EC827000CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
 		9E4986A629EC827100CBCC34 /* StopKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */; };
+		9E6878CD2A1172DC0005672F /* Pink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6878CC2A1172DC0005672F /* Pink.swift */; };
+		9E6878CF2A1173AC0005672F /* Grey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6878CE2A1173AC0005672F /* Grey.swift */; };
 		9E68BC4829B0FD2500DAA02D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */; };
 		9E68BC4929B0FD2500DAA02D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */; };
 		9E68BC4C29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BC4B29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift */; };
@@ -108,6 +110,12 @@
 		9EE8F313299EE16C000DE425 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA02814B7D3007FA699 /* ServicesView.swift */; };
 		9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */; };
 		9EE8F317299EE2D0000DE425 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE8F310299EE0D6000DE425 /* StopDetail.swift */; };
+		9EEBC6522A1174B400FC72DC /* Red.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC6512A1174B400FC72DC /* Red.swift */; };
+		9EEBC6542A11752900FC72DC /* Navy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC6532A11752900FC72DC /* Navy.swift */; };
+		9EEBC6562A11762400FC72DC /* Yellow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC6552A11762400FC72DC /* Yellow.swift */; };
+		9EEBC6582A11766500FC72DC /* Purple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC6572A11766500FC72DC /* Purple.swift */; };
+		9EEBC65A2A1176AE00FC72DC /* Blue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC6592A1176AE00FC72DC /* Blue.swift */; };
+		9EEBC65C2A11774B00FC72DC /* Green.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEBC65B2A11774B00FC72DC /* Green.swift */; };
 		9EF27CC929F3E38900D194D6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF27CC829F3E38900D194D6 /* MapView.swift */; };
 		9EF4B985299ED2D00054593E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4B984299ED2D00054593E /* Home.swift */; };
 /* End PBXBuildFile section */
@@ -180,6 +188,8 @@
 		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
 		9E49869D29EC7E0900CBCC34 /* RouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteV2.swift; sourceTree = "<group>"; };
 		9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopKeys.swift; sourceTree = "<group>"; };
+		9E6878CC2A1172DC0005672F /* Pink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pink.swift; sourceTree = "<group>"; };
+		9E6878CE2A1173AC0005672F /* Grey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grey.swift; sourceTree = "<group>"; };
 		9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		9E68BC4729B0FD2500DAA02D /* LiveTramTimesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveTramTimesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +236,12 @@
 		9EE694B529A2D55500C82599 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
 		9EE8F310299EE0D6000DE425 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EE8F315299EE1E5000DE425 /* MapManager-watchOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapManager-watchOS.swift"; sourceTree = "<group>"; };
+		9EEBC6512A1174B400FC72DC /* Red.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Red.swift; sourceTree = "<group>"; };
+		9EEBC6532A11752900FC72DC /* Navy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navy.swift; sourceTree = "<group>"; };
+		9EEBC6552A11762400FC72DC /* Yellow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yellow.swift; sourceTree = "<group>"; };
+		9EEBC6572A11766500FC72DC /* Purple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purple.swift; sourceTree = "<group>"; };
+		9EEBC6592A1176AE00FC72DC /* Blue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blue.swift; sourceTree = "<group>"; };
+		9EEBC65B2A11774B00FC72DC /* Green.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Green.swift; sourceTree = "<group>"; };
 		9EF27CC829F3E38900D194D6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9EF4B984299ED2D00054593E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -420,6 +436,7 @@
 		9E449E5829BE35C000C6ED79 /* Journeys */ = {
 			isa = PBXGroup;
 			children = (
+				9E6878CB2A1172D00005672F /* MapExamples */,
 				9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */,
 				9EF27CC829F3E38900D194D6 /* MapView.swift */,
 				9E0158A129FEF2EB009B6625 /* ServiceInformationView.swift */,
@@ -439,6 +456,21 @@
 				9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */,
 			);
 			path = Nearby;
+			sourceTree = "<group>";
+		};
+		9E6878CB2A1172D00005672F /* MapExamples */ = {
+			isa = PBXGroup;
+			children = (
+				9E6878CC2A1172DC0005672F /* Pink.swift */,
+				9E6878CE2A1173AC0005672F /* Grey.swift */,
+				9EEBC6512A1174B400FC72DC /* Red.swift */,
+				9EEBC6532A11752900FC72DC /* Navy.swift */,
+				9EEBC6552A11762400FC72DC /* Yellow.swift */,
+				9EEBC6572A11766500FC72DC /* Purple.swift */,
+				9EEBC6592A1176AE00FC72DC /* Blue.swift */,
+				9EEBC65B2A11774B00FC72DC /* Green.swift */,
+			);
+			path = MapExamples;
 			sourceTree = "<group>";
 		};
 		9E68BC4A29B0FD2500DAA02D /* LiveTramTimesWidget */ = {
@@ -761,15 +793,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EEBC65A2A1176AE00FC72DC /* Blue.swift in Sources */,
 				9E34D1DF29B7C57800A7CB9A /* Tram.swift in Sources */,
 				9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
+				9E6878CF2A1173AC0005672F /* Grey.swift in Sources */,
 				9EB4234429E08990004208B1 /* LocationManager.swift in Sources */,
 				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E34D1D929B7BD5300A7CB9A /* StopViewModel.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* LiveTramsMCR.swift in Sources */,
 				9E964B6329D8A2AD00BB536A /* DepartureBoardServices.swift in Sources */,
+				9EEBC6582A11766500FC72DC /* Purple.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
+				9EEBC6562A11762400FC72DC /* Yellow.swift in Sources */,
 				9EE3045129B3D0E3000F20A7 /* LiveTramTimesIntent.intentdefinition in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
 				9E19908C2A0039DC0059C45D /* ProcessedJourneyData.swift in Sources */,
@@ -780,6 +816,7 @@
 				9E6B01A529B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E29363029B4B15000DF32CC /* SystemMediumView.swift in Sources */,
 				9E964B6129D8974F00BB536A /* LiveTramsMCRShortcuts.swift in Sources */,
+				9EEBC65C2A11774B00FC72DC /* Green.swift in Sources */,
 				9E7B1EA12814B7D3007FA699 /* ServicesView.swift in Sources */,
 				9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */,
 				9E0158A429FEF327009B6625 /* NonInterchangeJourneyView.swift in Sources */,
@@ -790,17 +827,20 @@
 				9EE1934F2A080577008EB2ED /* JourneyPlanViewPad.swift in Sources */,
 				9EE1934D2A080569008EB2ED /* JourneyPlanViewDefault.swift in Sources */,
 				9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
+				9E6878CD2A1172DC0005672F /* Pink.swift in Sources */,
 				9E0158A629FEF3EA009B6625 /* InterchangeJourneyView.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* Home.swift in Sources */,
 				9EF27CC929F3E38900D194D6 /* MapView.swift in Sources */,
 				9E68BC5C29B13C6100DAA02D /* SystemSmallView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
 				9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */,
+				9EEBC6522A1174B400FC72DC /* Red.swift in Sources */,
 				9E964B5F29D896C000BB536A /* GetNextTramIntent.swift in Sources */,
 				9E0158A829FEF680009B6625 /* RouteHelper.swift in Sources */,
 				9E84E2C82812AAA600571ECA /* LiveTramsMCR.xcdatamodeld in Sources */,
 				9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */,
 				9E49869E29EC7E0900CBCC34 /* RouteV2.swift in Sources */,
+				9EEBC6542A11752900FC72DC /* Navy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
