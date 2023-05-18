@@ -39,9 +39,7 @@ struct MapView: UIViewRepresentable {
         
         var stopAnnotations: [StopAnnotation] = []
         var routePolylines: [RoutePolyline] = []
-        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
-        polyline.routeColor = UIColor(lineColorFromOrigin)
-        routePolylines.append(polyline)
+        
         
         for key in ExampleRouteCoordinates.exampleCoordinates.keys {
             let values = ExampleRouteCoordinates.exampleCoordinates[key]
@@ -54,6 +52,10 @@ struct MapView: UIViewRepresentable {
             testPolyline.routeColor = key
             routePolylines.append(testPolyline)
         }
+        
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
+        polyline.routeColor = UIColor(lineColorFromOrigin)
+        routePolylines.append(polyline)
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
             if index == 0 {
@@ -125,9 +127,7 @@ struct MapView: UIViewRepresentable {
         
         var stopAnnotations: [StopAnnotation] = []
         var routePolylines: [RoutePolyline] = []
-        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
-        polyline.routeColor = UIColor(lineColorFromOrigin)
-        routePolylines.append(polyline)
+        
         
         for key in ExampleRouteCoordinates.exampleCoordinates.keys {
             let values = ExampleRouteCoordinates.exampleCoordinates[key]
@@ -140,6 +140,10 @@ struct MapView: UIViewRepresentable {
             testPolyline.routeColor = key
             routePolylines.append(testPolyline)
         }
+        
+        let polyline = RoutePolyline(coordinates: lineCoordinatesFromOrigin.map {$0.value}, count: lineCoordinatesFromOrigin.count)
+        polyline.routeColor = UIColor(lineColorFromOrigin)
+        routePolylines.append(polyline)
         
         for (index, stop) in lineCoordinatesFromOrigin.keys.enumerated() {
             let annotation = StopAnnotation()
