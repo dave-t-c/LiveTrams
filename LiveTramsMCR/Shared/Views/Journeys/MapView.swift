@@ -207,3 +207,12 @@ class StopAnnotation: MKPointAnnotation {
     var stopColor: UIColor = .white
     var stopSize: CGSize = CGSize(width: 15, height: 15)
 }
+
+class StopAnnotationButton: UIButton {
+    var action: StopAnnotationButtionActions = .SetOrigin
+}
+
+enum StopAnnotationButtionActions {
+    case SetOrigin
+    case SetDestination
+}

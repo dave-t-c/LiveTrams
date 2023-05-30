@@ -29,7 +29,7 @@ struct JourneyPlanViewDefault: View {
     private let servicesRequest = ServicesRequest()
     private let defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 53.4854221, longitude: -2.2077785),
-        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
@@ -58,7 +58,7 @@ struct JourneyPlanViewDefault: View {
             .ignoresSafeArea(.container)
         } else {
             
-            DefaultMapView(region: defaultMapRegion, routes: routes)
+            DefaultMapView(region: defaultMapRegion, routes: routes, originStop: $originStop, destinationStop: $destinationStop)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
                 .ignoresSafeArea(.all)
