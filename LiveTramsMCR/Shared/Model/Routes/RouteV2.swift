@@ -11,7 +11,9 @@ struct RouteV2: Identifiable, Decodable, Encodable, Equatable, Hashable {
     let name: String
     let colour: String
     let stops: [StopKeys]
-    var id: String {
-        name
+    let stopsDetail: [Stop]
+    let polylineCoordinates: [[Double]]
+    var id: Int {
+        name.hashValue
     }
 }
