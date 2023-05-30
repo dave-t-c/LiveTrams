@@ -51,6 +51,7 @@
 		9E4BBE472A264BD200469999 /* SimpleRouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BBE452A264AE900469999 /* SimpleRouteV2.swift */; };
 		9E4BBE482A264BD200469999 /* SimpleRouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BBE452A264AE900469999 /* SimpleRouteV2.swift */; };
 		9E4BBE492A264BD300469999 /* SimpleRouteV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BBE452A264AE900469999 /* SimpleRouteV2.swift */; };
+		9E4BBE4B2A264D3500469999 /* RouteV2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */; };
 		9E68BC4829B0FD2500DAA02D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */; };
 		9E68BC4929B0FD2500DAA02D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */; };
 		9E68BC4C29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E68BC4B29B0FD2500DAA02D /* LiveTramTimesWidgetBundle.swift */; };
@@ -185,6 +186,7 @@
 		9E49869D29EC7E0900CBCC34 /* RouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteV2.swift; sourceTree = "<group>"; };
 		9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopKeys.swift; sourceTree = "<group>"; };
 		9E4BBE452A264AE900469999 /* SimpleRouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRouteV2.swift; sourceTree = "<group>"; };
+		9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteV2Request.swift; sourceTree = "<group>"; };
 		9E68BC1A29B0FCA800DAA02D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9E68BC1C29B0FCA800DAA02D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		9E68BC4729B0FD2500DAA02D /* LiveTramTimesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveTramTimesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +349,7 @@
 				9EC2FB6D2814982B00C08784 /* StopRequest.swift */,
 				9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */,
 				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
+				9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -802,6 +805,7 @@
 				9E0158A629FEF3EA009B6625 /* InterchangeJourneyView.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* Home.swift in Sources */,
 				9EF27CC929F3E38900D194D6 /* MapView.swift in Sources */,
+				9E4BBE4B2A264D3500469999 /* RouteV2Request.swift in Sources */,
 				9E68BC5C29B13C6100DAA02D /* SystemSmallView.swift in Sources */,
 				9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */,
 				9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */,
