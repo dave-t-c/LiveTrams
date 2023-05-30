@@ -21,11 +21,15 @@ struct JourneyPlanViewDefault: View {
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
     @State private var plannerDetent = PresentationDetent.fraction(0.3)
+    @State private var routes: [RouteV2] = []
     
     var initialOrigin: String =  ""
     var stops: [String] = []
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
+    private let defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779),
+        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
@@ -53,7 +57,8 @@ struct JourneyPlanViewDefault: View {
             .cornerRadius(10)
             .ignoresSafeArea(.container)
         } else {
-            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))))
+            
+            DefaultMapView(region: defaultMapRegion, routes: routes)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
                 .ignoresSafeArea(.all)
@@ -160,6 +165,11 @@ struct JourneyPlanViewDefault: View {
             )
 
             
+        }
+        .onAppear {
+            RouteV2Request().requestRoutesV2 { (routes) in
+                self.routes = routes
+            }
         }
     }
 }
