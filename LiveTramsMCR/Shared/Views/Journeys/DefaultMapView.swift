@@ -22,9 +22,11 @@ struct DefaultMapView: UIViewRepresentable {
         mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
         
         let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
+        let stopAnnotations = generateRouteAnnotations(routes: routes)
         
         mapView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         mapView.addOverlays(baseRoutePolylines)
+        mapView.addAnnotations(stopAnnotations)
         mapView.region = region
         mapView.setRegion(region, animated: true)
         
@@ -44,9 +46,11 @@ struct DefaultMapView: UIViewRepresentable {
         
         
         let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
+        let stopAnnotations = generateRouteAnnotations(routes: routes)
 
         view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         view.addOverlays(baseRoutePolylines)
+        view.addAnnotations(stopAnnotations)
         view.region = region
         view.setRegion(region, animated: true)
     }
@@ -60,10 +64,33 @@ struct DefaultMapView: UIViewRepresentable {
         for route in routes {
             let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
             let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-            polyline.routeColor = displayMode == .dark ? .lightGray : .darkGray
+            polyline.routeColor = .lightGray
             routePolylines.append(polyline)
         }
         return routePolylines
+    }
+    
+    private func generateRouteAnnotations(routes: [RouteV2]) -> [StopAnnotation] {
+        var stopAnnotations: [StopAnnotation] = []
+        var stops: [Stop] = []
+        for route in routes {
+            stops.append(contentsOf: route.stopsDetail)
+        }
+        
+        let distinctStops = Array(Set(stops))
+        
+        for stop in distinctStops {
+            let coordinate = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+            
+            let annotation = StopAnnotation()
+            annotation.title = stop.stopName
+            annotation.coordinate = coordinate
+            annotation.stopColor = displayMode == .dark ? .white : .black
+            annotation.stopSize = CGSize(width: 15, height: 15)
+            stopAnnotations.append(annotation)
+        }
+        
+        return stopAnnotations
     }
 }
 

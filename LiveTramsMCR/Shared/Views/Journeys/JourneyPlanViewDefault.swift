@@ -28,7 +28,7 @@ struct JourneyPlanViewDefault: View {
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
     private let defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779),
+        center: CLLocationCoordinate2D(latitude: 53.4854221, longitude: -2.2077785),
         span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
     
     var availableDestinationStops: [String] {
