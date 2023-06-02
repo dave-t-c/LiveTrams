@@ -27,6 +27,7 @@ struct JourneyPlanViewDefault: View {
     var stops: [String] = []
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
+    @Environment(\.presentationMode) var presentation
     @State private var defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 53.4854221, longitude: -2.2077785),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
@@ -42,30 +43,53 @@ struct JourneyPlanViewDefault: View {
     }
     
     var body: some View {
-        if (journeyData != nil)
-        {
-            
-            let journeyData = journeyData!
-            
-            MapView(
-                region: journeyData.region,
-                lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
-                lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
-                lineColorFromOrigin: journeyData.lineColorFromOrigin,
-                lineColorFromInterchange: journeyData.lineColorFromInterchange)
-            .aspectRatio(contentMode: .fill)
-            .cornerRadius(10)
-            .ignoresSafeArea(.container)
-        } else {
-            
-            DefaultMapView(region: defaultMapRegion,
-                           routes: routes)
-                .aspectRatio(contentMode: .fill)
-                .cornerRadius(10)
-                .ignoresSafeArea(.all)
-        }
-        Text("")
         
+        GeometryReader { geometryReader in
+            ZStack (alignment: .topLeading) {
+                if (journeyData != nil)
+                {
+                    
+                    let journeyData = journeyData!
+                    
+                    MapView(
+                        region: journeyData.region,
+                        lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
+                        lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
+                        lineColorFromOrigin: journeyData.lineColorFromOrigin,
+                        lineColorFromInterchange: journeyData.lineColorFromInterchange)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(10)
+                    .ignoresSafeArea(.container)
+                } else {
+                    
+                    DefaultMapView(region: defaultMapRegion,
+                                   routes: routes)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(10)
+                    .ignoresSafeArea(.all)
+                }
+                
+                VStack {
+                    HStack {
+                        Button {
+                            presentation.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(maxWidth: 30, maxHeight: 30)
+                                .foregroundColor(.gray)
+                                
+                                
+                        }
+                        .padding(.leading, geometryReader.size.width * 0.1)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            }
+        }
+        
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showBottomSheet) {
             List {
                 Section{
@@ -164,7 +188,7 @@ struct JourneyPlanViewDefault: View {
             .presentationBackgroundInteraction(
                 .enabled(upThrough: .medium)
             )
-
+            
             
         }
         .onAppear {
