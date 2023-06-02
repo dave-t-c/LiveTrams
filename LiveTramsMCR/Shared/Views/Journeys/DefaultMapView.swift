@@ -11,11 +11,9 @@ import OrderedCollections
 
 struct DefaultMapView: UIViewRepresentable {
     
-    @Binding var region: MKCoordinateRegion
+    let region: MKCoordinateRegion
     let routes: [RouteV2]
     @Environment(\.colorScheme) private var displayMode
-    @Binding var originStop: String
-    @Binding var destinationStop: String
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -133,42 +131,11 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
                  _ in annotationView.image!.draw(in:CGRect(origin: .zero, size: annotation!.stopSize))
             }
             
-            let setOrigin = StopAnnotationButton(type: .detailDisclosure)
-            setOrigin.action = .SetOrigin
-            annotationView.leftCalloutAccessoryView = setOrigin
-            
-            let setDestination = StopAnnotationButton(type: .detailDisclosure)
-            setDestination.action = .SetDestination
-            annotationView.rightCalloutAccessoryView = setDestination
             return annotationView
         }
         
 
         return nil
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if !(view.annotation is StopAnnotation) {
-            return
-        }
-        
-        let annotation = view.annotation as! StopAnnotation
-        let stopName = annotation.title
-        
-        if !(control is StopAnnotationButton) {
-            return
-        }
-        
-        let button = control as! StopAnnotationButton
-        
-        parent.region = mapView.region
-        
-        switch button.action {
-        case .SetDestination:
-            parent.destinationStop = stopName!
-        case .SetOrigin:
-            parent.originStop = stopName!
-        }
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
