@@ -61,7 +61,7 @@ struct DefaultMapView: UIViewRepresentable {
         for route in routes {
             let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
             let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-            polyline.routeColor = .black
+            polyline.routeColor = .darkGray
             routePolylines.append(polyline)
         }
         return routePolylines
