@@ -27,7 +27,7 @@ struct JourneyPlanViewDefault: View {
     var stops: [String] = []
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
-    private let defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
+    @State private var defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 53.4854221, longitude: -2.2077785),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
@@ -58,7 +58,7 @@ struct JourneyPlanViewDefault: View {
             .ignoresSafeArea(.container)
         } else {
             
-            DefaultMapView(region: defaultMapRegion,
+            DefaultMapView(region: $defaultMapRegion,
                            routes: routes,
                            originStop: $originStop,
                            destinationStop: $destinationStop)

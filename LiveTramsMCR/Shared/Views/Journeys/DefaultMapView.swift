@@ -11,7 +11,7 @@ import OrderedCollections
 
 struct DefaultMapView: UIViewRepresentable {
     
-    let region: MKCoordinateRegion
+    @Binding var region: MKCoordinateRegion
     let routes: [RouteV2]
     @Environment(\.colorScheme) private var displayMode
     @Binding var originStop: String
@@ -24,7 +24,7 @@ struct DefaultMapView: UIViewRepresentable {
         mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
         
         let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
-        let stopAnnotations = generateRouteAnnotations(routes: routes)
+        let stopAnnotations = generateRouteAnnotations(mapView: mapView, routes: routes)
         
         mapView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         mapView.addOverlays(baseRoutePolylines)
@@ -47,7 +47,7 @@ struct DefaultMapView: UIViewRepresentable {
         
         
         let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
-        let stopAnnotations = generateRouteAnnotations(routes: routes)
+        let stopAnnotations = generateRouteAnnotations(mapView: view, routes: routes)
 
         view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         view.addOverlays(baseRoutePolylines)
@@ -71,7 +71,7 @@ struct DefaultMapView: UIViewRepresentable {
         return routePolylines
     }
     
-    private func generateRouteAnnotations(routes: [RouteV2]) -> [StopAnnotation] {
+    private func generateRouteAnnotations(mapView: MKMapView, routes: [RouteV2]) -> [StopAnnotation] {
         var stopAnnotations: [StopAnnotation] = []
         var stops: [Stop] = []
         for route in routes {
@@ -87,7 +87,6 @@ struct DefaultMapView: UIViewRepresentable {
             annotation.title = stop.stopName
             annotation.coordinate = coordinate
             annotation.stopColor = displayMode == .dark ? .white : .black
-            annotation.stopSize = CGSize(width: 15, height: 15)
             stopAnnotations.append(annotation)
         }
         
@@ -97,6 +96,9 @@ struct DefaultMapView: UIViewRepresentable {
 
 class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
     var parent: DefaultMapView
+    
+    private var lastSeenLatitudeDelta: CLLocationDegrees = 0
+    private let maxSize: CGSize = CGSize(width: 20, height: 20)
     
     init(_ parent: DefaultMapView) {
         self.parent = parent
@@ -118,7 +120,17 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
             let annotation = annotation as? StopAnnotation
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: UUID().uuidString)
             annotationView.canShowCallout = true
-            annotationView.image = UIImage(systemName: "smallcircle.filled.circle")?.withTintColor(annotation!.stopColor)
+            
+            let width = (2 / mapView.region.span.latitudeDelta)
+            let height = (2 / mapView.region.span.latitudeDelta)
+            let size = CGSize(width: width, height: height)
+            if (width > maxSize.width) {
+                annotation?.stopSize = maxSize
+            }
+            
+            annotation?.stopSize = width > maxSize.width ? maxSize : size
+            
+            annotationView.image = UIImage(systemName: "circle.inset.filled")?.withTintColor(annotation!.stopColor)
             annotationView.image = UIGraphicsImageRenderer(size: annotation!.stopSize).image {
                  _ in annotationView.image!.draw(in:CGRect(origin: .zero, size: annotation!.stopSize))
             }
@@ -151,11 +163,39 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
         
         let button = control as! StopAnnotationButton
         
+        parent.region = mapView.region
+        
         switch button.action {
         case .SetDestination:
             parent.destinationStop = stopName!
         case .SetOrigin:
             parent.originStop = stopName!
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let latitudeDeltaChange = lastSeenLatitudeDelta.magnitude - mapView.region.span.latitudeDelta.magnitude
+        
+        if (latitudeDeltaChange.magnitude < 0.01)
+        {
+            lastSeenLatitudeDelta = mapView.region.span.latitudeDelta.magnitude
+            return
+        }
+        
+        resetMapAnnotations(mapView: mapView)
+        
+        lastSeenLatitudeDelta = mapView.region.span.latitudeDelta.magnitude
+    }
+    
+    private func resetMapAnnotations(mapView: MKMapView) {
+        
+        let existingAnnotations = mapView.annotations
+        mapView.annotations.forEach {
+            mapView.removeAnnotation($0)
+        }
+        
+        mapView.addAnnotations(existingAnnotations)
+                
     }
 }
