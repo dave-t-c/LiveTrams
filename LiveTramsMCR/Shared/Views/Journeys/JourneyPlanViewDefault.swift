@@ -58,7 +58,10 @@ struct JourneyPlanViewDefault: View {
             .ignoresSafeArea(.container)
         } else {
             
-            DefaultMapView(region: defaultMapRegion, routes: routes, originStop: $originStop, destinationStop: $destinationStop)
+            DefaultMapView(region: defaultMapRegion,
+                           routes: routes,
+                           originStop: $originStop,
+                           destinationStop: $destinationStop)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(10)
                 .ignoresSafeArea(.all)

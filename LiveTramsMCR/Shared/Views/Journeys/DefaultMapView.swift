@@ -144,14 +144,12 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
         
         let annotation = view.annotation as! StopAnnotation
         let stopName = annotation.title
-        print(stopName)
         
         if !(control is StopAnnotationButton) {
             return
         }
         
         let button = control as! StopAnnotationButton
-        print(button.action)
         
         switch button.action {
         case .SetDestination:
