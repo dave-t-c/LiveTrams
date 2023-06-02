@@ -44,8 +44,7 @@ struct JourneyPlanViewDefault: View {
     
     var body: some View {
         
-        GeometryReader { geometryReader in
-            ZStack (alignment: .topLeading) {
+            ZStack {
                 if (journeyData != nil)
                 {
                     
@@ -70,6 +69,7 @@ struct JourneyPlanViewDefault: View {
                 }
                 
                 VStack {
+                    
                     HStack {
                         Button {
                             presentation.wrappedValue.dismiss()
@@ -78,15 +78,11 @@ struct JourneyPlanViewDefault: View {
                                 .resizable()
                                 .frame(maxWidth: 30, maxHeight: 30)
                                 .foregroundColor(.gray)
-                                
-                                
+                                .padding(.trailing, 300)
                         }
-                        .padding(.leading, geometryReader.size.width * 0.1)
-                        Spacer()
                     }
                     Spacer()
                 }
-            }
         }
         
         .navigationBarBackButtonHidden(true)
