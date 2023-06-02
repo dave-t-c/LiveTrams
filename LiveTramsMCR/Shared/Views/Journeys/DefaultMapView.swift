@@ -35,7 +35,10 @@ struct DefaultMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-        view.region = region
+        let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
+        let stopAnnotations = generateRouteAnnotations(mapView: view, routes: routes)
+
+        view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         
         view.overlays.forEach {
             view.removeOverlay($0)
@@ -45,11 +48,6 @@ struct DefaultMapView: UIViewRepresentable {
             view.removeAnnotation($0)
         }
         
-        
-        let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
-        let stopAnnotations = generateRouteAnnotations(mapView: view, routes: routes)
-
-        view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         view.addOverlays(baseRoutePolylines)
         view.addAnnotations(stopAnnotations)
         view.region = region
