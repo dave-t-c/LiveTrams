@@ -163,8 +163,6 @@ struct MapView: UIViewRepresentable {
         view.addAnnotations(stopAnnotations)
         view.region = region
         view.setRegion(region, animated: true)
-        
-        print("Updated view: \(view.region.span.latitudeDelta)")
     }
     
     func makeCoordinator() -> Coordinator {
