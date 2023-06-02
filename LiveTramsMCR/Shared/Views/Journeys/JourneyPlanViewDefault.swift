@@ -73,6 +73,7 @@ struct JourneyPlanViewDefault: View {
                     HStack {
                         Button {
                             presentation.wrappedValue.dismiss()
+                            showBottomSheet = false
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .resizable()
@@ -191,6 +192,8 @@ struct JourneyPlanViewDefault: View {
             RouteV2Request().requestRoutesV2 { (routes) in
                 self.routes = routes
             }
+            
+            showBottomSheet = true
         }
     }
 }
