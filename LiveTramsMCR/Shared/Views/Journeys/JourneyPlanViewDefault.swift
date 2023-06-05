@@ -21,11 +21,16 @@ struct JourneyPlanViewDefault: View {
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
     @State private var plannerDetent = PresentationDetent.fraction(0.3)
+    @State private var routes: [RouteV2] = []
     
     var initialOrigin: String =  ""
     var stops: [String] = []
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
+    @Environment(\.presentationMode) var presentation
+    @State private var defaultMapRegion: MKCoordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 53.4854221, longitude: -2.2077785),
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
@@ -38,28 +43,50 @@ struct JourneyPlanViewDefault: View {
     }
     
     var body: some View {
-        if (journeyData != nil)
-        {
-            
-            let journeyData = journeyData!
-            
-            MapView(
-                region: journeyData.region,
-                lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
-                lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
-                lineColorFromOrigin: journeyData.lineColorFromOrigin,
-                lineColorFromInterchange: journeyData.lineColorFromInterchange)
-            .aspectRatio(contentMode: .fill)
-            .cornerRadius(10)
-            .ignoresSafeArea(.container)
-        } else {
-            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.481091, longitude: -2.244779), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))))
-                .aspectRatio(contentMode: .fill)
-                .cornerRadius(10)
-                .ignoresSafeArea(.all)
-        }
-        Text("")
         
+            ZStack {
+                if (journeyData != nil)
+                {
+                    
+                    let journeyData = journeyData!
+                    
+                    MapView(
+                        region: journeyData.region,
+                        lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
+                        lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
+                        lineColorFromOrigin: journeyData.lineColorFromOrigin,
+                        lineColorFromInterchange: journeyData.lineColorFromInterchange)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(10)
+                    .ignoresSafeArea(.container)
+                } else {
+                    
+                    DefaultMapView(region: defaultMapRegion,
+                                   routes: routes)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(10)
+                    .ignoresSafeArea(.all)
+                }
+                
+                VStack {
+                    
+                    HStack {
+                        Button {
+                            presentation.wrappedValue.dismiss()
+                            showBottomSheet = false
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(maxWidth: 30, maxHeight: 30)
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 300)
+                        }
+                    }
+                    Spacer()
+                }
+        }
+        
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showBottomSheet) {
             List {
                 Section{
@@ -158,8 +185,15 @@ struct JourneyPlanViewDefault: View {
             .presentationBackgroundInteraction(
                 .enabled(upThrough: .medium)
             )
-
             
+            
+        }
+        .onAppear {
+            RouteV2Request().requestRoutesV2 { (routes) in
+                self.routes = routes
+            }
+            
+            showBottomSheet = true
         }
     }
 }

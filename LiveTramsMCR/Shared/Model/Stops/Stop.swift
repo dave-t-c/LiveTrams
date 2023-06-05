@@ -18,7 +18,7 @@ struct Stop: Identifiable, Codable, Equatable, Hashable{
     let street: String
     let tlaref: String
     let stopZone: String
-    let routes: [RouteV2]?
+    let routes: [SimpleRouteV2]?
     var id: Int {
         tlaref.hashValue
     }
