@@ -200,11 +200,18 @@ struct Home: View {
                 }
                 .refreshable {
                     Task {
-                        await self.stopViewModel.UpdateNearestStops()
                         
                         StopRequest().requestStops { (stops) in
                             self.stopViewModel.stops = stops
                         }
+                        
+                        RouteV2Request().requestRoutesV2 { (routes) in
+                            self.stopViewModel.routes = routes
+                        }
+                        
+                        await self.stopViewModel.UpdateNearestStops()
+                        
+                        
                     }
                 }
                 Text("No stop selected")
