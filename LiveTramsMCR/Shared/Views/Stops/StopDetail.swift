@@ -12,15 +12,36 @@ struct StopDetail: View {
     
     var stop: Stop
     var stops: [Stop]
+    var region: MKCoordinateRegion
+    var initialRoute: RouteV2?
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
     
     
-    init(selectedStop: Stop, stopList: [Stop]) {
+    init(selectedStop: Stop, stopList: [Stop], routes: [RouteV2]) {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
         self.stop = selectedStop
         self.stops = stopList
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        
+        if selectedStop.routes == nil {
+            return
+        }
+        
+        if (selectedStop.routes == nil || selectedStop.routes!.isEmpty) {
+            return
+        }
+        let stopRoutes = selectedStop.routes!
+        let initialRouteKeys = stopRoutes.first!
+        let matchedRoute = routes.first(where: { $0.name == initialRouteKeys.name })
+        
+        if (matchedRoute == nil) {
+            return
+        }
+        
+        initialRoute = matchedRoute!
+        
     }
     
     @ViewBuilder
@@ -51,9 +72,16 @@ struct StopDetail: View {
                         
                         
                     default:
-                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(10)
+                        if (initialRoute != nil) {
+                            StopDetailMap(region: self.region, route: initialRoute!)
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(10)
+                        } else {
+                            Map(coordinateRegion: .constant(self.region))
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(10)
+                        }
+                        
                     }
                 }
                 .listRowBackground(Color.clear)
