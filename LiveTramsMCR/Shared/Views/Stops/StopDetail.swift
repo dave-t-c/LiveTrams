@@ -12,8 +12,9 @@ struct StopDetail: View {
     
     var stop: Stop
     var stops: [Stop]
+    var routes: [RouteV2]
+    var stopRoutes: [RouteV2]
     var region: MKCoordinateRegion
-    var initialRoute: RouteV2?
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
@@ -23,24 +24,19 @@ struct StopDetail: View {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
         self.stop = selectedStop
         self.stops = stopList
+        self.routes = routes.reversed()
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         
-        if selectedStop.routes == nil {
-            return
-        }
-        
         if (selectedStop.routes == nil || selectedStop.routes!.isEmpty) {
-            return
-        }
-        let stopRoutes = selectedStop.routes!
-        let initialRouteKeys = stopRoutes.first!
-        let matchedRoute = routes.first(where: { $0.name == initialRouteKeys.name })
-        
-        if (matchedRoute == nil) {
+            self.stopRoutes = routes
             return
         }
         
-        initialRoute = matchedRoute!
+        let stopRouteNames = selectedStop.routes!.map {$0.name}
+        
+        self.stopRoutes = routes.filter {stopRouteNames.contains($0.name)}.reversed()
+        
+        
         
     }
     
@@ -72,15 +68,9 @@ struct StopDetail: View {
                         
                         
                     default:
-                        if (initialRoute != nil) {
-                            StopDetailMap(region: self.region, route: initialRoute!)
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(10)
-                        } else {
-                            Map(coordinateRegion: .constant(self.region))
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(10)
-                        }
+                        StopDetailMap(region: self.region, routes: self.stopRoutes, stop: stop)
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(10)
                         
                     }
                 }

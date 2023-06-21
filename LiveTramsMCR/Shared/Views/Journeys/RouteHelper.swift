@@ -95,4 +95,37 @@ struct RouteHelper {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0
         )
     }
+    
+    public func generateAllRoutePolylines(routes: [RouteV2], enableRouteColor: Bool) -> [RoutePolyline] {
+        var routePolylines: [RoutePolyline] = []
+        for route in routes {
+            let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
+            let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+            polyline.routeColor = enableRouteColor ? UIColor(self.GenerateRouteColor(hex: route.colour)) : .darkGray
+            routePolylines.append(polyline)
+        }
+        return routePolylines
+    }
+    
+    public func generateRouteAnnotations(routes: [RouteV2], displayMode: ColorScheme) -> [StopAnnotation] {
+        var stopAnnotations: [StopAnnotation] = []
+        var stops: [Stop] = []
+        for route in routes {
+            stops.append(contentsOf: route.stopsDetail)
+        }
+        
+        let distinctStops = Array(Set(stops))
+        
+        for stop in distinctStops {
+            let coordinate = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+            
+            let annotation = StopAnnotation()
+            annotation.title = stop.stopName
+            annotation.coordinate = coordinate
+            annotation.stopColor = displayMode == .dark ? .white : .black
+            stopAnnotations.append(annotation)
+        }
+        
+        return stopAnnotations
+    }
 }

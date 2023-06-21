@@ -14,6 +14,7 @@ struct DefaultMapView: UIViewRepresentable {
     let region: MKCoordinateRegion
     let routes: [RouteV2]
     @Environment(\.colorScheme) private var displayMode
+    private let routeHelper: RouteHelper = RouteHelper()
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -21,8 +22,8 @@ struct DefaultMapView: UIViewRepresentable {
         
         mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
         
-        let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
-        let stopAnnotations = generateRouteAnnotations(mapView: mapView, routes: routes)
+        let baseRoutePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: false)
+        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
         
         mapView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         mapView.addOverlays(baseRoutePolylines)
@@ -33,8 +34,8 @@ struct DefaultMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-        let baseRoutePolylines = generateAllRoutePolylines(routes: routes)
-        let stopAnnotations = generateRouteAnnotations(mapView: view, routes: routes)
+        let baseRoutePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: false)
+        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
 
         view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         
@@ -56,38 +57,7 @@ struct DefaultMapView: UIViewRepresentable {
         DefaultMapViewCoordinator(self)
     }
     
-    private func generateAllRoutePolylines(routes: [RouteV2]) -> [RoutePolyline] {
-        var routePolylines: [RoutePolyline] = []
-        for route in routes {
-            let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
-            let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
-            polyline.routeColor = .darkGray
-            routePolylines.append(polyline)
-        }
-        return routePolylines
-    }
     
-    private func generateRouteAnnotations(mapView: MKMapView, routes: [RouteV2]) -> [StopAnnotation] {
-        var stopAnnotations: [StopAnnotation] = []
-        var stops: [Stop] = []
-        for route in routes {
-            stops.append(contentsOf: route.stopsDetail)
-        }
-        
-        let distinctStops = Array(Set(stops))
-        
-        for stop in distinctStops {
-            let coordinate = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
-            
-            let annotation = StopAnnotation()
-            annotation.title = stop.stopName
-            annotation.coordinate = coordinate
-            annotation.stopColor = displayMode == .dark ? .white : .black
-            stopAnnotations.append(annotation)
-        }
-        
-        return stopAnnotations
-    }
 }
 
 class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
@@ -114,7 +84,7 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StopAnnotation {
             let annotation = annotation as? StopAnnotation
-            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: UUID().uuidString)
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.title)
             annotationView.canShowCallout = true
             
             let width = (2 / mapView.region.span.latitudeDelta)
@@ -163,4 +133,15 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
         mapView.addAnnotations(existingAnnotations)
                 
     }
+    
+    func increaseRect(rect: CGRect, byPercentage percentage: CGFloat) -> CGRect {
+        let startWidth = CGRectGetWidth(rect)
+        let startHeight = CGRectGetHeight(rect)
+        let adjustmentWidth = (startWidth * percentage) / 2.0
+        let adjustmentHeight = (startHeight * percentage) / 2.0
+        return CGRectInset(rect, -adjustmentWidth, -adjustmentHeight)
+    }
+
+    let rect = CGRectMake(0, 0, 10, 10)
+   
 }
