@@ -88,94 +88,97 @@ struct JourneyPlanViewDefault: View {
         
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showBottomSheet) {
-            List {
-                Section{
-                    
-                    VStack{
-                        Text("Journey Planner")
-                            .font(.headline)
-                        Picker("Origin", selection: $originStop){
-                            Text("Select Stop").tag("")
-                            ForEach(availableOriginStops, id: \.self) { stop in
-                                Text(stop).tag(stop)
+            NavigationView {
+                
+                List {
+                    Section{
+                        
+                        VStack{
+                            Text("Journey Planner")
+                                .font(.headline)
+                            Picker("Origin", selection: $originStop){
+                                Text("Select Stop").tag("")
+                                ForEach(availableOriginStops, id: \.self) { stop in
+                                    Text(stop).tag(stop)
+                                }
+                            }
+                            .onAppear {
+                                originStop = originStop == "" ? initialOrigin : originStop
+                            }
+                            
+                            
+                            HStack{
+                                Image(systemName: "arrow.triangle.swap")
+                                    .imageScale(.large)
+                                    .foregroundColor(.blue)
+                                    .onTapGesture {
+                                        let temp = destinationStop
+                                        destinationStop = originStop
+                                        originStop = temp
+                                    }
+                                Spacer()
+                            }
+                            Picker("Destination", selection: $destinationStop){
+                                Text("Select Stop").tag("")
+                                ForEach(availableDestinationStops, id: \.self) { stop in
+                                    Text(stop).tag(stop)
+                                }
                             }
                         }
-                        .onAppear {
-                            originStop = originStop == "" ? initialOrigin : originStop
-                        }
                         
-                        
+                    }
+                    Section{
                         HStack{
-                            Image(systemName: "arrow.triangle.swap")
-                                .imageScale(.large)
-                                .foregroundColor(.blue)
-                                .onTapGesture {
-                                    let temp = destinationStop
-                                    destinationStop = originStop
-                                    originStop = temp
+                            Spacer()
+                            Button(action: {
+                                Task {
+                                    gettingJourneyRequest = true
+                                    var serviceInformationHolder: [FormattedServices] = []
+                                    plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                                    serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
+                                    serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                                    serviceInformation = serviceInformationHolder
+                                    gettingJourneyRequest = false
+                                    if(plannedJourney == nil){
+                                        return
+                                    }
+                                    
+                                    processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
+                                    journeyData = ProcessedJourneyData(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                                 }
+                            }) {
+                                Label("Plan Journey", systemImage: "tram.fill")
+                            }
+                            .padding()
+                            
+                            if (gettingJourneyRequest) {
+                                ProgressView()
+                                    .progressViewStyle(.circular)
+                            }
+                            
                             Spacer()
                         }
-                        Picker("Destination", selection: $destinationStop){
-                            Text("Select Stop").tag("")
-                            ForEach(availableDestinationStops, id: \.self) { stop in
-                                Text(stop).tag(stop)
+                    }
+                    
+                    if(plannedJourney != nil && processedPlannedJourney != nil)
+                    {
+                        Section {
+                            
+                            Text(processedPlannedJourney!.formattedTime).font(.headline)
+                            
+                            if (plannedJourney!.requiresInterchange){
+                                InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
                             }
-                        }
-                    }
-                    
-                }
-                Section{
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            Task {
-                                gettingJourneyRequest = true
-                                var serviceInformationHolder: [FormattedServices] = []
-                                plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                                serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
-                                serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
-                                serviceInformation = serviceInformationHolder
-                                gettingJourneyRequest = false
-                                if(plannedJourney == nil){
-                                    return
-                                }
-                                
-                                processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
-                                journeyData = ProcessedJourneyData(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
+                            else{
+                                NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                             }
-                        }) {
-                            Label("Plan Journey", systemImage: "tram.fill")
-                        }
-                        .padding()
-                        
-                        if (gettingJourneyRequest) {
-                            ProgressView()
-                                .progressViewStyle(.circular)
+                            
+                            ServiceInformationView(serviceInformation: serviceInformation)
                         }
                         
-                        Spacer()
+                        
+                        
                     }
-                }
-                
-                if(plannedJourney != nil && processedPlannedJourney != nil)
-                {
-                    Section {
-                        
-                        Text(processedPlannedJourney!.formattedTime).font(.headline)
-                        
-                        if (plannedJourney!.requiresInterchange){
-                            InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
-                        }
-                        else{
-                            NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
-                        }
-                        
-                        ServiceInformationView(serviceInformation: serviceInformation)
-                    }
-                    
-                    
-                    
                 }
                 
             }
