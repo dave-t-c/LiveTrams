@@ -216,7 +216,7 @@ struct Home: View {
         if searchText.isEmpty {
             return self.stopViewModel.stops
         } else {
-            return self.stopViewModel.stops.filter { $0.stopName.contains(searchText)}
+            return self.stopViewModel.stops.filter { $0.stopName.lowercased().contains(searchText.lowercased())}
         }
     }
     
