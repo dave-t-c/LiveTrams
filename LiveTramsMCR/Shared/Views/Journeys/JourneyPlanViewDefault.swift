@@ -16,12 +16,14 @@ struct JourneyPlanViewDefault: View {
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var journeyPlannerV2Request = JourneyPlannerV2Request()
     @State private var serviceInformation: [FormattedServices] = []
     @State private var gettingJourneyRequest: Bool = false
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
     @State private var plannerDetent = PresentationDetent.fraction(0.3)
     @State private var routes: [RouteV2] = []
+    @State private var plannedJourneyV2: PlannedJourneyV2Response? = nil
     
     var initialOrigin: String =  ""
     var stops: [String] = []
@@ -45,15 +47,17 @@ struct JourneyPlanViewDefault: View {
     var body: some View {
         
             ZStack {
-                if (journeyData != nil)
+                if (journeyData != nil && plannedJourneyV2 != nil)
                 {
                     
                     let journeyData = journeyData!
                     
                     MapView(
                         region: journeyData.region,
-                        lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
-                        lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
+                        lineCoordinatesFromOrigin: plannedJourneyV2!.visualisedJourney.polylineFromOrigin,
+                        stopCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
+                        lineCoordinatesFromInterchange: plannedJourneyV2?.visualisedJourney.polylineFromInterchange,
+                        stopCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
                         lineColorFromOrigin: journeyData.lineColorFromOrigin,
                         lineColorFromInterchange: journeyData.lineColorFromInterchange)
                     .aspectRatio(contentMode: .fill)
@@ -137,6 +141,7 @@ struct JourneyPlanViewDefault: View {
                                     plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                                     serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
                                     serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
+                                    plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                                     serviceInformation = serviceInformationHolder
                                     gettingJourneyRequest = false
                                     if(plannedJourney == nil){
