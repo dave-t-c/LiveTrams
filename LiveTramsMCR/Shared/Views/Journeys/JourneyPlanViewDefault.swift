@@ -168,21 +168,25 @@ struct JourneyPlanViewDefault: View {
                     if(processedPlannedJourneyV2 != nil && plannedJourneyV2 != nil)
                     {
                         Section {
-                            
                             Text(processedPlannedJourneyV2!.formattedTime).font(.headline)
+                            if (plannedJourneyV2!.nextService != nil){
+                                Text("Take the next tram towards \(plannedJourneyV2!.nextService!.destination.stopName) in \(plannedJourneyV2!.nextService!.wait) mins")
+                                    .font(.headline)
+                            }
                             
                             if (plannedJourneyV2!.plannedJourney.requiresInterchange){
                                 InterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2!)
+                                    .padding()
                             }
                             else{
                                 NonInterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2)
+                                    .padding()
                             }
-                            
-                            ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)
                         }
                         
-                        
-                        
+                        Section {
+                            ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)
+                        }
                     }
                 }
                 .navigationTitle("Journey Planner")
