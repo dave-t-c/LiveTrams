@@ -21,10 +21,12 @@ struct JourneyPlanViewPad: View {
     @State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourney: ProcessedPlannedJourney?
     @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var journeyPlannerV2Request = JourneyPlannerV2Request()
     @State private var servicesRequest = ServicesRequest()
-    @State private var serviceInformation: [FormattedServices] = []
     @State private var gettingJourneyRequest: Bool = false
     @State private var journeyMapAvailable: Bool = false
+    
+    @State private var plannedJourneyV2: PlannedJourneyV2Response? = nil
     
     
     var availableDestinationStops: [String] {
@@ -80,11 +82,8 @@ struct JourneyPlanViewPad: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
-                            var serviceInformationHolder: [FormattedServices] = []
                             plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
-                            serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
-                            serviceInformation = serviceInformationHolder
+                            plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                             gettingJourneyRequest = false
                             if(plannedJourney == nil){
                                 return
@@ -106,7 +105,7 @@ struct JourneyPlanViewPad: View {
                 }
             }
             
-            if(plannedJourney != nil && processedPlannedJourney != nil)
+            if(plannedJourney != nil && processedPlannedJourney != nil && plannedJourneyV2 != nil)
             {
                 Section {
                     
@@ -119,7 +118,7 @@ struct JourneyPlanViewPad: View {
                         NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
                     }
                     
-                    ServiceInformationView(serviceInformation: serviceInformation)
+                    ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)
                 }
                 
                 
