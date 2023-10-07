@@ -211,7 +211,7 @@ class Coordinator: NSObject, MKMapViewDelegate {
             let routePolyline = overlay as? RoutePolyline
             let renderer = MKPolylineRenderer(polyline: routePolyline!)
             renderer.strokeColor = routePolyline!.routeColor
-            renderer.lineWidth = 5
+            renderer.lineWidth = 2
             return renderer
         }
         return MKOverlayRenderer(overlay: overlay)
