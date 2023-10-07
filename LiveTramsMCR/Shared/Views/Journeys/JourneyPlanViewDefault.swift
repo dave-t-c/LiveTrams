@@ -185,6 +185,13 @@ struct JourneyPlanViewDefault: View {
                         }
                         
                         Section {
+                            let zonesTravelledThrough = plannedJourneyV2!.travelZones
+                                .map { String($0) }
+                                .joined(separator: ", ")
+                            
+                            Text("Zones travelled through: \(zonesTravelledThrough)")
+                                .font(.headline)
+                                
                             ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)
                         }
                     }
