@@ -10,7 +10,7 @@ import MapKit
 
 struct NearPublicTransport: View {
     var stop: Stop
-    @State private var categories = ["Bus Stops", "National Rail", "Cafes"]
+    @State private var categories = ["Bus Stops", "Cafes"]
     var body: some View {
         List{
             ForEach(categories, id: \.self) {
