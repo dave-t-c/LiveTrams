@@ -13,9 +13,7 @@ import MapKit
 struct JourneyPlanViewDefault: View {
     @State private var originStop: String = ""
     @State private var destinationStop: String = ""
-    //@State private var plannedJourney: PlannedJourney?
     @State private var processedPlannedJourneyV2: ProcessedPlannedJourneyV2?
-    @State private var journeyPlannerRequest = JourneyPlannerRequest()
     @State private var journeyPlannerV2Request = JourneyPlannerV2Request()
     @State private var gettingJourneyRequest: Bool = false
     @State private var showBottomSheet = true
@@ -94,11 +92,19 @@ struct JourneyPlanViewDefault: View {
             NavigationView {
                 
                 List {
+                    /*HStack {
+                        Text("Journey Planner")
+                            .bold()
+                            .font(.title)
+
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)*/
+                    
                     Section{
                         
                         VStack{
-                            Text("Journey Planner")
-                                .font(.headline)
+                            
                             Picker("Origin", selection: $originStop){
                                 Text("Select Stop").tag("")
                                 ForEach(availableOriginStops, id: \.self) { stop in
@@ -136,7 +142,6 @@ struct JourneyPlanViewDefault: View {
                             Button(action: {
                                 Task {
                                     gettingJourneyRequest = true
-                                    //plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                                     plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                                     gettingJourneyRequest = false
                                     if(plannedJourneyV2 == nil){
@@ -180,6 +185,8 @@ struct JourneyPlanViewDefault: View {
                         
                     }
                 }
+                .navigationTitle("Journey Planner")
+                .padding(.all, 0)
                 
             }
             .presentationDragIndicator(.visible)

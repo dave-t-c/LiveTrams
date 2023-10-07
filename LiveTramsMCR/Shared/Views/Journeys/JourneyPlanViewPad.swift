@@ -80,7 +80,6 @@ struct JourneyPlanViewPad: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
-                            //plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                             plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                             gettingJourneyRequest = false
                             if(plannedJourneyV2 == nil){
