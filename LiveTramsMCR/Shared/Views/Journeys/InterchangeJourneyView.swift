@@ -11,8 +11,8 @@ import MapKit
 
 struct InterchangeJourneyView: View {
     
-    var plannedJourney: PlannedJourney
-    var processedPlannedJourney: ProcessedPlannedJourney
+    var plannedJourney: PlannedJourneyV2
+    var processedPlannedJourney: ProcessedPlannedJourneyV2
     private let deviceIdiom = UIDevice.current.userInterfaceIdiom
     private let routeHelper = RouteHelper()
     

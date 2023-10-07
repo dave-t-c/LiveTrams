@@ -18,9 +18,7 @@ struct JourneyPlanViewPad: View {
     @State private var originStop: String = ""
     
     @State private var destinationStop: String = ""
-    @State private var plannedJourney: PlannedJourney?
-    @State private var processedPlannedJourney: ProcessedPlannedJourney?
-    @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var processedPlannedJourneyV2: ProcessedPlannedJourneyV2?
     @State private var journeyPlannerV2Request = JourneyPlannerV2Request()
     @State private var servicesRequest = ServicesRequest()
     @State private var gettingJourneyRequest: Bool = false
@@ -82,14 +80,14 @@ struct JourneyPlanViewPad: View {
                     Button(action: {
                         Task {
                             gettingJourneyRequest = true
-                            plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            //plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
                             plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                             gettingJourneyRequest = false
-                            if(plannedJourney == nil){
+                            if(plannedJourneyV2 == nil){
                                 return
                             }
                             
-                            processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
+                            processedPlannedJourneyV2 = ProcessedPlannedJourneyV2(plannedJourney: plannedJourneyV2!)
                         }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
@@ -105,17 +103,17 @@ struct JourneyPlanViewPad: View {
                 }
             }
             
-            if(plannedJourney != nil && processedPlannedJourney != nil && plannedJourneyV2 != nil)
+            if(processedPlannedJourneyV2 != nil && plannedJourneyV2 != nil)
             {
                 Section {
                     
-                    Text(processedPlannedJourney!.formattedTime).font(.headline)
+                    Text(processedPlannedJourneyV2!.formattedTime).font(.headline)
                     
-                    if (plannedJourney!.requiresInterchange){
-                        InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
+                    if (plannedJourneyV2!.plannedJourney.requiresInterchange){
+                        InterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2!)
                     }
                     else{
-                        NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                        NonInterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2)
                     }
                     
                     ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)

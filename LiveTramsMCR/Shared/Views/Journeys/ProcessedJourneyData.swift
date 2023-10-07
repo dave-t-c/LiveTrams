@@ -11,8 +11,8 @@ import OrderedCollections
 import SwiftUI
 
 class ProcessedJourneyData {
-    var plannedJourney: PlannedJourney
-    var processedPlannedJourney: ProcessedPlannedJourney
+    var plannedJourney: PlannedJourneyV2
+    var processedPlannedJourney: ProcessedPlannedJourneyV2
     var routeCoordinatesFromOrigin: OrderedDictionary<String, CLLocationCoordinate2D>
     var routeCoordinatesFromInterchange: OrderedDictionary<String, CLLocationCoordinate2D>
     var region: MKCoordinateRegion
@@ -20,7 +20,7 @@ class ProcessedJourneyData {
     var lineColorFromInterchange: Color? = nil
     private var routeHelper = RouteHelper()
     
-    init(plannedJourney: PlannedJourney, processedPlannedJourney: ProcessedPlannedJourney) {
+    init(plannedJourney: PlannedJourneyV2, processedPlannedJourney: ProcessedPlannedJourneyV2) {
         self.plannedJourney = plannedJourney
         self.processedPlannedJourney = processedPlannedJourney
         

@@ -11,8 +11,8 @@ import MapKit
 
 struct NonInterchangeJourneyView: View {
     
-    var plannedJourney: PlannedJourney?
-    var processedPlannedJourney: ProcessedPlannedJourney?
+    var plannedJourney: PlannedJourneyV2?
+    var processedPlannedJourney: ProcessedPlannedJourneyV2?
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {

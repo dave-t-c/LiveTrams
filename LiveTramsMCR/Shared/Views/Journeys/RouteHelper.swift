@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 
 struct RouteHelper {
-    func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
@@ -33,7 +33,7 @@ struct RouteHelper {
         return routeCoordinates
     }
 
-    func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
         if plannedJourney == nil || plannedJourney!.interchangeStop == nil {
@@ -54,7 +54,7 @@ struct RouteHelper {
         return routeCoordinates
     }
 
-    func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
         if plannedJourney == nil || plannedJourney!.interchangeStop == nil {
