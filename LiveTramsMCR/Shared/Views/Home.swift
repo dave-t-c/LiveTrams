@@ -23,6 +23,7 @@ struct Home: View {
                             Section(header: Text("Quick Links")) {
                                 NavigationLink(destination: JourneyPlanView(initialOrigin: "", stops: self.stopViewModel.stops.map { $0.stopName })) {
                                     Label("Journey Planner", systemImage: "map.fill")
+                                        .font(.headline)
                                         .padding()
                                 }
                             }
@@ -35,6 +36,7 @@ struct Home: View {
                                     NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops, routes: self.stopViewModel.routes).environmentObject(favouritesStore)) {
                                         VStack(alignment: .leading) {
                                             Text(stop.stopName)
+                                                .font(.headline)
                                             Text(stop.street)
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
@@ -51,6 +53,7 @@ struct Home: View {
                                     NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops, routes: self.stopViewModel.routes).environmentObject(favouritesStore)) {
                                         VStack(alignment: .leading) {
                                             Text(stop.stopName)
+                                                .font(.headline)
                                             let distanceString = self.stopViewModel.GetFormattedStopInformation(stop: stop)
                                             if (!distanceString.isEmpty)
                                             {
