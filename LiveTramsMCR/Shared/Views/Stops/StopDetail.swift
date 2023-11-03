@@ -98,11 +98,6 @@ struct StopDetail: View {
                 }
                 .padding()
                 
-                NavigationLink (destination: NearPublicTransport(stop: stop)) {
-                    Label("Nearby", systemImage: "mappin.and.ellipse")
-                        .padding()
-                }
-                
                 Label(stop.street, systemImage: "car")
                     .padding()
                 Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
