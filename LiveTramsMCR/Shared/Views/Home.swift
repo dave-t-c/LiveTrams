@@ -72,11 +72,12 @@ struct Home: View {
                                         
                                         HStack {
                                             Text(stop.stopName)
+                                                .font(.headline)
                                             
                                             Text("Zone \(stop.stopZone)")
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
-                                                .padding(.trailing, 5)
+                                                .padding(.leading, 5)
                                         }
                                         
                                         
@@ -88,7 +89,7 @@ struct Home: View {
                                             ForEach(routeColors, id: \.self) {color in
                                                 RoundedRectangle(cornerRadius: 25, style: .continuous)
                                                     .fill(color)
-                                                    .frame(width: 20, height: 5)
+                                                    .frame(width: 25, height: 10)
                                                     .padding(.trailing, 2)
                                                 
                                             }
