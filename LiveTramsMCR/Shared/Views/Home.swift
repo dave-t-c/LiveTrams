@@ -32,7 +32,7 @@ struct Home: View {
                         {
                             Section(header: Text("Favourites")){
                                 ForEach(favouritesStore.stops.sorted {$0.stopName < $1.stopName}) { stop in
-                                    NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore)) {
+                                    NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops, routes: self.stopViewModel.routes).environmentObject(favouritesStore)) {
                                         VStack(alignment: .leading) {
                                             Text(stop.stopName)
                                             Text(stop.street)
@@ -48,7 +48,7 @@ struct Home: View {
                         {
                             Section(header: Text("Nearby")){
                                 ForEach(self.stopViewModel.nearestStops) { stop in
-                                    NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore)) {
+                                    NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops, routes: self.stopViewModel.routes).environmentObject(favouritesStore)) {
                                         VStack(alignment: .leading) {
                                             Text(stop.stopName)
                                             let distanceString = self.stopViewModel.GetFormattedStopInformation(stop: stop)
@@ -67,7 +67,7 @@ struct Home: View {
                         
                         Section(header: Text("All Stops")){
                             ForEach(searchResults) { stop in
-                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
+                                NavigationLink(destination: StopDetail(selectedStop: stop, stopList: self.stopViewModel.stops, routes: self.stopViewModel.routes).environmentObject(favouritesStore), tag: stop.tlaref, selection: $stopViewModel.currentStopTlaref) {
                                     VStack(alignment: .leading) {
                                         
                                         HStack {
@@ -194,17 +194,28 @@ struct Home: View {
                         self.stopViewModel.stops = stops
                     }
                     
+                    RouteV2Request().requestRoutesV2 { (routes) in
+                        self.stopViewModel.routes = routes
+                    }
+                    
                     Task {
                         await self.stopViewModel.UpdateNearestStops()
                     }
                 }
                 .refreshable {
                     Task {
-                        await self.stopViewModel.UpdateNearestStops()
                         
                         StopRequest().requestStops { (stops) in
                             self.stopViewModel.stops = stops
                         }
+                        
+                        RouteV2Request().requestRoutesV2 { (routes) in
+                            self.stopViewModel.routes = routes
+                        }
+                        
+                        await self.stopViewModel.UpdateNearestStops()
+                        
+                        
                     }
                 }
                 Text("No stop selected")

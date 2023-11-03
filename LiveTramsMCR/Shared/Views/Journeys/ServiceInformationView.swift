@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ServiceInformationView: View {
-    var serviceInformation: [FormattedServices]
-    
+    var serviceInformation: [String]
     var body: some View {
         
         let distinctMessages = getDistinctMessages(serviceInformation: serviceInformation)
@@ -29,11 +28,11 @@ struct ServiceInformationView: View {
         }
     }
     
-    func getDistinctMessages(serviceInformation: [FormattedServices]) -> [String] {
+    func getDistinctMessages(serviceInformation: [String]) -> [String] {
         var combinedMessages: [String] = []
         
         for information in serviceInformation {
-            combinedMessages.append(contentsOf: information.messages)
+            combinedMessages.append(information)
         }
         
         return Array(Set(combinedMessages))

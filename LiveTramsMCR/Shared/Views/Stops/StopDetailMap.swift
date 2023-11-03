@@ -1,43 +1,41 @@
 //
-//  DefaultMapView.swift
+//  StopDetailMap.swift
 //  LiveTramsMCR (iOS)
 //
-//  Created by David Cook on 30/05/2023.
+//  Created by David Cook on 05/06/2023.
 //
 
 import SwiftUI
 import MapKit
-import OrderedCollections
 
-struct DefaultMapView: UIViewRepresentable {
+struct StopDetailMap: UIViewRepresentable {
     
     let region: MKCoordinateRegion
     let routes: [RouteV2]
-    @Environment(\.colorScheme) private var displayMode
+    let stop: Stop
     private let routeHelper: RouteHelper = RouteHelper()
-    
+    @Environment(\.colorScheme) private var displayMode
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
         mapView.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
         
-        let baseRoutePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: false)
-        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
+        let routePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: false)
         
-        mapView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
-        mapView.addOverlays(baseRoutePolylines)
+        mapView.addOverlays(routePolylines)
+        
+        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
+
         mapView.addAnnotations(stopAnnotations)
+        
         mapView.region = region
         mapView.setRegion(region, animated: true)
         return mapView
     }
     
+    
     func updateUIView(_ view: MKMapView, context: Context) {
-        let baseRoutePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: false)
-        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
-
-        view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 100, right: 100)
         
         view.overlays.forEach {
             view.removeOverlay($0)
@@ -47,26 +45,37 @@ struct DefaultMapView: UIViewRepresentable {
             view.removeAnnotation($0)
         }
         
-        view.addOverlays(baseRoutePolylines)
+        view.preferredConfiguration = MKStandardMapConfiguration(emphasisStyle: .muted)
+        
+        let routePolylines = routeHelper.generateAllRoutePolylines(routes: routes, enableRouteColor: true)
+        
+        view.addOverlays(routePolylines)
+        
+        let stopAnnotations = routeHelper.generateRouteAnnotations(routes: routes, displayMode: displayMode)
+
         view.addAnnotations(stopAnnotations)
+        
         view.region = region
         view.setRegion(region, animated: true)
     }
     
-    func makeCoordinator() -> DefaultMapViewCoordinator {
-        DefaultMapViewCoordinator(self)
+    
+
+    
+    func makeCoordinator() -> StopDetailMapCoordinator {
+        StopDetailMapCoordinator(self)
     }
     
     
 }
+    
 
-class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
-    var parent: DefaultMapView
-    
-    private var lastSeenLatitudeDelta: CLLocationDegrees = 0
+class StopDetailMapCoordinator: NSObject, MKMapViewDelegate {
+    var parent: StopDetailMap
     private let maxSize: CGSize = CGSize(width: 20, height: 20)
+    private var lastSeenLatitudeDelta: CLLocationDegrees = 0
     
-    init(_ parent: DefaultMapView) {
+    init(_ parent: StopDetailMap) {
         self.parent = parent
     }
     
@@ -100,7 +109,7 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
             annotationView.image = UIGraphicsImageRenderer(size: annotation!.stopSize).image {
                  _ in annotationView.image!.draw(in:CGRect(origin: .zero, size: annotation!.stopSize))
             }
-            
+    
             return annotationView
         }
         
@@ -133,15 +142,5 @@ class DefaultMapViewCoordinator: NSObject, MKMapViewDelegate {
         mapView.addAnnotations(existingAnnotations)
                 
     }
-    
-    func increaseRect(rect: CGRect, byPercentage percentage: CGFloat) -> CGRect {
-        let startWidth = CGRectGetWidth(rect)
-        let startHeight = CGRectGetHeight(rect)
-        let adjustmentWidth = (startWidth * percentage) / 2.0
-        let adjustmentHeight = (startHeight * percentage) / 2.0
-        return CGRectInset(rect, -adjustmentWidth, -adjustmentHeight)
-    }
-
-    let rect = CGRectMake(0, 0, 10, 10)
-   
 }
+

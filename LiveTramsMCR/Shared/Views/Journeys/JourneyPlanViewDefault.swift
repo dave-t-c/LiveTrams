@@ -13,15 +13,14 @@ import MapKit
 struct JourneyPlanViewDefault: View {
     @State private var originStop: String = ""
     @State private var destinationStop: String = ""
-    @State private var plannedJourney: PlannedJourney?
-    @State private var processedPlannedJourney: ProcessedPlannedJourney?
-    @State private var journeyPlannerRequest = JourneyPlannerRequest()
-    @State private var serviceInformation: [FormattedServices] = []
+    @State private var processedPlannedJourneyV2: ProcessedPlannedJourneyV2?
+    @State private var journeyPlannerV2Request = JourneyPlannerV2Request()
     @State private var gettingJourneyRequest: Bool = false
     @State private var showBottomSheet = true
     @State private var journeyData: ProcessedJourneyData? = nil
     @State private var plannerDetent = PresentationDetent.fraction(0.3)
     @State private var routes: [RouteV2] = []
+    @State private var plannedJourneyV2: PlannedJourneyV2Response? = nil
     
     var initialOrigin: String =  ""
     var stops: [String] = []
@@ -45,15 +44,17 @@ struct JourneyPlanViewDefault: View {
     var body: some View {
         
             ZStack {
-                if (journeyData != nil)
+                if (journeyData != nil && plannedJourneyV2 != nil)
                 {
                     
                     let journeyData = journeyData!
                     
                     MapView(
                         region: journeyData.region,
-                        lineCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
-                        lineCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
+                        lineCoordinatesFromOrigin: plannedJourneyV2!.visualisedJourney.polylineFromOrigin,
+                        stopCoordinatesFromOrigin: journeyData.routeCoordinatesFromOrigin,
+                        lineCoordinatesFromInterchange: plannedJourneyV2?.visualisedJourney.polylineFromInterchange,
+                        stopCoordinatesFromInterchange: journeyData.routeCoordinatesFromInterchange,
                         lineColorFromOrigin: journeyData.lineColorFromOrigin,
                         lineColorFromInterchange: journeyData.lineColorFromInterchange)
                     .aspectRatio(contentMode: .fill)
@@ -91,11 +92,19 @@ struct JourneyPlanViewDefault: View {
             NavigationView {
                 
                 List {
+                    /*HStack {
+                        Text("Journey Planner")
+                            .bold()
+                            .font(.title)
+
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)*/
+                    
                     Section{
                         
                         VStack{
-                            Text("Journey Planner")
-                                .font(.headline)
+                            
                             Picker("Origin", selection: $originStop){
                                 Text("Select Stop").tag("")
                                 ForEach(availableOriginStops, id: \.self) { stop in
@@ -133,18 +142,14 @@ struct JourneyPlanViewDefault: View {
                             Button(action: {
                                 Task {
                                     gettingJourneyRequest = true
-                                    var serviceInformationHolder: [FormattedServices] = []
-                                    plannedJourney = try await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                                    serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: originStop))
-                                    serviceInformationHolder.append(try await servicesRequest.requestServices(tlaref: destinationStop))
-                                    serviceInformation = serviceInformationHolder
+                                    plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
                                     gettingJourneyRequest = false
-                                    if(plannedJourney == nil){
+                                    if(plannedJourneyV2 == nil){
                                         return
                                     }
                                     
-                                    processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
-                                    journeyData = ProcessedJourneyData(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
+                                    processedPlannedJourneyV2 = ProcessedPlannedJourneyV2(plannedJourney: plannedJourneyV2!)
+                                    journeyData = ProcessedJourneyData(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2!)
                                 }
                             }) {
                                 Label("Plan Journey", systemImage: "tram.fill")
@@ -160,26 +165,39 @@ struct JourneyPlanViewDefault: View {
                         }
                     }
                     
-                    if(plannedJourney != nil && processedPlannedJourney != nil)
+                    if(processedPlannedJourneyV2 != nil && plannedJourneyV2 != nil)
                     {
                         Section {
+                            Text(processedPlannedJourneyV2!.formattedTime).font(.headline)
+                            if (plannedJourneyV2!.nextService != nil){
+                                Text("Take the next tram towards \(plannedJourneyV2!.nextService!.destination.stopName) in \(plannedJourneyV2!.nextService!.wait) mins")
+                                    .font(.headline)
+                            }
                             
-                            Text(processedPlannedJourney!.formattedTime).font(.headline)
-                            
-                            if (plannedJourney!.requiresInterchange){
-                                InterchangeJourneyView(plannedJourney: plannedJourney!, processedPlannedJourney: processedPlannedJourney!)
+                            if (plannedJourneyV2!.plannedJourney.requiresInterchange){
+                                InterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2!)
+                                    .padding()
                             }
                             else{
-                                NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                                NonInterchangeJourneyView(plannedJourney: plannedJourneyV2!.plannedJourney, processedPlannedJourney: processedPlannedJourneyV2)
+                                    .padding()
                             }
-                            
-                            ServiceInformationView(serviceInformation: serviceInformation)
                         }
                         
-                        
-                        
+                        Section {
+                            let zonesTravelledThrough = plannedJourneyV2!.travelZones
+                                .map { String($0) }
+                                .joined(separator: ", ")
+                            
+                            Text("Zones travelled through: \(zonesTravelledThrough)")
+                                .font(.headline)
+                                
+                            ServiceInformationView(serviceInformation: plannedJourneyV2!.serviceUpdates)
+                        }
                     }
                 }
+                .navigationTitle("Journey Planner")
+                .padding(.all, 0)
                 
             }
             .presentationDragIndicator(.visible)

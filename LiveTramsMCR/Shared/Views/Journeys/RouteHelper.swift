@@ -8,9 +8,10 @@
 import Foundation
 import OrderedCollections
 import MapKit
+import SwiftUI
 
 struct RouteHelper {
-    func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromOriginNoInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
@@ -32,7 +33,7 @@ struct RouteHelper {
         return routeCoordinates
     }
 
-    func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromOriginToInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
         if plannedJourney == nil || plannedJourney!.interchangeStop == nil {
@@ -53,7 +54,7 @@ struct RouteHelper {
         return routeCoordinates
     }
 
-    func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourney?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
+    func getRouteCoordinatesFromInterchange(plannedJourney: PlannedJourneyV2?) -> OrderedDictionary<String, CLLocationCoordinate2D>{
         var routeCoordinates: OrderedDictionary<String, CLLocationCoordinate2D> = [:]
         
         if plannedJourney == nil || plannedJourney!.interchangeStop == nil {
@@ -72,5 +73,59 @@ struct RouteHelper {
         
         
         return routeCoordinates
+    }
+    
+    func GenerateRouteColor (hex:String) -> Color {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return Color.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return Color(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+        )
+    }
+    
+    public func generateAllRoutePolylines(routes: [RouteV2], enableRouteColor: Bool) -> [RoutePolyline] {
+        var routePolylines: [RoutePolyline] = []
+        for route in routes {
+            let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
+            let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+            polyline.routeColor = enableRouteColor ? UIColor(self.GenerateRouteColor(hex: route.colour)) : .darkGray
+            routePolylines.append(polyline)
+        }
+        return routePolylines
+    }
+    
+    public func generateRouteAnnotations(routes: [RouteV2], displayMode: ColorScheme) -> [StopAnnotation] {
+        var stopAnnotations: [StopAnnotation] = []
+        var stops: [Stop] = []
+        for route in routes {
+            stops.append(contentsOf: route.stopsDetail)
+        }
+        
+        let distinctStops = Array(Set(stops))
+        
+        for stop in distinctStops {
+            let coordinate = CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude)
+            
+            let annotation = StopAnnotation()
+            annotation.title = stop.stopName
+            annotation.coordinate = coordinate
+            annotation.stopColor = displayMode == .dark ? .white : .black
+            stopAnnotations.append(annotation)
+        }
+        
+        return stopAnnotations
     }
 }

@@ -15,6 +15,7 @@ class StopViewModel: ObservableObject {
     @Published var currentStopTlaref: String?
     @Published var nearestStops: [Stop] = []
     @Published var stops: [Stop] = []
+    @Published var routes: [RouteV2] = []
     private var locationManager: LocationManager = LocationManager()
     private let maxNearestStops = 6
     private let nearestStopsToDisplay = 3

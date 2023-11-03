@@ -80,6 +80,12 @@
 		9E84E2CE2812AAA600571ECA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2A12812AAA400571ECA /* Persistence.swift */; };
 		9E84E2D02812AAA600571ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
 		9E84E2E12812AC6000571ECA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E84E2E02812AC6000571ECA /* Home.swift */; };
+		9E8E84AB2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84AA2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift */; };
+		9E8E84AC2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84AA2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift */; };
+		9E8E84B12AD0B330000ECB15 /* JourneyPlannerV2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */; };
+		9E8E84B22AD0B330000ECB15 /* JourneyPlannerV2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */; };
+		9E8E84B42AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84B32AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift */; };
+		9E8E84B52AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E84B32AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift */; };
 		9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E957475281F483000A43574 /* ServicesViewModel.swift */; };
 		9E964B5F29D896C000BB536A /* GetNextTramIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E964B5E29D896C000BB536A /* GetNextTramIntent.swift */; };
 		9E964B6129D8974F00BB536A /* LiveTramsMCRShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E964B6029D8974F00BB536A /* LiveTramsMCRShortcuts.swift */; };
@@ -89,6 +95,7 @@
 		9E964B6629D8A3E400BB536A /* DepartureBoardServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E964B6229D8A2AD00BB536A /* DepartureBoardServices.swift */; };
 		9E964B6729D8AC4700BB536A /* GetNextTramIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E964B5E29D896C000BB536A /* GetNextTramIntent.swift */; };
 		9E964B6829D8AC5600BB536A /* LiveTramsMCRShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E964B6029D8974F00BB536A /* LiveTramsMCRShortcuts.swift */; };
+		9EA690502A2E83840017D788 /* StopDetailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA6904F2A2E83840017D788 /* StopDetailMap.swift */; };
 		9EB4234429E08990004208B1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4234329E08990004208B1 /* LocationManager.swift */; };
 		9EB4234829E0AB45004208B1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4234329E08990004208B1 /* LocationManager.swift */; };
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
@@ -213,10 +220,14 @@
 		9E84E2A72812AAA600571ECA /* LiveTramsMCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTramsMCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E84E2AF2812AAA600571ECA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9E84E2E02812AC6000571ECA /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		9E8E84AA2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedJourneyV2Response.swift; sourceTree = "<group>"; };
+		9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerV2Request.swift; sourceTree = "<group>"; };
+		9E8E84B32AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedPlannedJourneyV2.swift; sourceTree = "<group>"; };
 		9E957475281F483000A43574 /* ServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		9E964B5E29D896C000BB536A /* GetNextTramIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNextTramIntent.swift; sourceTree = "<group>"; };
 		9E964B6029D8974F00BB536A /* LiveTramsMCRShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTramsMCRShortcuts.swift; sourceTree = "<group>"; };
 		9E964B6229D8A2AD00BB536A /* DepartureBoardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBoardServices.swift; sourceTree = "<group>"; };
+		9EA6904F2A2E83840017D788 /* StopDetailMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailMap.swift; sourceTree = "<group>"; };
 		9EB4234329E08990004208B1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
 		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
@@ -352,6 +363,7 @@
 				9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */,
 				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
 				9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */,
+				9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -380,6 +392,8 @@
 			children = (
 				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
 				9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */,
+				9E8E84AA2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift */,
+				9E8E84B32AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift */,
 			);
 			path = Journeys;
 			sourceTree = "<group>";
@@ -416,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				9EC2FB6A2814852E00C08784 /* StopDetail.swift */,
+				9EA6904F2A2E83840017D788 /* StopDetailMap.swift */,
 			);
 			path = Stops;
 			sourceTree = "<group>";
@@ -733,6 +748,7 @@
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
 				9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E4986A229EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
+				9E8E84B52AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift in Sources */,
 				9E209014299ED03F008F9168 /* Route.swift in Sources */,
 				9EE8F316299EE1E5000DE425 /* MapManager-watchOS.swift in Sources */,
 				9EF4B985299ED2D00054593E /* Home.swift in Sources */,
@@ -740,12 +756,14 @@
 				9E4BBE472A264BD200469999 /* SimpleRouteV2.swift in Sources */,
 				9E209004299ECEF5008F9168 /* ServicesViewModel.swift in Sources */,
 				9E209005299ECF2C008F9168 /* Stop.swift in Sources */,
+				9E8E84AC2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */,
 				9EE8F317299EE2D0000DE425 /* StopDetail.swift in Sources */,
 				9EB4234829E0AB45004208B1 /* LocationManager.swift in Sources */,
 				9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */,
 				9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */,
 				9E49869F29EC7E0900CBCC34 /* RouteV2.swift in Sources */,
 				9E964B6429D8A3E300BB536A /* DepartureBoardServices.swift in Sources */,
+				9E8E84B22AD0B330000ECB15 /* JourneyPlannerV2Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,12 +796,16 @@
 				9E34D1DF29B7C57800A7CB9A /* Tram.swift in Sources */,
 				9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
 				9EB4234429E08990004208B1 /* LocationManager.swift in Sources */,
+				9E8E84B42AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift in Sources */,
+				9E8E84AB2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */,
 				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
+				9E8E84B12AD0B330000ECB15 /* JourneyPlannerV2Request.swift in Sources */,
 				9E34D1D929B7BD5300A7CB9A /* StopViewModel.swift in Sources */,
 				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* LiveTramsMCR.swift in Sources */,
 				9E964B6329D8A2AD00BB536A /* DepartureBoardServices.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
+				9EA690502A2E83840017D788 /* StopDetailMap.swift in Sources */,
 				9EE3045129B3D0E3000F20A7 /* LiveTramTimesIntent.intentdefinition in Sources */,
 				9E7B1EA42814C3FA007FA699 /* ServicesRequest.swift in Sources */,
 				9E4BBE462A264AE900469999 /* SimpleRouteV2.swift in Sources */,
@@ -882,7 +904,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -917,7 +939,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -950,7 +972,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramTimesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -980,7 +1002,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramTimesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1133,7 +1155,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
@@ -1172,7 +1194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR;
 				PRODUCT_NAME = LiveTramsMCR;
 				SDKROOT = iphoneos;
@@ -1203,7 +1225,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramsIntentHandling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1231,7 +1253,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dccompsci.LiveTramsMCR.LiveTramsIntentHandling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

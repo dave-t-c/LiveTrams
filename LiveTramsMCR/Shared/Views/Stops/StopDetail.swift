@@ -12,15 +12,32 @@ struct StopDetail: View {
     
     var stop: Stop
     var stops: [Stop]
+    var routes: [RouteV2]
+    var stopRoutes: [RouteV2]
+    var region: MKCoordinateRegion
     @State private var mapManager = MapManager()
     
     @EnvironmentObject var favouritesStore: FavouriteStopStore
     
     
-    init(selectedStop: Stop, stopList: [Stop]) {
+    init(selectedStop: Stop, stopList: [Stop], routes: [RouteV2]) {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
         self.stop = selectedStop
         self.stops = stopList
+        self.routes = routes.reversed()
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        
+        if (selectedStop.routes == nil || selectedStop.routes!.isEmpty) {
+            self.stopRoutes = routes
+            return
+        }
+        
+        let stopRouteNames = selectedStop.routes!.map {$0.name}
+        
+        self.stopRoutes = routes.filter {stopRouteNames.contains($0.name)}.reversed()
+        
+        
+        
     }
     
     @ViewBuilder
@@ -51,9 +68,10 @@ struct StopDetail: View {
                         
                         
                     default:
-                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))))
+                        StopDetailMap(region: self.region, routes: self.stopRoutes, stop: stop)
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(10)
+                        
                     }
                 }
                 .listRowBackground(Color.clear)
