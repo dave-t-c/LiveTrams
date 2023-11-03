@@ -34,7 +34,6 @@
 		9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E34D1E329B7C85C00A7CB9A /* Tram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34D1DE29B7C57800A7CB9A /* Tram.swift */; };
 		9E3F2C0F2815609A00C863FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C0E2815609A00C863FF /* MapManager.swift */; };
-		9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */; };
 		9E449E4F29BE31CA00C6ED79 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E449E5A29BE362900C6ED79 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E449E5B29BE363D00C6ED79 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
@@ -190,7 +189,6 @@
 		9E34D1D829B7BD5300A7CB9A /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
 		9E34D1DE29B7C57800A7CB9A /* Tram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tram.swift; sourceTree = "<group>"; };
 		9E3F2C0E2815609A00C863FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
-		9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPublicTransport.swift; sourceTree = "<group>"; };
 		9E49869D29EC7E0900CBCC34 /* RouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteV2.swift; sourceTree = "<group>"; };
 		9E4986A029EC7E2E00CBCC34 /* StopKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopKeys.swift; sourceTree = "<group>"; };
 		9E4BBE452A264AE900469999 /* SimpleRouteV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRouteV2.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 		9E34D1E029B7C5A400A7CB9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9E449E5929BE35C800C6ED79 /* Nearby */,
 				9E449E5829BE35C000C6ED79 /* Journeys */,
 				9E449E5729BE35B900C6ED79 /* Services */,
 				9E449E5629BE35B200C6ED79 /* Stops */,
@@ -458,14 +455,6 @@
 				9E4BBE4C2A265BB700469999 /* DefaultMapView.swift */,
 			);
 			path = Journeys;
-			sourceTree = "<group>";
-		};
-		9E449E5929BE35C800C6ED79 /* Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				9E3F2C1128158A2D00C863FF /* NearPublicTransport.swift */,
-			);
-			path = Nearby;
 			sourceTree = "<group>";
 		};
 		9E68BC4A29B0FD2500DAA02D /* LiveTramTimesWidget */ = {
@@ -801,7 +790,6 @@
 				9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */,
 				9E8E84B12AD0B330000ECB15 /* JourneyPlannerV2Request.swift in Sources */,
 				9E34D1D929B7BD5300A7CB9A /* StopViewModel.swift in Sources */,
-				9E3F2C1228158A2D00C863FF /* NearPublicTransport.swift in Sources */,
 				9E84E2CA2812AAA600571ECA /* LiveTramsMCR.swift in Sources */,
 				9E964B6329D8A2AD00BB536A /* DepartureBoardServices.swift in Sources */,
 				9E957476281F483100A43574 /* ServicesViewModel.swift in Sources */,
