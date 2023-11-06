@@ -22,7 +22,6 @@
 		9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
 		9E209010299ED033008F9168 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
-		9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
 		9E209014299ED03F008F9168 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E28C8F329D8360300727F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
@@ -100,7 +99,6 @@
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
 		9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
-		9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6A2814852E00C08784 /* StopDetail.swift */; };
 		9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
@@ -230,7 +228,6 @@
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
 		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
 		9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedJourney.swift; sourceTree = "<group>"; };
-		9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerRequest.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EC2FB6D2814982B00C08784 /* StopRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRequest.swift; sourceTree = "<group>"; };
@@ -358,7 +355,6 @@
 			children = (
 				9EC2FB6D2814982B00C08784 /* StopRequest.swift */,
 				9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */,
-				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
 				9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */,
 				9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */,
 			);
@@ -733,7 +729,6 @@
 				9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */,
 				9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */,
 				9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */,
-				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
 				9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E4986A229EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
@@ -811,7 +806,6 @@
 				9E0158A429FEF327009B6625 /* NonInterchangeJourneyView.swift in Sources */,
 				9E2A946028F737B60096F7A9 /* Route.swift in Sources */,
 				9E6B01A929B532690041A385 /* SystemLargeView.swift in Sources */,
-				9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E0158A229FEF2EB009B6625 /* ServiceInformationView.swift in Sources */,
 				9EE1934F2A080577008EB2ED /* JourneyPlanViewPad.swift in Sources */,
 				9EE1934D2A080569008EB2ED /* JourneyPlanViewDefault.swift in Sources */,
