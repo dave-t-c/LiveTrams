@@ -15,9 +15,9 @@ struct JourneyPlanView: View {
     @State private var originStop: String = ""
     
     @State private var destinationStop: String = ""
-    @State private var plannedJourney: PlannedJourney?
-    @State private var processedPlannedJourney: ProcessedPlannedJourney?
-    @State private var journeyPlannerRequest = JourneyPlannerRequest()
+    @State private var plannedJourneyResponse: PlannedJourneyV2Response?
+    @State private var processedPlannedJourney: ProcessedPlannedJourneyV2?
+    @State private var journeyPlannerRequest = JourneyPlannerV2Request()
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
@@ -70,11 +70,11 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
-                            plannedJourney = try! await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
-                            if(plannedJourney == nil){
+                            plannedJourneyResponse = try! await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            if(plannedJourneyResponse == nil){
                                 return
                             }
-                            processedPlannedJourney = ProcessedPlannedJourney(plannedJourney: plannedJourney!)
+                            processedPlannedJourney = ProcessedPlannedJourneyV2(plannedJourney: plannedJourneyResponse!)
                         }
                     }) {
                         Label("Plan Journey", systemImage: "tram.fill")
@@ -85,17 +85,17 @@ struct JourneyPlanView: View {
             }
             
             
-            if(plannedJourney != nil)
+            if(plannedJourneyResponse != nil)
             {
                 
                 Text(processedPlannedJourney!.formattedTime)
                     .font(.title3)
         
-                if (plannedJourney!.requiresInterchange){
-                    InterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                if (plannedJourneyResponse!.plannedJourney.requiresInterchange){
+                    InterchangeJourneyView(plannedJourney: plannedJourneyResponse?.plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }
                 else{
-                    NonInterchangeJourneyView(plannedJourney: plannedJourney, processedPlannedJourney: processedPlannedJourney)
+                    NonInterchangeJourneyView(plannedJourney: plannedJourneyResponse?.plannedJourney, processedPlannedJourney: processedPlannedJourney)
                 }
                 
             }
@@ -106,14 +106,14 @@ struct JourneyPlanView: View {
 
 struct NonInterchangeJourneyView: View {
     
-    var plannedJourney: PlannedJourney?
-    var processedPlannedJourney: ProcessedPlannedJourney?
+    var plannedJourney: PlannedJourneyV2?
+    var processedPlannedJourney: ProcessedPlannedJourneyV2?
     
     
     var body: some View {
         Section {
             VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
+                Text("Start: \(processedPlannedJourney!.plannedJourney.plannedJourney.originStop.stopName)")
                     .font(.title3)
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
@@ -147,11 +147,11 @@ struct NonInterchangeJourneyView: View {
             
         Section {
             VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                Text("Exit at \(processedPlannedJourney!.plannedJourney.destinationStop.stopName)")
+                Text("Exit at \(processedPlannedJourney!.plannedJourney.plannedJourney.destinationStop.stopName)")
                     .font(.title3)
                     .padding(.top, 10)
                     .padding(.trailing, 10)
-                let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
+                let stopsFromOrigin = processedPlannedJourney!.plannedJourney.plannedJourney.stopsFromOrigin
                 if(stopsFromOrigin.count > 0)
                 {
                     Text("After \(stopsFromOrigin.last!.stopName)")
@@ -166,15 +166,15 @@ struct NonInterchangeJourneyView: View {
 
 struct InterchangeJourneyView: View {
     
-    var plannedJourney: PlannedJourney?
-    var processedPlannedJourney: ProcessedPlannedJourney?
+    var plannedJourney: PlannedJourneyV2?
+    var processedPlannedJourney: ProcessedPlannedJourneyV2?
     
     
     var body: some View {
             
             Section {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                Text("Start: \(processedPlannedJourney!.plannedJourney.originStop.stopName)")
+                    Text("Start: \(processedPlannedJourney!.plannedJourney.plannedJourney.originStop.stopName)")
                     .font(.title3)
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
@@ -207,9 +207,9 @@ struct InterchangeJourneyView: View {
             
             Section {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                    Text("Change at \(processedPlannedJourney!.plannedJourney.interchangeStop!.stopName)")
+                    Text("Change at \(processedPlannedJourney!.plannedJourney.plannedJourney.interchangeStop!.stopName)")
                         .font(.title3)
-                    let stopsFromOrigin = processedPlannedJourney!.plannedJourney.stopsFromOrigin
+                    let stopsFromOrigin = processedPlannedJourney!.plannedJourney.plannedJourney.stopsFromOrigin
                     if(stopsFromOrigin.count > 0)
                     {
                         Text("After \(stopsFromOrigin.last!.stopName)")
@@ -253,11 +253,11 @@ struct InterchangeJourneyView: View {
                 
             Section {
                 VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
-                    Text("Exit at \(processedPlannedJourney!.plannedJourney.destinationStop.stopName)")
+                    Text("Exit at \(processedPlannedJourney!.plannedJourney.plannedJourney.destinationStop.stopName)")
                         .font(.title3)
                         .padding(.top, 10)
                         .padding(.trailing, 10)
-                    let stopsFromInterchange = processedPlannedJourney!.plannedJourney.stopsFromInterchange
+                    let stopsFromInterchange = processedPlannedJourney!.plannedJourney.plannedJourney.stopsFromInterchange
                     if(stopsFromInterchange!.count > 0)
                     {
                         Text("After \(stopsFromInterchange!.last!.stopName)")

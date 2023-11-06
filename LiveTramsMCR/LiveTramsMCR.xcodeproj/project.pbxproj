@@ -21,9 +21,6 @@
 		9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1E9A2814B668007FA699 /* FormattedServices.swift */; };
 		9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
 		9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */; };
-		9E209010299ED033008F9168 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
-		9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
-		9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
 		9E209014299ED03F008F9168 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A945F28F737B60096F7A9 /* Route.swift */; };
 		9E28C8F329D8360300727F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E84E2A22812AAA600571ECA /* Assets.xcassets */; };
 		9E29362F29B4B14600DF32CC /* SystemMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29362E29B4B14600DF32CC /* SystemMediumView.swift */; };
@@ -99,12 +96,9 @@
 		9EB4234829E0AB45004208B1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4234329E08990004208B1 /* LocationManager.swift */; };
 		9EBC2B7D2822B70200CB5A86 /* FavouriteStopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */; };
 		9EC2B18C28F891CC00A810C5 /* JourneyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */; };
-		9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */; };
-		9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */; };
 		9EC2FB6528147BB500C08784 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6428147BB500C08784 /* Stop.swift */; };
 		9EC2FB6B2814852E00C08784 /* StopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6A2814852E00C08784 /* StopDetail.swift */; };
 		9EC2FB6E2814982B00C08784 /* StopRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2FB6D2814982B00C08784 /* StopRequest.swift */; };
-		9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */; };
 		9ED1012E29AB9AF500B79B22 /* LiveTramsMCR Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9E208FF6299ECD3F008F9168 /* LiveTramsMCR Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9EE1934D2A080569008EB2ED /* JourneyPlanViewDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1934C2A080569008EB2ED /* JourneyPlanViewDefault.swift */; };
 		9EE1934F2A080577008EB2ED /* JourneyPlanViewPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1934E2A080577008EB2ED /* JourneyPlanViewPad.swift */; };
@@ -229,12 +223,9 @@
 		9EB4234329E08990004208B1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9EBC2B7C2822B70200CB5A86 /* FavouriteStopsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsStore.swift; sourceTree = "<group>"; };
 		9EC2B18B28F891CC00A810C5 /* JourneyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanView.swift; sourceTree = "<group>"; };
-		9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedJourney.swift; sourceTree = "<group>"; };
-		9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerRequest.swift; sourceTree = "<group>"; };
 		9EC2FB6428147BB500C08784 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		9EC2FB6A2814852E00C08784 /* StopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetail.swift; sourceTree = "<group>"; };
 		9EC2FB6D2814982B00C08784 /* StopRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRequest.swift; sourceTree = "<group>"; };
-		9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedPlannedJourney.swift; sourceTree = "<group>"; };
 		9EE1934C2A080569008EB2ED /* JourneyPlanViewDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanViewDefault.swift; sourceTree = "<group>"; };
 		9EE1934E2A080577008EB2ED /* JourneyPlanViewPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlanViewPad.swift; sourceTree = "<group>"; };
 		9EE3044129B3D072000F20A7 /* LiveTramsIntentHandling.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveTramsIntentHandling.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,7 +349,6 @@
 			children = (
 				9EC2FB6D2814982B00C08784 /* StopRequest.swift */,
 				9E7B1EA32814C3FA007FA699 /* ServicesRequest.swift */,
-				9EC2B19128F9A78600A810C5 /* JourneyPlannerRequest.swift */,
 				9E4BBE4A2A264D3500469999 /* RouteV2Request.swift */,
 				9E8E84B02AD0B330000ECB15 /* JourneyPlannerV2Request.swift */,
 			);
@@ -387,8 +377,6 @@
 		9E449E5229BE335600C6ED79 /* Journeys */ = {
 			isa = PBXGroup;
 			children = (
-				9EC2B18E28F9A1B900A810C5 /* PlannedJourney.swift */,
-				9EC47AC728FB28CE00A13EB8 /* ProcessedPlannedJourney.swift */,
 				9E8E84AA2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift */,
 				9E8E84B32AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift */,
 			);
@@ -728,12 +716,10 @@
 				9EE694B629A2D55500C82599 /* JourneyPlanView.swift in Sources */,
 				9E449E5C29BE36B000C6ED79 /* FavouriteStopsStore.swift in Sources */,
 				9E964B6829D8AC5600BB536A /* LiveTramsMCRShortcuts.swift in Sources */,
-				9E209010299ED033008F9168 /* ProcessedPlannedJourney.swift in Sources */,
 				9E964B6729D8AC4700BB536A /* GetNextTramIntent.swift in Sources */,
 				9E20900E299ED017008F9168 /* ServicesRequest.swift in Sources */,
 				9E34D1E229B7C84300A7CB9A /* Tram.swift in Sources */,
 				9E208FF9299ECD3F008F9168 /* LiveTramsMCRApp.swift in Sources */,
-				9E209011299ED037008F9168 /* JourneyPlannerRequest.swift in Sources */,
 				9E209007299ECFAB008F9168 /* FormattedServices.swift in Sources */,
 				9E6B01A629B524AD0041A385 /* ServicesHelper.swift in Sources */,
 				9E4986A229EC7E2E00CBCC34 /* StopKeys.swift in Sources */,
@@ -748,7 +734,6 @@
 				9E8E84AC2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */,
 				9EE8F317299EE2D0000DE425 /* StopDetail.swift in Sources */,
 				9EB4234829E0AB45004208B1 /* LocationManager.swift in Sources */,
-				9E209012299ED039008F9168 /* PlannedJourney.swift in Sources */,
 				9E209008299ECFAF008F9168 /* StopRequest.swift in Sources */,
 				9E49869F29EC7E0900CBCC34 /* RouteV2.swift in Sources */,
 				9E964B6429D8A3E300BB536A /* DepartureBoardServices.swift in Sources */,
@@ -783,7 +768,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E34D1DF29B7C57800A7CB9A /* Tram.swift in Sources */,
-				9EC47AC828FB28CE00A13EB8 /* ProcessedPlannedJourney.swift in Sources */,
 				9EB4234429E08990004208B1 /* LocationManager.swift in Sources */,
 				9E8E84B42AD0B3D9000ECB15 /* ProcessedPlannedJourneyV2.swift in Sources */,
 				9E8E84AB2AD0AD41000ECB15 /* PlannedJourneyV2Response.swift in Sources */,
@@ -811,11 +795,9 @@
 				9E0158A429FEF327009B6625 /* NonInterchangeJourneyView.swift in Sources */,
 				9E2A946028F737B60096F7A9 /* Route.swift in Sources */,
 				9E6B01A929B532690041A385 /* SystemLargeView.swift in Sources */,
-				9EC2B19228F9A78600A810C5 /* JourneyPlannerRequest.swift in Sources */,
 				9E0158A229FEF2EB009B6625 /* ServiceInformationView.swift in Sources */,
 				9EE1934F2A080577008EB2ED /* JourneyPlanViewPad.swift in Sources */,
 				9EE1934D2A080569008EB2ED /* JourneyPlanViewDefault.swift in Sources */,
-				9EC2B18F28F9A1B900A810C5 /* PlannedJourney.swift in Sources */,
 				9E0158A629FEF3EA009B6625 /* InterchangeJourneyView.swift in Sources */,
 				9E84E2E12812AC6000571ECA /* Home.swift in Sources */,
 				9EF27CC929F3E38900D194D6 /* MapView.swift in Sources */,
@@ -878,7 +860,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -913,7 +895,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"LiveTramsMCR Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
@@ -948,7 +930,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -978,7 +960,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramTimesWidget/Info.plist;
@@ -1124,7 +1106,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1163,7 +1145,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1201,7 +1183,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
@@ -1229,7 +1211,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = M43HD7XS8H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveTramsIntentHandling/Info.plist;
