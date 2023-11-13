@@ -38,6 +38,17 @@
                ReferencedContainer = "container:LiveTramsMCR.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9E61E7D62AF98B0B001A9BA6"
+               BuildableName = "LiveTramsMCRTests.xctest"
+               BlueprintName = "LiveTramsMCRTests"
+               ReferencedContainer = "container:LiveTramsMCR.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
