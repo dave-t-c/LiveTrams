@@ -31,10 +31,8 @@ struct Provider: AppIntentTimelineProvider {
             let entry = SimpleEntry(date: Date(), configuration: configuration, formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""))
             entries.append(entry)
         }
-
-        let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
-
-        return Timeline(entries: entries, policy: .after(nextUpdateDate))
+        
+        return Timeline(entries: entries, policy: .atEnd)
     }
 
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
