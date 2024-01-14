@@ -28,7 +28,7 @@ struct Provider: AppIntentTimelineProvider {
             entries.append(entry)
         }
         catch {
-            let entry = SimpleEntry(date: Date(), configuration: configuration, formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""), updateInformation: "No service infomration available")
+            let entry = SimpleEntry(date: Date(), configuration: configuration, formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""))
             entries.append(entry)
         }
 
@@ -56,7 +56,6 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
     let formattedServices: FormattedServices
-    var updateInformation: String = ""
 }
 
 struct LiveTramsMCRWatchOSExtensionEntryView : View {
@@ -67,20 +66,18 @@ struct LiveTramsMCRWatchOSExtensionEntryView : View {
         let destinationCount: Int = entry.formattedServices.destinations.count
         let destinationsToShow: Int = destinationCount > maxDestinationsToShow ? maxDestinationsToShow : destinationCount
         let orderedServices = ServicesHelper().getDestinationsAsOrderedDict(destinations: entry.formattedServices.destinations, limit: destinationsToShow)
+        Text("From \(entry.configuration.stopDetail.stopName):")
+            .font(.headline)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .padding(.trailing)
+        Spacer()
+
         ForEach(orderedServices.keys, id: \.self) { stopName in
             let trams: [Tram] = entry.formattedServices.destinations[stopName]!
             let tramTimes = trams.map {$0.wait}
             let formattedTramTimes = tramTimes.joined(separator: ", ") + " mins"
-
             VStack{
-                HStack{
-                    Text("Next tram from \(entry.configuration.stopDetail.stopName)")
-                        .font(.headline)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
-                        .padding(.trailing)
-                    Spacer()
-                }
                 HStack {
                     Text(stopName)
                         .font(.subheadline)
@@ -94,25 +91,21 @@ struct LiveTramsMCRWatchOSExtensionEntryView : View {
                     Text(formattedTramTimes)
                         .font(.subheadline)
                         .padding(.trailing)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
                 Spacer()
             }
-
         }
-        /*VStack {
-            HStack{
-                Text("Wythenshawe Town Centre")
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Spacer()
-            }
-            HStack{
-                Text("Manchester Airport: 9 mins")
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Spacer()
-            }
-        }.font(.footnote)*/
+        if(entry.formattedServices.destinations.isEmpty)
+        {
+            Text("No service information available")
+                .font(.subheadline)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .padding(.trailing)
+            Spacer()
+        }
     }
 }
 
@@ -136,8 +129,12 @@ struct LiveTramsMCRWatchOSExtension: Widget {
 } timeline: {
     SimpleEntry(date: .now, 
                 configuration:
-                    ConfigurationAppIntent(stopDetail: StopDetail(id: 1, tlaref: "ALT", stopName: "Altrincham")),
-                formattedServices: FormattedServices(destinations: 
+                    ConfigurationAppIntent(stopDetail: StopDetail(id: 1, tlaref: "WTC", stopName: "Wythenshawe Town Center")),
+                formattedServices: FormattedServices(destinations:
                                                         [
                                                             "Manchester Airport": [Tram(destination: "Manchester Airport", carriages: "Single", status: "Due", wait: "8")]], messages: [], lastUpdated: ""))
+    SimpleEntry(date: .now,
+                configuration:
+                    ConfigurationAppIntent(stopDetail: StopDetail(id: 1, tlaref: "WTC", stopName: "Wythenshawe Town Center")),
+                formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""))
 }
