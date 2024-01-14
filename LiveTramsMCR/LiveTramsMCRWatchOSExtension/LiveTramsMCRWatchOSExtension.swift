@@ -20,7 +20,7 @@ struct Provider: AppIntentTimelineProvider {
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
 
-        let selectedStop = configuration.stopDetail.tlaref
+        let selectedStop = configuration.stopName
         do  {
             let serviceRequester = ServicesRequest()
             let formattedServices = try await serviceRequester.requestServices(tlaref: selectedStop)
@@ -32,22 +32,31 @@ struct Provider: AppIntentTimelineProvider {
             entries.append(entry)
         }
 
-        return Timeline(entries: entries, policy: .atEnd)
+        let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
+
+        return Timeline(entries: entries, policy: .after(nextUpdateDate))
     }
 
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
-        let stopKeys: [StopKeys] = [
-            StopKeys(stopName: "Deansgate - Castlefield", tlaref: "GMX"),
-            StopKeys(stopName: "Cornbrook", tlaref: "CNK"),
-            StopKeys(stopName: "Altrincham", tlaref: "ALT")
+        let stops: [String] = [
+            "St Peter's Square",
+            "Piccadilly Gardens",
+            "Deansgate - Castlefield",
+            "Piccadilly",
+            "Victoria",
+            "Altrincham",
+            "Bury",
+            "Market Street",
+            "Exchange Square",
+            "Cornbrook",
+            "Chorlton",
+            "Sale",
+            "Old Trafford",
+            "Media City"
         ]
 
-        let stopDetails = stopKeys.map { stopKey in
-            return StopDetail(id: stopKey.tlaref.hashValue, tlaref: stopKey.tlaref, stopName: stopKey.stopName)
-        }
-
-        return stopDetails.map { stopDetail in
-            return AppIntentRecommendation(intent: ConfigurationAppIntent(stopDetail: stopDetail), description: stopDetail.stopName)
+        return stops.map { stop in
+            return AppIntentRecommendation(intent: ConfigurationAppIntent(stopDetail: stop), description: stop)
         }
     }
 }
@@ -66,10 +75,10 @@ struct LiveTramsMCRWatchOSExtensionEntryView : View {
         let destinationCount: Int = entry.formattedServices.destinations.count
         let destinationsToShow: Int = destinationCount > maxDestinationsToShow ? maxDestinationsToShow : destinationCount
         let orderedServices = ServicesHelper().getDestinationsAsOrderedDict(destinations: entry.formattedServices.destinations, limit: destinationsToShow)
-        Text("From \(entry.configuration.stopDetail.stopName):")
+        Text("Next tram from \(entry.configuration.stopName):")
             .font(.headline)
             .lineLimit(1)
-            .minimumScaleFactor(0.5)
+            .minimumScaleFactor(0.25)
             .padding(.trailing)
         Spacer()
 
@@ -129,12 +138,12 @@ struct LiveTramsMCRWatchOSExtension: Widget {
 } timeline: {
     SimpleEntry(date: .now, 
                 configuration:
-                    ConfigurationAppIntent(stopDetail: StopDetail(id: 1, tlaref: "WTC", stopName: "Wythenshawe Town Center")),
+                    ConfigurationAppIntent(stopDetail: "Wythenshawe Town Center"),
                 formattedServices: FormattedServices(destinations:
                                                         [
                                                             "Manchester Airport": [Tram(destination: "Manchester Airport", carriages: "Single", status: "Due", wait: "8")]], messages: [], lastUpdated: ""))
     SimpleEntry(date: .now,
                 configuration:
-                    ConfigurationAppIntent(stopDetail: StopDetail(id: 1, tlaref: "WTC", stopName: "Wythenshawe Town Center")),
+                    ConfigurationAppIntent(stopDetail:  "Wythenshawe Town Center"),
                 formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""))
 }

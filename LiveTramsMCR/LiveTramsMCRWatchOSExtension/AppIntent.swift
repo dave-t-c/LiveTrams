@@ -26,7 +26,7 @@ struct StopQuery: EntityQuery {
     }
 
     func defaultResult() async -> StopDetail? {
-        try? await suggestedEntities().last
+        try? await suggestedEntities().first
     }
 }
 
@@ -48,12 +48,12 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var description = IntentDescription("This is an example widget.")
 
     // An example configurable parameter.
-    @Parameter(title: "Stop")
-    var stopDetail: StopDetail
+    @Parameter(title: "Stop name")
+    var stopName: String
 
 
-    init(stopDetail: StopDetail) {
-        self.stopDetail = stopDetail
+    init(stopDetail: String) {
+        self.stopName = stopDetail
     }
 
 
