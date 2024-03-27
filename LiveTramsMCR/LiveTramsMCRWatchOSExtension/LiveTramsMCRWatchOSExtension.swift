@@ -50,7 +50,7 @@ struct Provider: AppIntentTimelineProvider {
             "Chorlton",
             "Sale",
             "Old Trafford",
-            "Media City"
+            "MediaCityUK"
         ]
 
         return stops.map { stop in
