@@ -10,9 +10,9 @@ import AppIntents
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Configuration"
-    static var description = IntentDescription("This is an example widget.")
+    static var description = IntentDescription("View live services for a stop")
 
-    // An example configurable parameter.
+    // Selected stop name
     @Parameter(title: "Stop name")
     var stopName: String
 

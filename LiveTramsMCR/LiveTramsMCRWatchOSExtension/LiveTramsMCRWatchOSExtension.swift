@@ -22,8 +22,16 @@ struct Provider: AppIntentTimelineProvider {
 
         let selectedStop = configuration.stopName
         do  {
+            let stopRequest = StopRequest()
+            let stopDetails = try await StopRequest().requestStopsAsync()
+            let stop = stopDetails.first{$0.stopName == selectedStop}
+            if (stop == nil){
+                let entry = SimpleEntry(date: Date(), configuration: configuration, formattedServices: FormattedServices(destinations: [:], messages: [], lastUpdated: ""))
+                entries.append(entry)
+                return Timeline(entries: entries, policy: .atEnd)
+            }
             let serviceRequester = ServicesRequest()
-            let formattedServices = try await serviceRequester.requestServices(tlaref: selectedStop)
+            let formattedServices = try await serviceRequester.requestServices(tlaref: stop!.tlaref)
             let entry = SimpleEntry(date: Date(), configuration: configuration, formattedServices: formattedServices)
             entries.append(entry)
         }

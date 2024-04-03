@@ -23,7 +23,7 @@ struct JourneyPlanViewDefault: View {
     @State private var plannedJourneyV2: PlannedJourneyV2Response? = nil
     
     var initialOrigin: String =  ""
-    var stops: [String] = []
+    var stops: [Stop] = []
     private let routeHelper = RouteHelper()
     private let servicesRequest = ServicesRequest()
     @Environment(\.presentationMode) var presentation
@@ -33,12 +33,12 @@ struct JourneyPlanViewDefault: View {
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
-        return stopsCopy.filter { $0 != originStop }
+        return stopsCopy.filter { $0.stopName != originStop }.map{$0.stopName}
     }
     
     var availableOriginStops: [String] {
         let stopsCopy = stops
-        return stopsCopy.filter { $0 != destinationStop }
+        return stopsCopy.filter { $0.stopName != destinationStop }.map{$0.stopName}
     }
     
     var body: some View {
@@ -142,7 +142,12 @@ struct JourneyPlanViewDefault: View {
                             Button(action: {
                                 Task {
                                     gettingJourneyRequest = true
-                                    plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStop, destinationName: destinationStop)
+                                    let originStopDetail = stops.first{ $0.stopName == originStop }
+                                    let destinationStopDetail = stops.first{ $0.stopName == destinationStop }
+                                    if (originStopDetail == nil || destinationStopDetail == nil){
+                                        return
+                                    }
+                                    plannedJourneyV2 = try await journeyPlannerV2Request.planJourney(originName: originStopDetail!.tlaref, destinationName: destinationStopDetail!.tlaref)
                                     gettingJourneyRequest = false
                                     if(plannedJourneyV2 == nil){
                                         return
@@ -213,7 +218,7 @@ struct JourneyPlanViewDefault: View {
             RouteV2Request().requestRoutesV2 { (routes) in
                 self.routes = routes
             }
-            
+
             showBottomSheet = true
         }
     }
