@@ -10,8 +10,8 @@ import SwiftUI
 struct JourneyPlanView: View {
     
     var initialOrigin: String =  ""
-    var stops: [String] = []
-    
+    var stops: [Stop] = []
+
     @State private var originStop: String = ""
     
     @State private var destinationStop: String = ""
@@ -21,12 +21,12 @@ struct JourneyPlanView: View {
     
     var availableDestinationStops: [String] {
         let stopsCopy = stops
-        return stopsCopy.filter { $0 != originStop }
+        return stopsCopy.filter { $0.stopName != originStop }.map{$0.stopName}
     }
     
     var availableOriginStops: [String] {
         let stopsCopy = stops
-        return stopsCopy.filter { $0 != destinationStop }
+        return stopsCopy.filter { $0.stopName != destinationStop }.map{$0.stopName}
     }
     
     var body: some View {
@@ -70,7 +70,12 @@ struct JourneyPlanView: View {
                     Spacer()
                     Button(action: {
                         Task {
-                            plannedJourneyResponse = try! await journeyPlannerRequest.planJourney(originName: originStop, destinationName: destinationStop)
+                            let originStopDetail = stops.first{ $0.stopName == originStop }
+                            let destinationStopDetail = stops.first{ $0.stopName == destinationStop }
+                            if (originStopDetail == nil || destinationStopDetail == nil){
+                                return
+                            }
+                            plannedJourneyResponse = try! await journeyPlannerRequest.planJourney(originName: originStopDetail!.tlaref, destinationName: destinationStopDetail!.tlaref)
                             if(plannedJourneyResponse == nil){
                                 return
                             }

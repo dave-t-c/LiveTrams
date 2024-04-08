@@ -21,7 +21,7 @@ struct Home: View {
                     List {
                         if (searchText.isEmpty) {
                             Section(header: Text("Quick Links")) {
-                                NavigationLink(destination: JourneyPlanView(initialOrigin: "", stops: self.stopViewModel.stops.map { $0.stopName })) {
+                                NavigationLink(destination: JourneyPlanView(initialOrigin: "", stops: self.stopViewModel.stops)) {
                                     Label("Journey Planner", systemImage: "map.fill")
                                         .font(.headline)
                                         .padding()

@@ -16,7 +16,9 @@ struct LiveTramsMCRShortcuts: AppShortcutsProvider {
                 "Ask \(.applicationName) for live services",
                 "Ask \(.applicationName) for the next tram",
                 "Get the next tram from \(.applicationName)"
-            ]
+            ],
+            shortTitle: "Get the next tram",
+            systemImageName: "tram.fill"
         )
     ]
 }

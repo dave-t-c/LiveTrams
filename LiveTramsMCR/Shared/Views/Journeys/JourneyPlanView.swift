@@ -12,8 +12,8 @@ import OrderedCollections
 struct JourneyPlanView: View {
     
     var initialOrigin: String =  ""
-    var stops: [String] = []
-    
+    var stops: [Stop] = []
+
     var body: some View {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
