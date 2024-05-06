@@ -33,7 +33,7 @@ struct Home: View {
                             NavigationLink(destination: StopDetail(stop: stop, stops: stops).environmentObject(favouritesStore)) {
                                 VStack(alignment: .leading) {
                                     Text(stop.stopName)
-                                    Text(stop.street)
+                                    Text(stop.street ?? "")
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }

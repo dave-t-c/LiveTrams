@@ -37,7 +37,7 @@ struct Home: View {
                                         VStack(alignment: .leading) {
                                             Text(stop.stopName)
                                                 .font(.headline)
-                                            Text(stop.street)
+                                            Text(stop.street ?? "")
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }

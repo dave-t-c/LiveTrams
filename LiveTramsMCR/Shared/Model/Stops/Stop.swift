@@ -13,9 +13,9 @@ struct Stop: Identifiable, Codable, Equatable, Hashable{
     let latitude: Double
     let line: String
     let longitude: Double
-    let roadCrossing: String
+    let roadCrossing: String?
     let stopName: String
-    let street: String
+    let street: String?
     let tlaref: String
     let stopZone: String
     let routes: [SimpleRouteV2]?

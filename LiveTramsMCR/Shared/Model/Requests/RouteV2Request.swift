@@ -10,7 +10,7 @@ class RouteV2Request: ObservableObject {
     @Published var routes = [RouteV2]()
     
     func requestRoutesV2(completion:@escaping ([RouteV2]) -> ()) {
-        guard let url = URL(string: "https://api.livetramsmcr.com/v2/routes") else {
+        guard let url = URL(string: "https://api.sandbox.livetramsmcr.com/v2/routes") else {
             print("Invalid url...")
             return
         }
