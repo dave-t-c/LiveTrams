@@ -39,10 +39,10 @@ struct PlannedJourneyV2: Identifiable, Decodable, Encodable, Equatable, Hashable
 }
 
 struct VisualisedJourney: Identifiable, Decodable, Encodable, Equatable, Hashable {
-    let polylineFromOrigin: [[Double]]
-    let polylineFromInterchange: [[Double]]?
-    
-    var id: [Double]{
+    let polylineFromOrigin: [RouteV2Coordinate]
+    let polylineFromInterchange: [RouteV2Coordinate]?
+
+    var id: RouteV2Coordinate{
         polylineFromOrigin[0]
     }
 }
