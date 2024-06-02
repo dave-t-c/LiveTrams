@@ -12,9 +12,9 @@ import OrderedCollections
 struct MapView: UIViewRepresentable {
     
     let region: MKCoordinateRegion
-    let lineCoordinatesFromOrigin: [[Double]]
+    let lineCoordinatesFromOrigin: [RouteV2Coordinate]
     let stopCoordinatesFromOrigin: OrderedDictionary<String, CLLocationCoordinate2D>
-    var lineCoordinatesFromInterchange: [[Double]]? = nil
+    var lineCoordinatesFromInterchange: [RouteV2Coordinate]? = nil
     let stopCoordinatesFromInterchange: OrderedDictionary<String, CLLocationCoordinate2D>?
     let lineColorFromOrigin: Color
     var lineColorFromInterchange: Color? = nil
@@ -32,7 +32,7 @@ struct MapView: UIViewRepresentable {
         var routePolylines: [RoutePolyline] = []
         
         let coordinatesFromOrigin = lineCoordinatesFromOrigin.map { coord in
-            let createdLocation = CLLocationCoordinate2D(latitude: coord[1], longitude: coord[0])
+            let createdLocation = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
             return createdLocation
         }
         
@@ -66,7 +66,7 @@ struct MapView: UIViewRepresentable {
         if (stopCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
             
             let coordinatesFromInterchange = lineCoordinatesFromInterchange!.map { coord in
-                let createdLocation = CLLocationCoordinate2D(latitude: coord[1], longitude: coord[0])
+                let createdLocation = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
                 return createdLocation
             }
             
@@ -117,7 +117,7 @@ struct MapView: UIViewRepresentable {
         var stopAnnotations: [StopAnnotation] = []
         var routePolylines: [RoutePolyline] = []
         let coordinatesFromOrigin = lineCoordinatesFromOrigin.map { coord in
-            let createdLocation = CLLocationCoordinate2D(latitude: coord[1], longitude: coord[0])
+            let createdLocation = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
             return createdLocation
         }
         
@@ -153,7 +153,7 @@ struct MapView: UIViewRepresentable {
         
         if (lineCoordinatesFromInterchange != nil && lineColorFromInterchange != nil) {
             let coordinatesFromInterchange = lineCoordinatesFromInterchange!.map { coord in
-                let createdLocation = CLLocationCoordinate2D(latitude: coord[1], longitude: coord[0])
+                let createdLocation = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
                 return createdLocation
             }
             

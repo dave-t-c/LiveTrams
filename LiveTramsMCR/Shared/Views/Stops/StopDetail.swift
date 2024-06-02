@@ -98,7 +98,7 @@ struct StopDetail: View {
                 }
                 .padding()
                 
-                Label(stop.street, systemImage: "car")
+                Label(stop.street ?? "", systemImage: "car")
                     .padding()
                 Label("Stop Zone: \(stop.stopZone)", systemImage: "tram")
                     .padding()

@@ -99,7 +99,7 @@ struct RouteHelper {
     public func generateAllRoutePolylines(routes: [RouteV2], enableRouteColor: Bool) -> [RoutePolyline] {
         var routePolylines: [RoutePolyline] = []
         for route in routes {
-            let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])}
+            let lineCoordinates = route.polylineCoordinates.map {CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)}
             let polyline = RoutePolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
             polyline.routeColor = enableRouteColor ? UIColor(self.GenerateRouteColor(hex: route.colour)) : .darkGray
             routePolylines.append(polyline)

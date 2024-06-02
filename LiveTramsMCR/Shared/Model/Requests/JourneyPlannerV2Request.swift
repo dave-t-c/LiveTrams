@@ -13,7 +13,7 @@ class JourneyPlannerV2Request: ObservableObject {
     func planJourney(originName: String, destinationName: String) async throws -> PlannedJourneyV2Response? {
         let escapedOriginName = originName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
         let escapedDestinationName = destinationName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
-        guard let url = URL(string: "https://api.livetramsmcr.com/v2/journey-planner/\(escapedOriginName!)/\(escapedDestinationName!)") else {
+        guard let url = URL(string: "https://api.production.livetramsmcr.com/v2/journey-planner/\(escapedOriginName!)/\(escapedDestinationName!)") else {
             print("Invalid url...")
             return plannedJourneyV2
         }

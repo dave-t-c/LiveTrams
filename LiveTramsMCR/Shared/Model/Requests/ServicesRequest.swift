@@ -12,7 +12,7 @@ class ServicesRequest: ObservableObject {
     @Published var services = FormattedServices(destinations: [:], messages: [], lastUpdated: "")
     
     func requestServices(tlaref: String) async throws ->  FormattedServices {
-        guard let url = URL(string: "https://api.livetramsmcr.com/v1/services/\(tlaref)") else {
+        guard let url = URL(string: "https://api.production.livetramsmcr.com/v1/services/\(tlaref)") else {
             print("Invalid url...")
             return FormattedServices(destinations: [:], messages: [], lastUpdated: "")
         }
@@ -44,7 +44,7 @@ class ServicesRequest: ObservableObject {
     }
     
     func requestDepartureBoardServices(tlaref: String) async throws ->  DepartureBoardServices {
-        guard let url = URL(string: "https://api.livetramsmcr.com/v1/services/departure-boards/\(tlaref)") else {
+        guard let url = URL(string: "https://api.production.livetramsmcr.com/v1/services/departure-boards/\(tlaref)") else {
             print("Invalid url...")
             return DepartureBoardServices(trams: [], messages: [])
         }
